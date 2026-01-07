@@ -1,0 +1,2294 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: 'Libre Franklin';
+    src: url('../fonts/LibreFranklin-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Libre Franklin';
+    src: url('../fonts/LibreFranklin-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Design Tokens - Exact Figma Measurements at 1440px */
+:root {
+    /* Colors */
+    --bg-primary: #3a3a3a;
+    --bg-card: #151515;
+    --bg-overlay: rgba(25, 26, 27, 0.4);
+    --bg-input: #414141;
+    --bg-button: #d9d9d9;
+    --bg-button-dark: #2d2f31;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #b3b8bd;
+    
+    --border-primary: #8b8b8b;
+    --border-secondary: #5f6162;
+    --border-dark: #000000;
+    
+    /* Typography - Exact from Figma */
+    --font-family: 'Libre Franklin', sans-serif;
+    --font-size-nav: 16px;
+    --font-size-section-header: 64px;
+    --font-size-project-title: 40px;
+    --font-size-project-desc: 24px;
+    --font-size-contact-label: 14px;
+    --font-size-contact-button: 24px;
+    --font-size-email: 40px;
+    --font-size-email-label: 20px;
+    --font-size-pill: 32px;
+    --font-size-home-text: 23px;
+    
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    
+    /* Spacing - Exact from Figma at 1440px */
+    --spacing-xs: 4px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 80px;
+    
+    /* Grid System - 12 columns with 40px margins and 40px gutters */
+    --grid-margin: 40px;
+    --grid-gutter: 40px;
+    --grid-columns: 12;
+    --grid-content-width: 1360px; /* 1440px - (40px * 2 margins) */
+    
+    --container-padding: 40px; /* Changed from 39px to match grid margin */
+    --nav-top: 40px; /* Changed from 39px to match grid margin */
+    --nav-left: 40px; /* Changed from 39px to match grid margin */
+    --nav-gap: 80px;
+    
+    /* Home Section - Exact Figma measurements at 1440px */
+    --home-image-x: 40px; /* Left position from edge */
+    --home-image-y: 99px; /* Top position from top */
+    --home-image-width: 777px;
+    --home-image-height: 556px;
+    --home-text-width: 543px;
+    --home-text-height: 556px;
+    --home-text-padding: 40px; /* Padding inside text box */
+    --home-gap: 40px; /* Gap between image and text: 857 - (40 + 777) = 40px */
+    
+    --work-top: 694px;
+    --work-header-underline-start: 183px;
+    --work-header-underline-width: 1180px;
+    
+    --projects-top: 812px;
+    --projects-width: 1360px;
+    --projects-gap: 40px;
+    --project-card-width: 660px;
+    --project-card-padding: 40px;
+    --project-card-gap: 16px;
+    --project-image-text-gap: 24px;
+    --project-title-desc-gap: 4px;
+    --project-tags-top: 16px;
+    --project-tags-gap: 16px;
+    --project-thumbnail-height: 329px;
+    
+    --contact-header-top: 3170px;
+    --contact-header-underline-start: 242px;
+    --contact-header-underline-width: 1121px;
+    --contact-form-top: 3288px;
+    --contact-form-width: 661px;
+    --contact-form-height: 556px;
+    --contact-form-padding: 40px;
+    --contact-form-gap: 16px;
+    --contact-info-top: 3470px;
+    --contact-info-left: 47px;
+    --contact-info-width: 588px;
+    --contact-form-group-gap: 10px;
+    --contact-input-height: 49px;
+    --contact-textarea-height: 185px;
+    --contact-button-height: 64px;
+    --contact-button-padding-y: 10px;
+    
+    /* Border Radius */
+    --radius-sm: 20px;
+    --radius-md: 40px;
+    --radius-pill: 100px;
+    --radius-thumbnail: 10px;
+    
+    /* Effects */
+    --blur: 2px;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Container - Base at 1440px */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+/* 12-Column Grid System */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    gap: var(--grid-gutter);
+    width: 100%;
+    max-width: var(--grid-content-width);
+    margin: 0 auto;
+}
+
+/* Column span utility classes */
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+/* Navigation Styles - Aligned with sections */
+nav {
+    position: fixed;
+    top: var(--nav-top);
+    left: var(--grid-margin); /* Use grid margin to align with sections */
+    z-index: 100;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--nav-gap);
+    margin: 0;
+    padding: 0;
+}
+
+/* Glass effect when scrolled */
+nav.scrolled {
+    background: rgba(15, 16, 17, 0.9); /* Darker, more opaque background to meet WCAG AA (4.5:1 contrast) */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for glass effect */
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    border-radius: var(--radius-sm); /* 20px rounded corners */
+    padding: 12px 24px; /* Padding for the nav container */
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: var(--font-size-nav);
+    font-weight: var(--font-weight-medium);
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* Section Styles */
+section {
+    position: relative;
+    margin-left: var(--grid-margin); /* 40px */
+    margin-right: var(--grid-margin); /* 40px */
+    padding: 0;
+}
+
+#home {
+    margin-top: 40px; /* 40px spacing on desktop */
+    margin-bottom: 40px; /* 40px spacing between sections on desktop */
+    padding-top: 64px; /* 64px padding to account for fixed nav */
+    padding-bottom: 0;
+}
+
+/* Home/About Section - Aligned to 12-column layout (7 cols + 5 cols) */
+.home-section {
+    display: flex;
+    gap: var(--grid-gutter); /* 40px - matches grid gutter */
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    align-items: flex-start;
+}
+
+.home-image {
+    width: calc((100% - var(--grid-gutter)) * 7 / 12); /* 7 columns width - responsive */
+    height: var(--home-image-height); /* 556px */
+    border-radius: var(--radius-sm); /* 20px */
+    background: white;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.home-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    display: none; /* Hide original image, canvas will replace it */
+}
+
+#home-image-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-sm);
+    display: block;
+    cursor: crosshair;
+}
+
+.home-text {
+    width: calc((100% - var(--grid-gutter)) * 5 / 12); /* 5 columns width - responsive */
+    height: var(--home-text-height); /* 556px */
+    background: rgba(25, 26, 27, 0.4); /* Semi-transparent background for glass effect */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for glass effect */
+    padding: var(--home-text-padding); /* 40px all sides */
+    border-radius: var(--radius-sm); /* 20px */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure content stretches to full width */
+    justify-content: flex-start; /* Align content to top */
+    flex-shrink: 0;
+    overflow: hidden; /* Hide overflow on container */
+    box-sizing: border-box;
+    position: relative; /* For gradient overlay positioning */
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+}
+
+.home-text-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0; /* Allow flex item to shrink */
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.home-text-content p:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 16px;
+}
+
+.home-text::before {
+    content: '';
+    position: absolute;
+    top: var(--home-text-padding); /* Position at top of content area */
+    left: var(--home-text-padding);
+    right: var(--home-text-padding);
+    height: 120px; /* Increased gradient height for better coverage */
+    background: linear-gradient(to top, #2D2D2E00 0%, #2D2D2E4D 40%, #2D2D2EFF 100%);
+    border-radius: 0; /* No rounded corners on gradient */
+    pointer-events: none; /* Allow scrolling through the gradient */
+    z-index: 1;
+    opacity: 0; /* Hidden by default, shown via JavaScript when needed */
+    transition: opacity 0.2s ease;
+}
+
+.home-text.has-top-overflow::before {
+    opacity: 1; /* Show gradient when scrolled down from top */
+}
+
+.home-text::after {
+    content: '';
+    position: absolute;
+    bottom: var(--home-text-padding); /* Position at bottom of content area */
+    left: var(--home-text-padding);
+    right: var(--home-text-padding);
+    height: 120px; /* Increased gradient height for better coverage */
+    background: linear-gradient(to bottom, #2D2D2E00 0%, #2D2D2E4D 40%, #2D2D2EFF 100%);
+    border-radius: 0; /* No rounded corners on gradient */
+    pointer-events: none; /* Allow scrolling through the gradient */
+    z-index: 1;
+    opacity: 0; /* Hidden by default, shown via JavaScript when needed */
+    transition: opacity 0.2s ease;
+}
+
+.home-text.has-overflow::after {
+    opacity: 1; /* Show gradient when there's overflow */
+}
+
+.home-text-content:hover {
+    scrollbar-color: var(--border-primary) transparent;
+}
+
+.home-text-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.home-text-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.home-text-content::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    border: none;
+}
+
+.home-text-content:hover::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 4px;
+    border: none;
+}
+
+.home-text-content:hover::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+    border-radius: 4px;
+    border: none;
+}
+
+.home-text p {
+    font-size: var(--font-size-home-text); /* 23px */
+    line-height: 1.5;
+    color: var(--text-primary); /* #ffffff - brighter white */
+    margin: 0 0 16px 0; /* Add bottom margin for spacing between paragraphs */
+    padding: 0;
+    opacity: 0; /* Hidden initially, revealed by animation */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.home-text-content p {
+    line-height: 1.5;
+}
+
+
+.home-text p:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.home-text p:last-child {
+    margin-bottom: 0; /* Remove margin from last paragraph */
+}
+
+/* Section Headers - Text and line side by side */
+.section-header {
+    font-size: var(--font-size-section-header);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin-bottom: 0;
+    position: relative;
+    padding-bottom: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+}
+
+.section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--text-primary);
+    align-self: baseline;
+    margin-left: 0;
+    max-width: var(--work-header-underline-width);
+}
+
+#contact .section-header::after {
+    margin-left: 0;
+    max-width: var(--contact-header-underline-width);
+}
+
+/* Projects Section */
+#projects {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 40px; /* 40px spacing between sections on desktop */
+    margin-bottom: 40px; /* 40px spacing between sections on desktop */
+}
+
+.projects-grid-wrapper {
+    position: relative; /* For password overlay positioning */
+    margin-top: var(--spacing-lg);
+}
+
+/* Password Protection Overlay */
+.password-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 800px; /* Match the max-height of locked grid */
+    background: linear-gradient(to bottom, 
+        rgba(15, 16, 17, 0.6) 0%, 
+        rgba(15, 16, 17, 0.6) 15%, 
+        rgba(15, 16, 17, 0.55) 25%, 
+        rgba(15, 16, 17, 0.45) 35%, 
+        rgba(15, 16, 17, 0.35) 45%, 
+        rgba(15, 16, 17, 0.25) 55%, 
+        rgba(15, 16, 17, 0.15) 65%, 
+        rgba(15, 16, 17, 0.08) 75%, 
+        rgba(15, 16, 17, 0.04) 85%, 
+        rgba(15, 16, 17, 0.02) 92%, 
+        rgba(15, 16, 17, 0) 100%); /* Extremely gradual gradient fade - bottom edge almost undetectable */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 10;
+    display: flex;
+    align-items: center; /* Center modal vertically */
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0; /* Rounded top, flat bottom */
+    overflow: hidden; /* Ensure gradient doesn't overflow */
+}
+
+.password-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.password-modal {
+    background: rgba(25, 26, 27, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2; /* Above gradient overlay */
+}
+
+.password-modal-title {
+    font-size: 32px;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin: 0 0 8px 0; /* Tightened from 16px to 8px */
+}
+
+.password-modal-description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.password-input + .password-error {
+    margin-top: -12px; /* Tighten space between input and error */
+    margin-bottom: 0;
+}
+
+.password-submit {
+    margin-top: 20px; /* Space before button */
+}
+
+.password-input {
+    background: var(--bg-input);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, border-width 0.3s ease;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: #d0d0d0; /* Brighter grey */
+    border-width: 2px; /* Thicker border on focus */
+}
+
+.password-input:active {
+    border-color: #d0d0d0; /* Brighter grey */
+    border-width: 2px; /* Thicker border when active */
+}
+
+.password-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.password-error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin: 0;
+    text-align: left;
+}
+
+.password-submit {
+    background: var(--bg-button);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-sm);
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--border-dark);
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    width: 100%;
+}
+
+.password-submit:hover {
+    opacity: 0.9;
+}
+
+/* Blur effect for projects when locked */
+#projects-grid.locked {
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+    max-height: 800px; /* Clip the grid when locked */
+    overflow: hidden;
+}
+
+/* Settings Modal */
+.settings-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.settings-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.settings-modal-content {
+    background: rgba(15, 16, 17, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.settings-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.settings-modal-title {
+    font-size: 32px;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.settings-modal-close {
+    width: 72px; /* 72px circle for desktop */
+    height: 72px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9; /* Light gray circular background */
+    border-radius: 50%; /* Circular shape */
+    padding: 0;
+    border: none;
+    flex-shrink: 0;
+}
+
+.settings-modal-close img {
+    width: 32px; /* 32px icon size for desktop */
+    height: 32px;
+    display: block;
+    object-fit: contain;
+}
+
+.settings-modal-close:hover {
+    background-color: #ffffff; /* Lighten to white on hover, keeping icon dark for contrast */
+}
+
+.settings-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.settings-modal-description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+.settings-toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.settings-toggle-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.settings-toggle-label {
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.settings-toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 32px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-secondary);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.settings-toggle-switch.active {
+    background: var(--bg-button);
+    border-color: var(--bg-button);
+}
+
+.settings-toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.settings-toggle-switch.active::after {
+    left: calc(100% - 27px);
+    background: var(--border-dark);
+}
+
+.settings-modal-info {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.settings-modal-info span {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+}
+
+.settings-modal-note {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+    font-style: italic;
+}
+
+.settings-modal-note code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.settings-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 24px 0;
+    width: 100%;
+}
+
+.reset-access-btn {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-access-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--border-primary);
+}
+
+/* Projects Grid - Using 12-column system */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    gap: var(--grid-gutter);
+    width: 100%;
+    max-width: var(--grid-content-width);
+    margin-top: 0; /* Removed - now handled by wrapper */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Project Card - Using 12-column system (spans 6 columns each) */
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-sm);
+    padding: var(--project-card-padding);
+    backdrop-filter: blur(var(--blur));
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    grid-column: span 6; /* Each project card spans 6 columns (2 columns per row) */
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.project-thumbnail {
+    width: 100%;
+    height: var(--project-thumbnail-height);
+    border-radius: var(--radius-thumbnail);
+    background: #d9d9d9;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--project-title-desc-gap);
+    margin-top: var(--project-image-text-gap);
+}
+
+.project-title {
+    font-size: var(--font-size-project-title);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin-bottom: var(--project-title-desc-gap);
+}
+
+.project-description {
+    font-size: var(--font-size-project-desc);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-secondary); /* Darker gray color */
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--project-tags-gap);
+    margin-top: 8px; /* Reduced from 16px for tighter spacing */
+    padding-top: var(--project-tags-top);
+}
+
+.tag {
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-pill);
+    padding: 4px 16px;
+    font-size: var(--font-size-pill);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* Contact Section */
+#contact {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 40px; /* 40px spacing between sections on desktop */
+    margin-bottom: 64px; /* Match top spacing (same as #home padding-top) */
+}
+
+.contact-section {
+    display: flex;
+    gap: calc(100% * 103 / 1352); /* Responsive gap: 103px / 1352px total */
+    margin-top: var(--spacing-lg);
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: calc(8px * (var(--grid-margin) / 40px)); /* Responsive padding that scales */
+}
+
+.contact-form {
+    display: none; /* Hidden for now - can be made visible in the future */
+    background: rgba(25, 26, 27, 0.4); /* Semi-transparent background for glass effect */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for glass effect */
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    padding: var(--contact-form-padding);
+    border-radius: var(--radius-sm);
+    width: calc(100% * 661 / 1352); /* Responsive width: 661px / 1352px total */
+    height: var(--contact-form-height);
+    flex-direction: column;
+    gap: var(--contact-form-gap);
+    flex-shrink: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--contact-form-group-gap);
+}
+
+.form-label {
+    font-size: var(--font-size-contact-label);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-secondary);
+}
+
+.form-input {
+    background: var(--bg-input);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-sm);
+    padding: 0;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: var(--font-size-contact-label);
+    height: var(--contact-input-height);
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.form-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.form-textarea {
+    min-height: var(--contact-textarea-height);
+    resize: vertical;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.form-button {
+    background: var(--bg-button);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-sm);
+    height: var(--contact-button-height);
+    font-size: var(--font-size-contact-button);
+    font-weight: var(--font-weight-medium);
+    color: var(--border-dark);
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    padding: var(--contact-button-padding-y) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-button:hover {
+    opacity: 0.9;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Tighter spacing */
+    width: calc(100% * 588 / 1352); /* Responsive width: 588px / 1352px total */
+    flex-shrink: 0;
+}
+
+.contact-label {
+    font-size: var(--font-size-email-label);
+    color: var(--text-primary);
+    margin-bottom: 0;
+}
+
+.contact-email {
+    font-size: var(--font-size-email);
+    color: var(--text-primary);
+    text-decoration: none;
+    margin: 0; /* Removed vertical margin */
+    display: block;
+}
+
+.contact-email:hover {
+    text-decoration: underline;
+}
+
+.contact-link {
+    background: var(--bg-button-dark);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-pill);
+    padding: 8px 16px;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: var(--font-weight-regular);
+    margin-top: 0; /* Removed top margin, gap handles spacing */
+    transition: opacity 0.3s ease;
+    width: fit-content;
+}
+
+.contact-link:hover {
+    opacity: 0.7; /* Match nav link hover for consistency */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent; /* No overlay scrim - background is visible */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background: rgba(15, 16, 17, 0.95); /* Dark semi-transparent background with glass effect - maintains AA contrast */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    margin: 0;
+    padding: 0 40px 40px 40px; /* Remove top padding, keep 40px on other sides */
+    width: 100%; /* Full width on all breakpoints */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 40px 40px 0 0; /* Rounded top corners only (40px from Figma) */
+    max-height: 95vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent; /* Hidden by default */
+    box-shadow: 0px -16px 48px -8px rgba(12, 12, 13, 0.8); /* Strong shadow on top */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for glass effect */
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: transparent; /* Hidden by default */
+    border-radius: 4px;
+    border: none;
+}
+
+/* Show scrollbar when scrolling */
+.modal-content.scrolling::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+}
+
+.modal-content.scrolling::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+.modal-content.scrolling {
+    scrollbar-color: var(--border-primary) transparent;
+}
+
+.close {
+    width: 72px; /* 72px circle for desktop */
+    height: 72px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9; /* Light gray circular background */
+    border-radius: 50%; /* Circular shape */
+    padding: 0;
+    border: none;
+    flex-shrink: 0;
+    position: relative !important; /* For positioning context */
+    top: 0 !important; /* Keep at top */
+    margin-top: 0 !important; /* No margin shift */
+    padding-top: 0 !important; /* No padding shift */
+    transform: translateY(0) !important; /* No Y translation */
+    align-self: flex-start !important; /* Always at top of flex container */
+}
+
+.close img {
+    width: 32px; /* 32px icon size for desktop */
+    height: 32px;
+    display: block;
+    object-fit: contain;
+}
+
+.close:hover {
+    background-color: #ffffff; /* Lighten to white on hover, keeping icon dark for contrast */
+}
+
+#modal-body {
+    color: var(--text-primary);
+    max-width: 1360px; /* Content width accounting for 40px margins on each side (1440px - 80px = 1360px) */
+    margin: 0 auto; /* Center the content */
+    width: 100%; /* Full width up to max-width */
+}
+
+/* Modal header layout - title and pills on left, close button on right */
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Gap between left group and close button */
+    position: sticky;
+    top: 0 !important; /* Lock at top */
+    z-index: 10;
+    padding-top: 40px; /* Top padding for desktop */
+    padding-bottom: 24px; /* Bottom padding for desktop */
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    /* Set base background to match scrolled state to prevent white flash during fast scrolling */
+    background: rgba(15, 16, 17, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left top; /* Anchor entire header at top-left */
+    transform: translateY(0) !important; /* No Y translation on base state */
+}
+
+.modal-header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px; /* Gap between title/pills and pills/audio controls for desktop */
+    flex: 1; /* Take up available space */
+    min-width: 0; /* Allow shrinking */
+    transform-origin: left top; /* Anchor at top-left */
+    position: relative; /* For positioning context */
+    top: 0 !important; /* Lock at top */
+    margin-top: 0 !important; /* No margin shift */
+    padding-top: 0 !important; /* No padding shift */
+    transform: translate3d(0, 0, 0); /* Hardware acceleration */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
+    will-change: transform; /* Optimize for animation */
+    backface-visibility: hidden; /* Prevent flickering */
+}
+
+.modal-header.scrolled {
+    background: rgba(15, 16, 17, 0.95); /* Darker, more opaque background to meet WCAG AA (4.5:1 contrast) */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.5); /* More prominent drop shadow for depth */
+    padding-top: 40px !important; /* Top padding for desktop when scrolled */
+    padding-bottom: 0 !important; /* No bottom padding when scrolled */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.modal-header.scrolled .modal-header-left {
+    /* Scale to match close button height (72px) - calculated scale factor */
+    transform: scale3d(0.78, 0.78, 1) translate3d(0, 0, 0); /* Hardware accelerated scaling */
+    transform-origin: left top; /* Anchor at top-left to prevent jumping */
+}
+
+
+
+
+
+.modal-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 48px; /* Reduced from 64px for more compact header */
+    font-weight: 500; /* Medium from Figma */
+    line-height: 1.1; /* Tighter line height */
+    color: #ffffff; /* White from Figma */
+    margin: 0;
+    padding: 0;
+    flex: 1; /* Take up available space */
+    transition: transform 0.3s ease;
+    display: block;
+    align-self: flex-start; /* Keep at top of flex container */
+    transform-origin: 0 0; /* Anchor transform at top-left corner */
+    position: relative; /* For proper positioning */
+    top: 0; /* Keep anchored at top */
+}
+
+
+.modal-header-bottom {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.modal-audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    transform-origin: left center; /* Set transform origin before transition */
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Hardware accelerated base transform */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing for counter-scaling */
+    will-change: transform; /* Optimize transform performance */
+    backface-visibility: hidden; /* Prevent flickering */
+}
+
+/* Counter-scale audio controls to maintain original size when parent is scaled */
+.modal-header.scrolled .modal-audio-controls {
+    transform: scale3d(1.282, 1.282, 1) translate3d(0, 0, 0); /* Hardware accelerated counter-scaling */
+}
+
+.modal-scrubber-container {
+    margin-left: 10px;
+}
+
+.modal-duration {
+    font-size: 20px;
+    font-weight: var(--font-weight-regular);
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.modal-duration-separator {
+    font-size: 20px;
+    color: var(--text-secondary);
+    line-height: 1;
+}
+
+.modal-scrubber-container {
+    width: 120px;
+    height: 4px;
+    flex-shrink: 0;
+    overflow: visible;
+    position: relative;
+}
+
+.modal-scrubber-track {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: visible;
+    position: relative;
+    cursor: pointer; /* Indicate it's clickable */
+    user-select: none; /* Prevent text selection while dragging */
+    -webkit-user-select: none;
+    outline: none; /* Remove default outline, we'll add custom focus styles */
+}
+
+.modal-scrubber-track:focus {
+    outline: 2px solid #ffffff; /* WCAG 2.4.7: Visible focus indicator */
+    outline-offset: 4px; /* Space between track and outline */
+}
+
+.modal-scrubber-track:focus:not(:focus-visible) {
+    outline: none; /* Remove outline for mouse users, keep for keyboard */
+}
+
+.modal-scrubber-track:focus-visible {
+    outline: 2px solid #ffffff; /* WCAG 2.4.7: Visible focus indicator for keyboard users */
+    outline-offset: 4px;
+}
+
+.modal-scrubber-progress {
+    height: 100%;
+    background-color: var(--text-secondary);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s linear;
+    position: relative;
+}
+
+.modal-scrubber-container.scrubbing .modal-scrubber-progress {
+    transition: none; /* Disable transition during scrubbing for immediate feedback */
+}
+
+.modal-scrubber-handle {
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff; /* White handle */
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 0 0 2px rgba(15, 16, 17, 0.8);
+    user-select: none; /* Prevent text selection while dragging */
+    -webkit-user-select: none;
+    touch-action: none; /* Prevent touch scrolling while dragging */
+    transition: transform 0.2s ease;
+}
+
+/* Create invisible larger touch target (WCAG 2.5.5: 44x44px minimum) */
+.modal-scrubber-handle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    /* Invisible but provides touch target */
+}
+
+.modal-scrubber-handle:hover {
+    transform: translateY(-50%) scale(1.2);
+    transition: transform 0.2s ease;
+}
+
+.modal-scrubber-handle:active {
+    cursor: grabbing;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-pills {
+    display: flex;
+    gap: 16px; /* Gap between pills for desktop */
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex: 1;
+    transition: gap 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: left top; /* Anchor animation at top-left */
+    position: relative; /* For proper positioning */
+    top: 0; /* Keep anchored at top */
+}
+
+.modal-play-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px; /* Padding to ensure 44x44px minimum touch target (32px icon + 6px padding each side = 44px) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, height 0.3s ease, outline 0.2s ease;
+    flex-shrink: 0;
+    min-width: 44px; /* WCAG 2.5.5: Minimum touch target size */
+    min-height: 44px; /* WCAG 2.5.5: Minimum touch target size */
+    height: 44px; /* Match minimum touch target size */
+    width: 44px;
+    border-radius: 4px; /* Slight border radius for focus indicator */
+}
+
+.modal-play-button:hover {
+    opacity: 0.7; /* Match nav link hover for consistency */
+}
+
+.modal-play-button:focus {
+    outline: 2px solid #ffffff; /* WCAG 2.4.7: Visible focus indicator */
+    outline-offset: 2px; /* Space between button and outline */
+}
+
+.modal-play-button:focus:not(:focus-visible) {
+    outline: none; /* Remove outline for mouse users, keep for keyboard */
+}
+
+.modal-play-button:focus-visible {
+    outline: 2px solid #ffffff; /* WCAG 2.4.7: Visible focus indicator for keyboard users */
+    outline-offset: 2px;
+}
+
+.modal-play-button img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    filter: brightness(0) invert(1); /* Make icons white - meets 3:1 contrast on dark background */
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.speech-highlight {
+    background-color: #ffffff !important; /* White highlight background */
+    color: #000000 !important; /* Black text on white background - meets WCAG 4.5:1 contrast ratio (21:1) */
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline; /* Ensure it doesn't break layout */
+    line-height: inherit; /* Match parent line-height */
+}
+
+/* Special styling for speech highlight inside pills - no padding to prevent size changes */
+#modal-body .tag .speech-highlight {
+    padding: 0 !important; /* Remove padding inside pills to prevent size changes */
+    margin: 0 !important;
+    border-radius: 2px; /* Smaller border radius for pills */
+}
+
+.speech-highlight-pill {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 400 !important; /* Match parent font-weight (Regular) - explicitly set */
+    font-family: 'Libre Franklin', sans-serif !important; /* Match parent font family */
+    font-size: inherit !important; /* Inherit font size */
+    line-height: inherit !important; /* Inherit line height */
+    font-style: inherit !important; /* Inherit font style */
+    letter-spacing: inherit !important; /* Inherit letter spacing */
+    text-rendering: inherit !important; /* Inherit text rendering */
+    -webkit-font-smoothing: inherit !important; /* Inherit font smoothing */
+}
+
+
+#modal-body .tag {
+    border: 1px solid #8b8b8b; /* #8b8b8b from Figma */
+    border-radius: 100px; /* Pill shape */
+    padding: 4px 14px; /* Slightly reduced padding for compact layout */
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 24px; /* Reduced from 32px for more compact header */
+    font-weight: 500; /* Medium from Figma */
+    line-height: normal;
+    color: #ffffff; /* White from Figma */
+    white-space: nowrap;
+    display: inline-block;
+    transition: font-size 0.3s ease, padding 0.3s ease;
+}
+
+
+.modal-description {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 32px; /* 32px from Figma */
+    font-weight: 400; /* Regular from Figma */
+    line-height: 1.5; /* Increased for better readability */
+    color: #a9a9a9; /* #a9a9a9 from Figma */
+    margin: 0 0 40px 0; /* 40px bottom margin from Figma */
+    width: 100%;
+}
+
+.modal-images {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* 40px gap from Figma */
+}
+
+.modal-images img {
+    width: 100%;
+    border-radius: 20px; /* 20px from Figma */
+    display: block;
+}
+
+/* Modal Sections */
+.modal-section {
+    margin-bottom: 40px; /* Spacing between sections */
+}
+
+.modal-section-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 36px;
+    font-weight: 400; /* Regular */
+    line-height: normal;
+    color: #ffffff;
+    margin: 0 0 16px 0; /* 16px gap between title and content */
+}
+
+.modal-section-content {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 32px;
+    font-weight: 400; /* Regular */
+    line-height: 1.5; /* Increased for better readability */
+    color: #a9a9a9;
+    margin: 0 0 16px 0;
+}
+
+.modal-section-intro {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 32px;
+    font-weight: 400; /* Regular */
+    line-height: 1.5; /* Increased for better readability */
+    color: #a9a9a9;
+    margin: 0 0 16px 0;
+}
+
+.modal-section-conclusion {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 32px;
+    font-weight: 400; /* Regular */
+    line-height: 1.5; /* Increased for better readability */
+    color: #a9a9a9;
+    margin: 16px 0 0 0;
+}
+
+.modal-section-bullets {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 32px;
+    font-weight: 400; /* Regular */
+    line-height: 1.5; /* Increased for better readability */
+    color: #a9a9a9;
+    margin: 0 0 16px 0;
+    padding-left: 48px; /* Indentation for bullets */
+    list-style-type: disc;
+}
+
+.modal-section-bullets li {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.modal-section-bullets li:last-child {
+    margin-bottom: 0;
+}
+
+.modal-section-image {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+    margin-bottom: 40px; /* 40px gap after image */
+    position: relative; /* Allow overlay positioning */
+}
+
+.modal-divider {
+    height: 1px;
+    background: #ffffff;
+    margin: 40px 0; /* 40px spacing above and below */
+    width: 100%;
+}
+
+.modal-retrospective-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 48px;
+    font-weight: 500; /* Medium */
+    line-height: normal;
+    color: #ffffff;
+    margin: 0 0 16px 0;
+}
+
+/* Responsive Design - Scaling from 1440px base */
+/* For screens 1440px and larger - use base values (no scaling) */
+/* ========================================
+   RESPONSIVE BREAKPOINTS - 3 BREAKPOINTS
+   ======================================== */
+
+/* TABLET: 481px - 1024px */
+@media (max-width: 1024px) and (min-width: 481px) {
+    :root {
+        --grid-margin: 24px;
+        --grid-gutter: 24px;
+        --grid-content-width: calc(100% - 48px); /* 100% - (24px * 2 margins) */
+        --font-size-section-header: 48px;
+        --font-size-project-title: 32px;
+        --font-size-project-desc: 20px;
+        --font-size-email: 32px;
+        --font-size-home-text: 20px;
+    }
+    
+    nav {
+        left: var(--grid-margin);
+        top: 24px; /* 24px for tablet breakpoint */
+    }
+    
+    #home {
+        margin-top: 24px; /* 24px spacing on tablet */
+        margin-bottom: 24px; /* 24px spacing between sections on tablet */
+        padding-top: 48px; /* 48px padding to account for fixed nav */
+    }
+    
+    #projects {
+        margin-top: 24px; /* 24px spacing between sections on tablet */
+        margin-bottom: 24px; /* 24px spacing between sections on tablet */
+    }
+    
+    #contact {
+        margin-top: 24px; /* 24px spacing between sections on tablet */
+        margin-bottom: 48px; /* Match top spacing (same as #home padding-top) */
+    }
+    
+    /* Stack layouts */
+    .home-section {
+        flex-direction: column;
+    }
+    
+    .home-image {
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .home-text {
+        width: 100%;
+        min-height: 400px;
+        max-height: 600px;
+        height: auto;
+        padding: var(--spacing-md);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+    }
+    
+    .home-text-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 0;
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+    }
+    
+    .home-text::before {
+        top: var(--spacing-md);
+        left: var(--spacing-md);
+        right: var(--spacing-md);
+    }
+    
+    .home-text::after {
+        bottom: var(--spacing-md);
+        left: var(--spacing-md);
+        right: var(--spacing-md);
+    }
+    
+    .home-text-content:hover {
+        scrollbar-color: var(--border-primary) transparent;
+    }
+    
+    .home-text-content::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .home-text-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .home-text-content::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 4px;
+        border: none;
+    }
+    
+    .home-text-content:hover::-webkit-scrollbar-thumb {
+        background: var(--border-primary);
+        border-radius: 4px;
+        border: none;
+    }
+    
+    .home-text-content:hover::-webkit-scrollbar-thumb:hover {
+        background: var(--text-secondary);
+        border-radius: 4px;
+        border: none;
+    }
+    
+    /* Ensure paragraphs are visible during loading on tablet */
+    .home-text p {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .section-header::after {
+        left: 0;
+        width: 100%;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 16px; /* Reduced spacing between header and grid on tablet */
+    }
+    
+    .project-card {
+        grid-column: span 12;
+        padding: var(--spacing-md);
+    }
+    
+    .project-thumbnail {
+        height: 280px;
+    }
+    
+    .contact-section {
+        flex-direction: column;
+        gap: var(--spacing-lg); /* Add additional spacing between contact-info and contact-form on tablet */
+        padding-left: 0; /* Remove padding on tablet when stacked */
+    }
+    
+    .contact-info {
+        max-width: 100%;
+    }
+    
+    .contact-form {
+        width: 100%;
+        height: auto;
+        padding: var(--spacing-md);
+    }
+    
+    /* Modal responsive styles for tablet */
+    .modal-content {
+        padding: 0 24px 24px 24px; /* Remove top padding, keep 24px on other sides for tablet */
+        border-radius: 24px 24px 0 0; /* Scale down border radius */
+    }
+    
+    .modal-header {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .modal-header {
+        gap: 16px; /* Gap between left group and close button on tablet */
+        padding-top: 24px; /* Top padding for tablet */
+        padding-bottom: 24px; /* Bottom padding for tablet */
+        /* Ensure base background is set to prevent white flash */
+        background: rgba(15, 16, 17, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .modal-header-left {
+        gap: 12px; /* Gap between title/pills and pills/audio controls on tablet */
+    }
+    
+    .modal-header.scrolled {
+        background: rgba(15, 16, 17, 0.95); /* Darker, more opaque background to meet WCAG AA (4.5:1 contrast) */
+        backdrop-filter: blur(10px); /* Glass blur effect */
+        -webkit-backdrop-filter: blur(10px); /* Safari support */
+        box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.4); /* More prominent drop shadow for depth on tablet */
+        padding-top: 24px !important; /* Top padding for tablet when scrolled */
+        padding-bottom: 0 !important; /* No bottom padding when scrolled */
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .modal-header.scrolled .modal-header-left {
+        /* Scale to match close button height (48px) - increased for better readability */
+        transform: scale3d(0.75, 0.75, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
+        transform-origin: left top; /* Anchor at top-left to prevent jumping */
+    }
+    
+    /* Counter-scale audio controls for tablet */
+    .modal-header.scrolled .modal-audio-controls {
+        transform: scale3d(1.333, 1.333, 1) translate3d(0, 0, 0); /* Hardware accelerated counter-scaling */
+    }
+    
+    .close {
+        width: 48px; /* 48px circle for tablet */
+        height: 48px;
+    }
+    
+    .close img {
+        width: 24px; /* 24px icon for tablet */
+        height: 24px;
+    }
+    
+    /* Settings Modal Close Button - Tablet */
+    .settings-modal-close {
+        width: 48px; /* 48px circle for tablet */
+        height: 48px;
+    }
+    
+    .settings-modal-close img {
+        width: 24px; /* 24px icon for tablet */
+        height: 24px;
+    }
+    
+    .modal-title {
+        font-size: 36px; /* Scale down from 48px (desktop) */
+    }
+    
+    
+    .modal-header-bottom {
+        gap: 12px;
+    }
+    
+    .modal-audio-controls {
+        gap: 6px;
+        transform-origin: left center; /* Set transform origin before transition */
+        transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Hardware accelerated base transform */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing for counter-scaling on tablet */
+        will-change: transform; /* Optimize transform performance */
+        backface-visibility: hidden; /* Prevent flickering */
+    }
+    
+    .modal-duration {
+        font-size: 18px;
+    }
+    
+    .modal-duration-separator {
+        font-size: 18px;
+    }
+    
+    .modal-scrubber-container {
+        width: 100px;
+        height: 3px;
+        overflow: visible;
+        margin-left: 8px;
+    }
+    
+    .modal-scrubber-handle {
+        width: 10px;
+        height: 10px;
+        right: -5px;
+    }
+    
+    /* Touch target remains 44x44px via ::before pseudo-element */
+    
+    .modal-play-button {
+        min-width: 44px; /* WCAG 2.5.5: Minimum touch target size */
+        min-height: 44px;
+        height: 44px;
+        width: 44px;
+        padding: 6px; /* Padding to ensure 44x44px minimum touch target */
+    }
+    
+    .modal-play-button img {
+        width: 32px;
+        height: 32px;
+        filter: brightness(0) invert(1); /* Make icons white - meets 3:1 contrast */
+    }
+    
+    
+    .modal-pills {
+        gap: 12px; /* Gap between pills for tablet */
+        justify-content: flex-start; /* Align left on tablet */
+    }
+    
+    #modal-body .tag {
+        font-size: 24px; /* Scale down from 32px */
+        padding: 4px 14px;
+    }
+    
+    .modal-description {
+        font-size: 24px; /* Scale down from 32px */
+    }
+    
+    .modal-section-title {
+        font-size: 28px; /* Scale down from 36px for tablet */
+    }
+    
+    .modal-section-content,
+    .modal-section-intro,
+    .modal-section-conclusion,
+    .modal-section-bullets {
+        font-size: 24px; /* Scale down from 32px for tablet */
+    }
+    
+    .modal-section-bullets {
+        padding-left: 36px; /* Scale down indentation for tablet */
+    }
+    
+    .modal-retrospective-title {
+        font-size: 36px; /* Scale down from 48px for tablet */
+    }
+    
+    /* Password Protection - Tablet */
+    #projects-grid.locked {
+        max-height: 576px; /* Proportional to desktop (72%) */
+    }
+    
+    .password-overlay {
+        height: 576px; /* Match tablet grid height */
+        padding-top: 40px; /* Less padding for tablet */
+    }
+    
+    .password-modal {
+        padding: 32px;
+        max-width: 90%;
+    }
+    
+    .password-modal-title {
+        font-size: 28px;
+    }
+    
+    .password-modal-description {
+        font-size: 16px;
+    }
+    
+    .settings-modal-content {
+        padding: 32px;
+        max-width: 90%;
+    }
+    
+    .settings-modal-title {
+        font-size: 28px;
+    }
+    
+    .settings-toggle-btn {
+        min-width: 150px;
+    }
+}
+
+/* MOBILE: 480px and below */
+@media (max-width: 480px) {
+    :root {
+        --grid-margin: 16px;
+        --grid-gutter: 16px;
+        --grid-content-width: calc(100% - 32px); /* 100% - (16px * 2 margins) */
+        --font-size-section-header: 40px;
+        --font-size-project-title: 28px;
+        --font-size-project-desc: 18px;
+        --font-size-email: 24px;
+        --font-size-pill: 20px;
+        --font-size-home-text: 18px;
+        --font-size-contact-label: 16px;
+        --font-size-contact-button: 18px;
+    }
+    
+    nav {
+        position: fixed;
+        top: 16px; /* 16px for mobile breakpoint */
+        left: var(--grid-margin);
+        z-index: 100;
+    }
+    
+    nav ul {
+        gap: var(--spacing-sm);
+        font-size: 14px;
+        flex-wrap: wrap;
+    }
+    
+    #home {
+        margin-top: 16px; /* 16px spacing on mobile */
+        margin-bottom: 16px; /* 16px spacing between sections on mobile */
+        padding-top: 40px; /* 40px padding to account for fixed nav */
+    }
+    
+    #projects {
+        margin-top: 16px; /* 16px spacing between sections on mobile */
+        margin-bottom: 16px; /* 16px spacing between sections on mobile */
+    }
+    
+    #contact {
+        margin-top: 16px; /* 16px spacing between sections on mobile */
+        margin-bottom: 40px; /* Match top spacing (same as #home padding-top) */
+    }
+    
+    .home-section {
+        flex-direction: column;
+    }
+    
+    .home-image {
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+    }
+    
+    .home-text {
+        width: 100%;
+        height: 320px; /* Fixed height for mobile - shorter than desktop */
+        padding: var(--spacing-sm); /* 16px */
+        overflow: hidden; /* Hide overflow on container */
+        display: flex;
+        flex-direction: column;
+        position: relative; /* For gradient overlay positioning */
+    }
+    
+    .home-text-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 0; /* Allow flex item to shrink */
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+    }
+    
+    .home-text::before {
+        top: var(--spacing-sm); /* Position at top of padding area */
+        left: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+    
+    .home-text::after {
+        bottom: var(--spacing-sm); /* Position at bottom of padding area */
+        left: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+    
+    .home-text-content:hover {
+        scrollbar-color: var(--border-primary) transparent;
+    }
+    
+    .home-text-content::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .home-text-content::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .home-text-content::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 4px;
+        border: none;
+    }
+    
+    .home-text-content:hover::-webkit-scrollbar-thumb {
+        background: var(--border-primary);
+        border-radius: 4px;
+        border: none;
+    }
+    
+    .home-text-content:hover::-webkit-scrollbar-thumb:hover {
+        background: var(--text-secondary);
+        border-radius: 4px;
+        border: none;
+    }
+    
+    .section-header::after {
+        left: 0;
+        width: 100%;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--grid-gutter);
+        margin-left: 0;
+        margin-right: 0;
+        max-width: none; /* Remove max-width constraint for full width */
+        width: 100%;
+        margin-top: 12px; /* Reduced spacing between header and grid on mobile */
+    }
+    
+    .project-card {
+        grid-column: span 12;
+        width: 100%;
+        padding: var(--spacing-sm);
+    }
+    
+    .project-thumbnail {
+        height: 200px;
+    }
+    
+    .project-tags {
+        margin-top: 4px; /* Reduced for tighter spacing on mobile */
+        padding-top: 8px; /* Reduced for tighter spacing on mobile */
+    }
+    
+    .tag {
+        font-size: var(--font-size-pill);
+        padding: 4px 12px;
+    }
+    
+    .contact-section {
+        flex-direction: column;
+        gap: var(--spacing-lg); /* Add additional spacing between contact-info and contact-form on mobile */
+        padding-left: 0; /* Remove padding on mobile when stacked */
+    }
+    
+    .contact-info {
+        max-width: 100%;
+    }
+    
+    .contact-form {
+        width: 100%;
+        height: auto;
+        padding: var(--spacing-sm);
+    }
+    
+    .form-input {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    .form-textarea {
+        min-height: 150px;
+    }
+    
+    .form-button {
+        padding: 12px 0;
+    }
+    
+    .modal-content {
+        width: 100%; /* Full width on mobile too */
+        padding: 0 16px 16px 16px; /* Remove top padding, keep 16px on other sides for mobile */
+        border-radius: 20px 20px 0 0; /* Scale down border radius */
+    }
+    
+    .modal-header {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    
+    .close {
+        width: 32px; /* 32px circle for mobile */
+        height: 32px;
+    }
+    
+    .close img {
+        width: 16px; /* 16px icon for mobile */
+        height: 16px;
+    }
+    
+    /* Settings Modal Close Button - Mobile */
+    .settings-modal-close {
+        width: 32px; /* 32px circle for mobile */
+        height: 32px;
+    }
+    
+    .settings-modal-close img {
+        width: 16px; /* 16px icon for mobile */
+        height: 16px;
+    }
+    
+    .modal-title {
+        font-size: 28px; /* Scale down from 48px (desktop) */
+    }
+    
+    
+    .modal-header {
+        gap: 12px; /* Gap between left group and close button on mobile */
+        padding-top: 16px; /* Top padding for mobile */
+        padding-bottom: 12px; /* Bottom padding for mobile */
+        /* Ensure base background is set to prevent white flash */
+        background: rgba(15, 16, 17, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .modal-header-left {
+        gap: 10px; /* Gap between title/pills and pills/audio controls on mobile */
+    }
+    
+    .modal-header.scrolled {
+        background: rgba(15, 16, 17, 0.95); /* Darker, more opaque background to meet WCAG AA (4.5:1 contrast) */
+        backdrop-filter: blur(10px); /* Glass blur effect */
+        -webkit-backdrop-filter: blur(10px); /* Safari support */
+        box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.35); /* More prominent drop shadow for depth on mobile */
+        padding-top: 20px !important; /* Top padding for mobile when scrolled - increased from 16px */
+        padding-bottom: 0 !important; /* No bottom padding when scrolled */
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .modal-header.scrolled .modal-header-left {
+        /* Scale to match close button height (32px) - increased scale for better readability */
+        transform: scale3d(0.85, 0.85, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
+        transform-origin: left top; /* Anchor at top-left to prevent jumping */
+    }
+    
+    /* Counter-scale audio controls for mobile */
+    .modal-header.scrolled .modal-audio-controls {
+        transform: scale3d(1.176, 1.176, 1) translate3d(0, 0, 0); /* Hardware accelerated counter-scaling */
+    }
+    
+    .modal-header-bottom {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .modal-audio-controls {
+        gap: 6px;
+        transform-origin: left center; /* Set transform origin before transition */
+        transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Hardware accelerated base transform */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing for counter-scaling on mobile */
+        will-change: transform; /* Optimize transform performance */
+        backface-visibility: hidden; /* Prevent flickering */
+    }
+    
+    .modal-duration {
+        font-size: 16px;
+    }
+    
+    .modal-duration-separator {
+        font-size: 16px;
+    }
+    
+    .modal-scrubber-container {
+        width: 80px;
+        height: 3px;
+        overflow: visible;
+        margin-left: 6px;
+    }
+    
+    .modal-scrubber-handle {
+        width: 10px;
+        height: 10px;
+        right: -5px;
+    }
+    
+    /* Touch target remains 44x44px via ::before pseudo-element */
+    
+    .modal-play-button {
+        min-width: 44px; /* WCAG 2.5.5: Minimum touch target size */
+        min-height: 44px;
+        height: 44px;
+        width: 44px;
+        padding: 10px; /* Padding to ensure 44x44px minimum touch target (24px icon + 10px padding each side = 44px) */
+    }
+    
+    .modal-play-button img {
+        width: 24px;
+        height: 24px;
+        filter: brightness(0) invert(1); /* Make icons white - meets 3:1 contrast */
+    }
+    
+    
+    .modal-pills {
+        gap: 10px; /* Gap between pills for mobile */
+        justify-content: flex-start; /* Align left on mobile */
+    }
+    
+    #modal-body .tag {
+        font-size: 16px; /* Scale down from 24px (desktop) */
+        padding: 4px 10px;
+    }
+    
+    .modal-description {
+        font-size: 16px; /* Scale down from 32px */
+    }
+    
+    .modal-section-title {
+        font-size: 24px; /* Scale down from 36px for mobile */
+    }
+    
+    .modal-section-content,
+    .modal-section-intro,
+    .modal-section-conclusion,
+    .modal-section-bullets {
+        font-size: 16px; /* Scale down from 32px for mobile */
+    }
+    
+    .modal-section-bullets {
+        padding-left: 24px; /* Scale down indentation for mobile */
+    }
+    
+    .modal-retrospective-title {
+        font-size: 28px; /* Scale down from 48px for mobile */
+    }
+    
+    /* Password Protection - Mobile */
+    #projects-grid.locked {
+        max-height: 480px; /* Proportional to desktop (60%) */
+    }
+    
+    .password-overlay {
+        height: 480px; /* Match mobile grid height */
+        padding-top: 30px; /* Less padding for mobile */
+    }
+    
+    .password-modal {
+        padding: 24px;
+        max-width: 95%;
+    }
+    
+    .password-modal-title {
+        font-size: 24px;
+    }
+    
+    .password-modal-description {
+        font-size: 14px;
+    }
+    
+    .password-input {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .password-submit {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+    
+    .settings-modal-content {
+        padding: 24px;
+        max-width: 95%;
+    }
+    
+    .settings-modal-title {
+        font-size: 24px;
+    }
+    
+    .settings-modal-description {
+        font-size: 16px;
+    }
+    
+    .settings-toggle-group {
+        flex-direction: column;
+    }
+    
+    .settings-toggle-btn {
+        min-width: 100%;
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .settings-modal-info {
+        font-size: 14px;
+    }
+    
+    .settings-modal-note {
+        font-size: 12px;
+    }
+}
