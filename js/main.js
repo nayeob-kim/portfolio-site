@@ -1434,10 +1434,10 @@ const unlockToggleSwitch = document.getElementById('unlock-toggle-switch');
 const currentDefaultStateSpan = document.getElementById('current-default-state');
 const resetAccessBtn = document.getElementById('reset-access-btn');
 
-// Get default state from localStorage or set to 'locked' by default
+// Get default state from localStorage or set to 'unlocked' by default
 function getDefaultState() {
     const stored = localStorage.getItem(STORAGE_KEY_DEFAULT_STATE);
-    return stored || 'locked'; // Default to locked
+    return stored || 'unlocked'; // Default to unlocked
 }
 
 // Set default state
@@ -1473,12 +1473,6 @@ function showPasswordOverlay() {
         if (projectsGrid) {
             projectsGrid.classList.add('locked');
         }
-        // Focus password input (without scrolling)
-        setTimeout(() => {
-            if (passwordInput) {
-                passwordInput.focus({ preventScroll: true });
-            }
-        }, 100);
     }
 }
 
