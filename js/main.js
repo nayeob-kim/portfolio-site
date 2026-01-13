@@ -1631,6 +1631,10 @@ document.addEventListener('keydown', function(e) {
 
 // Initialize on page load
 window.addEventListener('load', function() {
+    // Temporary: Check localStorage value
+    const stored = localStorage.getItem(STORAGE_KEY_DEFAULT_STATE);
+    console.log('🔍 DEBUG: localStorage value for passwordProtectionDefault:', stored);
+    console.log('🔍 DEBUG: getDefaultState() returns:', getDefaultState());
     initPasswordProtection();
 });
 
