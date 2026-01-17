@@ -270,7 +270,7 @@ section {
 .home-text {
     width: calc((100% - var(--grid-gutter)) * 5 / 12); /* 5 columns width - responsive */
     height: var(--home-text-height); /* 556px */
-    background: rgba(25, 26, 27, 0.4); /* Semi-transparent background for glass effect */
+    background: rgba(25, 26, 27, 0.4);
     backdrop-filter: blur(10px); /* Glass blur effect */
     -webkit-backdrop-filter: blur(10px); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for glass effect */
@@ -374,9 +374,10 @@ section {
 }
 
 .home-text p {
-    font-size: var(--font-size-home-text); /* 23px */
+    font-size: var(--font-size-project-desc); /* 24px - match project description */
+    font-weight: var(--font-weight-regular); /* 400 - match project description */
     line-height: 1.5;
-    color: var(--text-primary); /* #ffffff - brighter white */
+    color: var(--text-secondary); /* Darker gray - match project description */
     margin: 0 0 16px 0; /* Add bottom margin for spacing between paragraphs */
     padding: 0;
     opacity: 0; /* Hidden initially, revealed by animation */
@@ -385,7 +386,15 @@ section {
 }
 
 .home-text-content p {
+    font-size: var(--font-size-project-desc); /* 24px - match project description */
+    font-weight: var(--font-weight-regular); /* 400 - match project description */
     line-height: 1.5;
+    color: var(--text-secondary); /* Darker gray - match project description */
+    margin: 0 0 16px 0; /* Add bottom margin for spacing between paragraphs */
+    padding: 0;
+    opacity: 0; /* Hidden initially, revealed by animation */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 
