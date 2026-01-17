@@ -1435,10 +1435,10 @@ const unlockToggleSwitch = document.getElementById('unlock-toggle-switch');
 const currentDefaultStateSpan = document.getElementById('current-default-state');
 const resetAccessBtn = document.getElementById('reset-access-btn');
 
-// Get default state from localStorage or set to 'unlocked' by default
+// Get default state from localStorage or set to 'locked' by default
 function getDefaultState() {
     const stored = localStorage.getItem(STORAGE_KEY_DEFAULT_STATE);
-    return stored || 'unlocked'; // Default to unlocked
+    return stored || 'locked'; // Default to locked
 }
 
 // Set default state
