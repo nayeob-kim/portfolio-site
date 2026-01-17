@@ -37,177 +37,138 @@ const modal = document.getElementById('project-modal');
 // Project data
 const projects = {
     1: {
-        title: 'Order Summary',
-        description: 'The optimization of the Order Summary UI/UX focused on enhancing clarity and scalability across content and localizations. Key work involved redesigning the line-item layout for price scannability, implementing a systematic token-based spacing strategy for the money line to support complex tax disclosures, and utilizing AI tools for high-fidelity internal asset generation.',
+        title: 'Architecting Trust at Scale: The Shopify Checkout Engine',
+        description: 'In the Shopify Checkout, the Order Summary and Payment Flow are the most critical high-stakes conversion areas. The challenge was to balance extreme detail-orientation with the layout limitations of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
-            'images/projects/project-1/Order Summary 2.png',
-            'images/projects/project-1/Order Summary 3.png',
-            'images/projects/project-1/Order Summary 4.png'
-        ],
-        tags: ['UX Design', 'UI Design', 'AI Image Generation'],
-        sections: [
-            {
-                title: '1. Resource List: Layout and Text Alignment',
-                content: 'The layout was revised to optimize the visual structure of the product line items in the Order Summary.',
-                bullets: [
-                    'Vertical Alignment: Ensured the product thumbnail aligns vertically with the product name and details, creating a strong visual link between the product image and its description.',
-                    'Price Priority: Implemented a text-bottom-align rule for prices with the product name for enhanced readability and scannability. This ensures prices stack cleanly, regardless of long product names or detailed, wrapping descriptions.',
-                    'Scalability: The design can accommodate varying content lengths, while guaranteeing the price column remains easy to scan, which improves user processing speed during checkout.'
-                ]
-            },
-            {
-                title: '2. Product Thumbnail Sourcing (Midjourney)',
-                content: 'To create a high-fidelity demonstration of the layout\'s alignment rules, Midjourney was utilized for internal use to generate clean, consistent, and distraction-free product thumbnails. This ensured the visual content supported the design goal, allowing stakeholders to focus solely on how the layout handled the vertical relationship between the image, product name, and details.'
-            },
-            {
-                title: '3. Money Line Optimization: Precision Spacing',
-                content: 'The implementation involved a systematic vertical optimization of the Order Summary\'s totals section. We leveraged the existing design system spacing tokens to precisely govern the space between line items.',
-                intro: 'This token-based strategy was critical for establishing a clear visual hierarchy, ensuring:',
-                bullets: [
-                    'Legibility: Consistent vertical rhythm separates related monetary entries (discounts, gift cards) from totals.',
-                    'Scalability for Localization: Sufficient vertical clearance was specifically designed to accommodate variable and multi-line text, such as detailed tax disclosures even in localized checkouts, without crowding the final Total.'
-                ],
-                conclusion: 'The resulting high-precision spacing dramatically improves the checkout by making the financial summary instantly scannable and trustworthy.'
-            }
-        ],
-        retrospective: {
-            title: 'Retrospective & Key Learnings',
-            content: 'This project taught me to balance extreme detail orientation with necessary layout limitations to ensure a globally scalable interface:',
-            bullets: [
-                'Sweating the Details & Prioritization: I learned to prioritize what matters most in a complex layout, focusing on the "sweat the details" mentality (like pixel-level spacing and strict alignment) while accepting layout limitations (like price column non-wrapping) to preserve data integrity and user trust.',
-                'Scalability for Global Audiences: I gained crucial experience in designing for the broad scalability required in e-commerce, ensuring the layout fluidly accommodates localization needs and diverse use cases, such as variable text, complex tax disclosures, and different discount formats.'
-            ]
-        }
-    },
-    2: {
-        title: 'Payment in Checkout',
-        description: 'The Payment in Checkout flow was systematized, focusing on conversion, trust, and legal compliance. I established strict content models for payment methods and disclaimers, reduced friction by optimizing third-party redirect patterns for density and speed, and governed all \'Pay now\' area content. Solutions were validated via functional code prototypes to ensure technical feasibility and scalability.',
-        images: [
+            'images/projects/project-1/Order Summary 4.png',
             'images/projects/project-2/Payment in Checkout 1.png',
             'images/projects/project-2/Payment in Checkout 2.png',
             'images/projects/project-2/Payment in Checkout 3.png'
         ],
-        tags: ['UX Design', 'UI Design', 'Vibe-coding'],
+        tags: ['UX Design', 'UI Design', 'AI Image Generation', 'AI Coding'],
         sections: [
             {
-                title: '1. Payment Methods: Content Model and Standardization',
-                content: 'Recognizing the criticality of the Payment method selection within the checkout flow, standardized content models were established to optimize user experience and build buyer trust. The core objective was to streamline consistency and set clear user expectations across all payment options. This required defining clear rules for how payment methods are displayed, including the placement of the method name, critical supplementary product description (like installment options), and the corresponding logo, to ensure every option adheres to a predictable pattern. This systematic approach helps minimize cognitive load and maintains a highly polished, unified design throughout the entire payment section.'
+                title: '1. Order Summary Optimization',
+                content: 'The optimization of the Order Summary focused on enhancing clarity and scalability across content and localizations.',
+                bullets: [
+                    'Precision Spacing via Tokens: I implemented a systematic vertical optimization of the "money line" section. By leveraging existing spacing tokens to precisely govern the space between line items, I established a clear visual hierarchy. This ensured a consistent vertical rhythm that separates related monetary entries (discounts, gift cards) from totals.',
+                    'Resource List & Price Priority: I revised the layout to optimize the visual structure of product line items. I implemented a text-bottom-align rule for prices, ensuring they stack cleanly regardless of long product names or wrapping descriptions.',
+                    'Visual Alignment & Scannability: By ensuring the product thumbnail aligns vertically with the product name and details, I created a strong visual link that improves user processing speed.',
+                    'High-Fidelity Sourcing: To demonstrate these alignment rules to stakeholders without distraction, I utilized Midjourney to generate clean, consistent internal product thumbnails, ensuring the focus remained solely on how the layout handled the vertical relationships.'
+                ]
             },
             {
-                title: '2. Third-Party Redirects: Vertical Space and Affordance',
-                content: 'The existing pattern for third-party payment methods, which required a page redirect, presented challenges related to unnecessary cognitive load and inefficient vertical space usage. The pattern used lengthy descriptive copy and large, outdated iconography to display the redirect message, pushing the critical \'Pay now\' button too far down the page. To increase checkout density and accelerate the purchase funnel, the design solution involved removing the message entirely from the Payment section. Instead, a more concise redirect message was strategically placed below the \'Pay now\' button. This new placement, while shifting the proximity away from the payment method itself, still guides buyers unfamiliar with third-party redirects upon the key action moment, resulting in a significant reduction in vertical space and a cleaner, more polished checkout experience.'
-            },
-            {
-                title: '3. Pay Now Disclaimers: Legal Compliance and Standardization',
-                content: 'The \'Pay now\' button is the final, most critical action in the checkout flow. The area immediately surrounding it is highly valuable, yet it is often complicated by mandatory legal disclosures and policy language that varies based on the payment method or third-party extension (as seen across Guest Checkout and Shop Pay). To maintain the button\'s prominence while ensuring compliance, a content model was developed to audit, standardize, and govern all possible content appearing in this space. This effort involved a detailed analysis to determine optimal placement, structure, and consistent use of content that met all legal requirements without creating friction or visual clutter near the purchase completion point. This solution was validated using a functional code prototype (built with Cursor along with Figma MCP) to audit the current state against the ideal state and confirm technical feasibility across all platforms.'
+                title: '2. Payment Flow & Legal Governance',
+                content: 'The Payment flow was systematized to prioritize conversion, trust, and legal compliance across diverse merchant needs.',
+                bullets: [
+                    'Standardized Content Models: Recognizing the criticality of payment selection, I established strict content models to streamline consistency. This required defining rules for the placement of method names, supplementary descriptions (like installment options), and logos to ensure a predictable pattern that minimizes cognitive load.',
+                    'Third-Party Redirects & Density: I redesigned the pattern for third-party payment methods which previously used inefficient vertical space. By removing outdated iconography and moving concise redirect messages below the \'Pay now\' button, I increased checkout density and accelerated the purchase funnel without losing necessary user guidance.',
+                    'Pay Now Disclaimers & Compliance: The area surrounding the \'Pay now\' button is often cluttered by mandatory legal disclosures. I developed a governing content model to audit and standardize all possible content in this space, ensuring compliance across Guest Checkout and Shop Pay without creating visual friction at the point of purchase.',
+                    'Technical Validation: These solutions were validated via functional code prototypes (built with Cursor and Figma MCP) to audit the current state against the ideal state and confirm technical feasibility across all platforms.'
+                ]
             }
         ],
         retrospective: {
             title: 'Retrospective & Key Learnings',
-            content: 'This project taught me the immense leverage of defining strict content models and governing principles early on in high-stakes conversion areas, and the necessity of validating design solutions with technical prototypes:',
+            content: 'This work taught me the immense leverage of defining strict principles early in high-stakes conversion areas:',
             bullets: [
-                'Systematic Constraint and Consistency: The primary lesson was the value of defining strict content models and governing principles to manage complexity. This standardization, applied to payment methods and variable legal content, ensured consistency at scale across different checkout flows (e.g., Guest vs. Shop Pay), balancing ideal UX with complex business and legal needs.',
-                'Technical Validation and Friction Reduction: Tackling high-impact, high-risk areas—like the third-party redirect pattern and the critical \'Pay now\' space—reinforced the need for technical validation. Utilizing functional code prototypes (built with Cursor and Figma MCP) proved invaluable for auditing the current state against the ideal state, demonstrating technical feasibility, and achieving streamlined solutions.'
+                'Sweating the Details vs. Scalability: I learned to prioritize what matters most—focusing on precise spacing and strict alignment while accepting necessary layout limitations to preserve data integrity across global checkouts.',
+                'Systematic Constraint: Defining strict content models for payment methods and legal content proved that standardization is the best way to manage complexity at scale.',
+                'The Power of AI Prototyping: Utilizing code-based validation (Cursor/Figma MCP) was invaluable for bridging the gap between ideal UX and complex business/technical needs, ensuring that high-risk areas were built on a foundation of technical feasibility.'
+            ]
+        }
+    },
+    2: {
+        title: 'System Stewardship: The Checkout Design System',
+        description: 'As a designer on the Checkout Design System team, my work focused on the stewardship and governance of patterns specifically optimized for the checkout experience. I was responsible for ensuring that components such as security inputs and interactive states were visually consistent with the broader Checkout language. These patterns also had to meet the specialized and high-integrity requirements of a global checkout engine.',
+        images: [
+            'images/projects/project-3/OTP Component 2.png',
+            'images/projects/project-3/OTP Component 3.png',
+            'images/projects/project-4/Interactive States 1.png',
+            'images/projects/project-4/Interactive States 2.png',
+            'images/projects/project-5/Design System Stewardship & Documentation 2.png'
+        ],
+        tags: ['UX Design', 'UI Design', 'Interaction Design', 'Content Writing'],
+        sections: [
+            {
+                title: '1. The OTP (One-Time Password) Component',
+                content: 'I led the design and systematization of the OTP component within the Checkout design system. This is a critical security pattern used for buyer verification and high-stakes transitions.',
+                bullets: [
+                    'Functional Constraints: My focus was on the deep logic required for a checkout security pattern. I defined how the component handled auto-fill behaviours, error states, and the specific functional requirements of a multi-input code field.',
+                    'Security UX: I ensured the pattern balanced rigorous security requirements with a low-friction buyer experience. This involved ensuring that the component met strict accessibility standards so that every buyer could complete security checkpoints without failure.'
+                ]
+            },
+            {
+                title: '2. Interactive States & Visual Logic',
+                content: 'I led an initiative to standardize and codify Interactive States specifically for the checkout environment. This work was essential to maintain visual integrity across a high-conversion funnel where every interaction affects buyer confidence.',
+                bullets: [
+                    'Systematic Behaviour: I established strict rules for how components behave in hover, focus, pressed, and disabled states. This systematic approach ensured that every interactive element felt cohesive and provided the necessary affordance for a sensitive financial transaction.',
+                    'Standardization for Scale: By defining these patterns at the system level, I helped checkout product teams avoid reinventing state logic. This improved the speed of development and ensured a predictable experience for millions of buyers.'
+                ]
+            },
+            {
+                title: '3. Documentation & Governance',
+                content: 'A specialized design system is only as successful as its adoption by product teams. My work in Design System Stewardship centered on transforming these technical checkout patterns into a reliable source of truth.',
+                bullets: [
+                    'Documentation as a Product: I authored and governed the documentation for these specialized patterns. I focused on providing clear guidelines that explained the functional requirements and the strategic logic behind each checkout-specific component.',
+                    'Ensuring Systemic Integrity: By providing high-quality documentation and clear implementation rules, I helped maintain the integrity of the checkout system as it evolved. This ensured that the quality of the buyer experience remained high across all payment and shipping verticals.'
+                ]
+            }
+        ],
+        retrospective: {
+            title: 'Retrospective & Key Learnings',
+            content: 'My work within the Checkout design system taught me that the true value of a specialized system lies in its ability to provide clarity within high-stakes environments.',
+            bullets: [
+                'Stewardship over Design: I learned that being a steward of a checkout system is about more than just craft. It requires the ability to take complex design decisions and turn them into codifiable rules that can be shared across specialized engineering teams.',
+                'The Importance of Clarity: High-quality documentation is the bridge between a design concept and a successful implementation. I realized that clear communication is what allows a checkout system to remain resilient even as technical and legal requirements change.',
+                'Anticipating Systemic Impact: Managing core atoms like OTPs and interactive states taught me to anticipate how a single systemic change would ripple across the entire purchase funnel. This experience reinforced the need for rigor and technical validation in every design decision.'
             ]
         }
     },
     3: {
-        title: 'OTP Component',
-        description: 'Standardized verification flows were established through the creation of a scalable OTP component, balancing immediate Payment team needs with long-term system reusability. Following an extensive research and audit, a flexible property was designed, supported by UX guidance to ensure a polished end-to-end checkout experience.',
+        title: 'Modernizing the Global E-commerce Experience: Calvin Klein',
+        description: 'The engagement at MetaLab focused on overhauling the Calvin Klein digital experience. The objective was to bridge the gap between an iconic minimalist brand and a high-performance shopping journey. The scope involved modernizing the navigation, the homepage, and the product detail pages to meet global consumer expectations.',
         images: [
-            'images/projects/project-3/OTP Component 1.png',
-            'images/projects/project-3/OTP Component 2.png',
-            'images/projects/project-3/OTP Component 3.png'
+            'https://vimeo.com/642194431?autoplay=1&loop=1&muted=1',
+            'https://vimeo.com/642184965?autoplay=1&loop=1&muted=1',
+            'https://vimeo.com/642207005?autoplay=1&loop=1&muted=1'
         ],
-        tags: ['Research', 'UX Design', 'UI Design'],
+        tags: ['Research', 'UX Design', 'UI Design', 'Interaction Design'],
         sections: [
             {
-                title: '1. Research and Audit',
-                content: 'Standard text field components were identified as suboptimal for the high-friction verification process, leading to the requirement for a dedicated OTP (One-Time Password) component. To support the specific needs of the Payment and Customer Accounts teams, a comprehensive audit was performed on both internal patterns and industry-leading examples, including Apple HIG, Uber, and modern UI libraries like Shaden and Mantine. This phase focused on scoping requirements through cross-functional collaboration, ensuring the solution aligned with established user mental models rather than reinventing familiar patterns. This research-driven approach provided a foundation for a component that streamlines requirements while introducing specific improvements for account security and checkout flow.'
+                title: '1. Navigation and Discovery',
+                content: 'The global navigation was restructured to support a massive catalog without sacrificing the premium feel of the brand.',
+                bullets: [
+                    'Streamlined Architecture: Category structures were reorganized to reduce cognitive load and improve path-finding for a diverse user base.',
+                    'Refined Interaction: Sophisticated hover states and transitions were crafted to serve as subtle brand signals and provide clear feedback during the discovery process.'
+                ]
             },
             {
-                title: '2. Properties and System Scalability',
-                content: 'The design of the OTP component was driven by close collaboration with the Payment team, who provided the specific requirements for masked functionality, variable input types, and flexible field counts. A key priority was striking a balance between delivering these immediate needs quickly and ensuring the component was built as a scalable, reusable asset for future use cases across Checkout. The resulting architecture features two sizes for mobile and desktop optimization, support for numeric and alphanumeric inputs, and a robust set of interaction states—default, disabled, and error. By fine-tuning these properties with the engineering team, we ensured the component delivered a smooth, polished interaction that remains highly adaptable for any verification flow.'
+                title: '2. The Product Detail Page (PDP)',
+                content: 'The PDP was redesigned to prioritize visual storytelling while maintaining conversion utility and interactive precision.',
+            bullets: [
+                    'Imagery First: Layouts were developed to allow high-fidelity photography to lead the experience and showcase product texture.',
+                    'Selection Logic: The color and size selectors were redesigned alongside comprehensive fit guides to ensure a seamless and confident selection process while maintaining a clean visual hierarchy.'
+                ]
             },
             {
-                title: '3. Holistic Implementation and UX Guidance',
-                content: 'Beyond the core component design and development, the Design System team ensures high-quality implementation through comprehensive UX guidance. UX recommendations and best practices were provided to the Payment team, offering an expert second opinion on the end-to-end verification journey. This effort included optimizing interaction patterns outside the immediate component—such as the seamless transition to the verification modal—and refining supporting elements like instructional copy, \'resend code\' logic, and loading states. By delivering detailed specifications for modal behavior and error handling (illustrated in the \'Pay with Blik\' sequence), a cohesive and frictionless user experience was maintained throughout the entire checkout flow.'
+                title: '3. Collection Discovery and Interaction',
+                content: 'A specialized module was developed to facilitate discovery through an immersive, motion-driven experience. This component allowed for extensive product browsing while maintaining a minimalist aesthetic.',
+            bullets: [
+                    'Horizontal Scrolling: A continuous horizontal pattern was implemented to showcase curated collections. This motion-heavy interaction encouraged exploration without cluttering the layout.',
+                    'Information on Hover: Product details were hidden by default to prioritize imagery. Essential info was surfaced through hover interactions, providing immediate context while keeping the interface clean.',
+                    'Responsive Feedback: Each product tile used subtle transitions to respond to user intent, reinforcing the modern and premium feel of the digital experience.'
+                ]
             }
         ],
         retrospective: {
             title: 'Retrospective & Key Learnings',
-            content: 'This project highlighted the importance of cross-functional alignment and the value of design stewardship in ensuring both system scalability and high-quality implementation:',
+            content: 'The engagement with Calvin Klein through MetaLab emphasized the importance of balancing high-end brand requirements with rigorous e-commerce performance.',
             bullets: [
-                'Requirement Alignment and Scalability: Success required intensive communication with stakeholder teams to align on immediate functional requirements while maintaining a focus on future scalability. Striking a balance between building a streamlined solution and a reusable library asset ensured the component could support diverse needs across the organization.',
-                'Design Stewardship and Influence: Serving as a strategic partner to the Payment team provided opportunities to influence the broader user journey beyond the component itself. Comprehensive UX guidance—covering flow optimizations and instructional copy—led to a collaborative rethinking of the verification sequence, directly improving the overall user experience.',
-                'Technical Craft and Collaboration: Deeply collaborating with developers to \'sweat the details\' of interaction design was critical for the final outcome. This involvement in fine-tuning states, transitions, and loading behaviors ensured the component delivered a polished, professional experience that met both design and technical standards.'
-            ]
-        }
-    },
-    4: {
-        title: 'Interactive States',
-        description: 'Interactive states across the component library were audited and standardized to elevate accessibility and visual affordance. Focus states for selection controls and buttons were refined for reliability, while the introduction of a pressed state provided stronger interaction feedback.',
-        images: [
-            'images/projects/project-4/Interactive States 1.png',
-            'images/projects/project-4/Interactive States 2.png',
-            'images/projects/project-4/Interactive States 3.png'
-        ],
-        tags: ['UX Design', 'UI Design', 'Interaction Design'],
-        sections: [
-            {
-                title: '1. Selection Controls: Focus State Audit and Standardization',
-                content: 'A comprehensive audit of interactive components—including checkboxes, switches, and radio buttons—identified inconsistencies in focus state styling that hindered accessibility. To ensure a reliable experience for buyers with accessibility needs, focus rings were standardized across all selection controls. This systematic refinement elevated the design system\'s quality by providing clear, predictable visual cues for keyboard navigation, ensuring that focus states are prominent and consistent regardless of the component type or state.'
-            },
-            {
-                title: '2. Button Architecture: Accessibility and Tone Refinement',
-                content: 'As the most critical components within the checkout flow, buttons were evaluated through a targeted audit to optimize focus states for both standard and critical tones. Modifications were made to the focus rings to ensure high visibility and contrast across different variants, such as primary, secondary, and critical (red) buttons. By fine-tuning these states, the components adhere to accessibility requirements while maintaining a cohesive visual language, ensuring that high-stakes actions remain identifiable and navigable for all users.'
-            },
-            {
-                title: '3. Interaction Elevation: Affordance and Pressed States',
-                content: 'To improve the tactile feel and visual feedback of the interface, button interactions were elevated through the introduction of a dedicated pressed state. This addition provides stronger affordance during user clicks or taps, bridging the gap between rest and hover states with a clear reactive moment. By defining a specific visual shift for the "pressed" state, the system provides immediate confirmation of user intent, resulting in a more responsive and polished interaction pattern across the entire product ecosystem.'
-            }
-        ],
-        retrospective: {
-            title: 'Retrospective & Key Learnings',
-            content: 'This project underscored the value of systematic consistency and technical precision in creating an accessible, high-performance interface that functions reliably for all users:',
-            bullets: [
-                'Foundation of Navigability and Quality: Standardizing focus rings across selection controls established accessibility as a core pillar of design quality, ensuring the system is inherently navigable for users relying on keyboard or assistive technology. This consistency across checkboxes, switches, and radio buttons provides predictable visual cues that enhance the overall usability of the interface.',
-                'Systemic Robustness in High-Stakes Actions: The evaluation of button variants highlighted the necessity of maintaining accessibility across a multi-tone system, ensuring even critical-action buttons meet accessibility requirements. These refinements increased the robustness of the checkout flow.',
-                'Tactile Affordance and User Trust: The introduction of a dedicated pressed state provided essential micro-interaction feedback that reinforces user intent and creates a more tactile, "finished" feeling. This immediate visual confirmation builds user trust and elevates the perceived quality of the entire checkout.'
-            ]
-        }
-    },
-    5: {
-        title: 'Design System Stewardship & Documentation',
-        description: 'Figma libraries were maintained through changelogs and Slack messages. Technical documentation on shopify.dev was updated with refined properties and best practices. Visual assets were also developed to educate the ecosystem on Checkout Extensions.',
-        images: [
-            'images/projects/project-5/Design System Stewardship & Documentation 1.png',
-            'images/projects/project-5/Design System Stewardship & Documentation 2.png',
-            'images/projects/project-5/Design System Stewardship & Documentation 3.png'
-        ],
-        tags: ['Research', 'UX Design', 'UI Design', 'Content Writing', 'Vibe-coding'],
-        sections: [
-            {
-                title: '1. Library Governance: Figma Maintenance and Internal Alignment',
-                content: 'Ongoing maintenance of internal and external Figma UI libraries ensured parity across design and development environments. To improve transparency and tracking, a systematic changelog was initiated to document all design system updates. Communication was streamlined through proactive Slack announcements to the design organization, ensuring all stakeholders remained aligned on the latest components. Additionally, expert guidance was provided to internal designers contributing to the library, maintaining high standards for component architecture and system integrity.'
-            },
-            {
-                title: '2. Technical Documentation: UI Component Standards',
-                content: 'The UI component documentation on shopify.dev was updated as a primary resource for both internal teams and third-party developers. In collaboration with the engineering team, a comprehensive list of properties and technical specifications was developed to ensure clarity for external implementation. Guidance focused on illustrating best practices and diverse use cases for each component, helping third-party developers navigate their requirements and needs. To maintain a high standard of communication across the entire library, AI tools were integrated into the documentation process. This approach improved the technical writing efficiency and ensured that the shopify.dev site remained professional and easy to digest for a broader audience.'
-            },
-            {
-                title: '3. Ecosystem Advocacy: Educational Content and Marketing Support',
-                content: 'Strategic visual and video assets were developed for marketing blog posts to promote and educate the developer ecosystem on Checkout Extensions. These assets effectively communicated the core concepts and functionality of extensions within the checkout environment, bridging the gap between technical capability and developer awareness. By providing high-fidelity visual context and demonstrations, these efforts helped educate the broader developer community on how to build high-converting, personalized checkout experiences using the extension framework.'
-            }
-        ],
-        retrospective: {
-            title: 'Retrospective & Key Learnings',
-            content: 'This project demonstrated the importance of clear communication channels and educational documentation in scaling a design system across a global developer ecosystem:',
-            bullets: [
-                'Transparency through Governance: The implementation of changelogs and dedicated Slack communication channels established a culture of transparency, ensuring that system updates were predictable and easily tracked by the design and engineering organizations. Providing direct expertise for internal contributions further reinforced the system\'s quality and fostered a collaborative environment for designers.',
-                'Scalability of Developer Education: Maintaining a robust documentation site provides the external developers with clear properties, use case illustrations, and best practices. Utilizing AI tools to refine these materials ensured that technical standards remained professional and easy to digest for a broader audience.',
-                'Visual Storytelling as a Growth Lever: Collaborating with marketing to produce high-quality visuals and videos for developer-facing blogs underscored the power of visual storytelling in product advocacy. These assets simplified complex technical concepts, making the potential of Checkout Extensions more tangible and encouraging developer adoption through clearer education.'
+                'Aesthetic Range: The work required adapting a design language to meet the specific heritage of the global brand. This involved a deep focus on typography, white space, and subtle motion to maintain brand standards.',
+                'Rapid Domain Switching: The partnership reinforced the ability to quickly understand a new industry and its specific user behaviours. Unique friction points in luxury e-commerce were identified and solved through elegant design solutions.',
+                'Impact of Interaction: In a minimalist interface, the quality of interaction serves as a primary brand signal. Every transition and state was treated as an opportunity to communicate the quality and modernization of the brand.'
             ]
         }
     }
@@ -279,14 +240,35 @@ function openProjectModal(projectId, clickedCard) {
         tagsHTML += `<span class="tag">${tag}</span>`;
     });
 
+    // Helper function to render image or video
+    function renderImageOrVideo(imageUrl, altText) {
+        if (imageUrl.includes('vimeo.com')) {
+            // Extract video ID from Vimeo URL
+            const vimeoMatch = imageUrl.match(/vimeo\.com\/(\d+)/);
+            if (vimeoMatch) {
+                const videoId = vimeoMatch[1];
+                const vimeoParams = new URLSearchParams(imageUrl.split('?')[1] || '');
+                const autoplay = vimeoParams.get('autoplay') || '1';
+                const loop = vimeoParams.get('loop') || '1';
+                const muted = vimeoParams.get('muted') || '1';
+                return `<div class="modal-section-image" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px;"><iframe src="https://player.vimeo.com/video/${videoId}?autoplay=${autoplay}&loop=${loop}&muted=${muted}&background=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+            }
+        }
+        // Regular image
+        const imageSrc = `${imageUrl}?v=${Date.now()}`;
+        return `<img src="${imageSrc}" alt="${altText}" class="modal-section-image">`;
+    }
+
     // Build sections HTML if they exist
     let sectionsHTML = '';
     if (project.sections && project.sections.length > 0) {
         // Image 1: before first section
         if (project.images[0]) {
-            // Add cache-busting parameter to force reload of updated images
-            const imageSrc = `${project.images[0]}?v=${Date.now()}`;
-            sectionsHTML += `<img src="${imageSrc}" alt="${project.title}" class="modal-section-image">`;
+            sectionsHTML += renderImageOrVideo(project.images[0], project.title);
+        }
+        // Image 2: also before first section (for project 1 and project 2)
+        if (project.images[1] && (projectId === '1' || projectId === '2')) {
+            sectionsHTML += renderImageOrVideo(project.images[1], project.title);
         }
         
         project.sections.forEach((section, index) => {
@@ -317,22 +299,55 @@ function openProjectModal(projectId, clickedCard) {
             // Images 2, 3, 4: after sections 1, 2 respectively
             // Image 4 appears first, then Image 3 (both after section 2)
             if (index === 1) {
-                // Image 4 first after section 2
+                // For project 1, images[4] appears after section 2
+                // For project 2, images[3] appears after section 2
+                // For other projects, images[3] appears first, then images[2]
+                if (projectId === '1') {
+                    // Project 1: images[4] after section 2
+                    if (project.images[4]) {
+                        sectionsHTML += renderImageOrVideo(project.images[4], section.title);
+                    }
+                } else if (projectId === '2') {
+                    // Project 2: images[4] after section 2
+                    if (project.images[4]) {
+                        sectionsHTML += renderImageOrVideo(project.images[4], section.title);
+                    }
+                } else {
+                    // Other projects: images[3] first, then images[2]
                 if (project.images[3]) {
-                    const imageSrc = `${project.images[3]}?v=${Date.now()}`;
-                    sectionsHTML += `<img src="${imageSrc}" alt="${section.title}" class="modal-section-image">`;
+                    sectionsHTML += renderImageOrVideo(project.images[3], section.title);
                 }
-                // Image 3 right after Image 4
                 if (project.images[index + 1]) {
-                    const imageSrc = `${project.images[index + 1]}?v=${Date.now()}`;
                     // Add special class for Interactive States project image 3 to enable animation
                     const specialClass = (projectId === '4' && project.images[index + 1].includes('Interactive States 3')) ? 'interactive-states-demo' : '';
-                    sectionsHTML += `<img src="${imageSrc}" alt="${section.title}" class="modal-section-image ${specialClass}">`;
+                    const renderedContent = renderImageOrVideo(project.images[index + 1], section.title);
+                    // Add special class if needed (only works for img tags, not videos)
+                    if (specialClass && !project.images[index + 1].includes('vimeo.com')) {
+                        sectionsHTML += renderedContent.replace('class="modal-section-image"', `class="modal-section-image ${specialClass}"`);
+                    } else {
+                        sectionsHTML += renderedContent;
+                    }
                 }
-            } else if (index === 0 && project.images[index + 1]) {
-                // Image 2 after section 1 only
-                const imageSrc = `${project.images[index + 1]}?v=${Date.now()}`;
-                sectionsHTML += `<img src="${imageSrc}" alt="${section.title}" class="modal-section-image">`;
+                }
+            } else if (index === 0) {
+                // Image after section 1
+                // For project 1, use images[2] since images[0] and images[1] are before first section
+                // For project 2, use images[2] since images[0] and images[1] are before first section
+                // For other projects, use images[index + 1] which is images[1]
+                const imageIndex = (projectId === '1' || projectId === '2') ? 2 : index + 1;
+                if (project.images[imageIndex]) {
+                    sectionsHTML += renderImageOrVideo(project.images[imageIndex], section.title);
+                }
+                // For project 1, also show images[3] after images[2] (before section 2)
+                if (projectId === '1' && project.images[3]) {
+                    sectionsHTML += renderImageOrVideo(project.images[3], section.title);
+                }
+                // For project 2, also show images[3] after images[2] (before section 2)
+                if (projectId === '2') {
+                    if (project.images[3]) {
+                        sectionsHTML += renderImageOrVideo(project.images[3], section.title);
+                    }
+                }
             }
             // No image after section 3 (index === 2)
         });
