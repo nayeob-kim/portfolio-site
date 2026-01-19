@@ -786,7 +786,7 @@ section {
 /* Projects Grid - Using 12-column system */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    grid-template-columns: 1fr; /* Single column - each card takes full width */
     gap: var(--grid-gutter);
     width: 100%;
     max-width: var(--grid-content-width);
@@ -795,7 +795,7 @@ section {
     margin-right: 0;
 }
 
-/* Project Card - Using 12-column system (spans 6 columns each) */
+/* Project Card - Full width layout */
 .project-card {
     background: var(--bg-card);
     border: 1px solid var(--border-dark);
@@ -803,11 +803,13 @@ section {
     padding: var(--project-card-padding);
     backdrop-filter: blur(var(--blur));
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px; /* Increased gap between text and image on desktop */
+    align-items: flex-start;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    grid-column: span 6; /* Each project card spans 6 columns (2 columns per row) */
+    width: 100%;
 }
 
 .project-card:hover {
@@ -815,8 +817,16 @@ section {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
+.project-text-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
 .project-thumbnail {
-    width: 100%;
+    width: 40%;
+    min-width: 0;
     height: var(--project-thumbnail-height);
     border-radius: var(--radius-thumbnail);
     background: #d9d9d9;
@@ -835,7 +845,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: var(--project-title-desc-gap);
-    margin-top: var(--project-image-text-gap);
+    margin-top: 0;
 }
 
 .project-title {
@@ -851,7 +861,7 @@ section {
     color: var(--text-secondary); /* Darker gray color */
     line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5; /* Increased from 3 to 5 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -860,8 +870,10 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: var(--project-tags-gap);
-    margin-top: 8px; /* Reduced from 16px for tighter spacing */
+    width: 100%;
+    margin-top: 0;
     padding-top: var(--project-tags-top);
+    order: 3;
 }
 
 .tag {
@@ -1665,22 +1677,45 @@ section {
         width: 100%;
     }
     
+    .projects-grid-wrapper {
+        margin-top: 12px; /* Reduced spacing between section header and grid wrapper on tablet */
+    }
+    
     .projects-grid {
         grid-template-columns: 1fr;
         max-width: 100%;
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-        margin-top: 16px; /* Reduced spacing between header and grid on tablet */
+        margin-top: 0; /* Remove margin-top since wrapper handles spacing */
     }
     
     .project-card {
-        grid-column: span 12;
-        padding: var(--spacing-md);
+        padding: var(--spacing-md); /* Restore original padding */
+        flex-direction: column; /* Stack like mobile */
+        gap: 0; /* Remove gap between flex items */
     }
     
     .project-thumbnail {
+        width: 100%;
+        min-width: 100%;
         height: 280px;
+        order: 1; /* Image first */
+    }
+    
+    .project-text-wrapper {
+        order: 2; /* Text second */
+    }
+    
+    .project-content {
+        margin-top: 20px; /* Slightly reduced from var(--project-image-text-gap) but not too tight */
+    }
+    
+    .project-tags {
+        width: 100%;
+        order: 3; /* Tags last */
+        margin-top: 16px; /* Balanced spacing between content and tags */
+        padding-top: 8px; /* Restore some padding-top */
     }
     
     .contact-section {
@@ -2017,6 +2052,10 @@ section {
         width: 100%;
     }
     
+    .projects-grid-wrapper {
+        margin-top: 8px; /* Reduced spacing between section header and grid wrapper on mobile */
+    }
+    
     .projects-grid {
         grid-template-columns: 1fr;
         gap: var(--grid-gutter);
@@ -2024,22 +2063,36 @@ section {
         margin-right: 0;
         max-width: none; /* Remove max-width constraint for full width */
         width: 100%;
-        margin-top: 12px; /* Reduced spacing between header and grid on mobile */
+        margin-top: 0; /* Remove margin-top since wrapper handles spacing */
     }
     
     .project-card {
-        grid-column: span 12;
         width: 100%;
         padding: var(--spacing-sm);
+        flex-direction: column;
+        gap: 0; /* Remove gap between flex items */
     }
     
     .project-thumbnail {
+        width: 100%;
+        min-width: 100%;
         height: 200px;
+        order: 1;
+    }
+    
+    .project-text-wrapper {
+        order: 2;
+    }
+    
+    .project-content {
+        margin-top: 16px; /* Reduced from var(--project-image-text-gap) but not too tight */
+        gap: var(--project-title-desc-gap); /* Restore original gap between title and description */
     }
     
     .project-tags {
-        margin-top: 4px; /* Reduced for tighter spacing on mobile */
-        padding-top: 8px; /* Reduced for tighter spacing on mobile */
+        order: 3;
+        margin-top: 12px; /* Balanced spacing between content and tags */
+        padding-top: 4px; /* Small padding-top */
     }
     
     .tag {
