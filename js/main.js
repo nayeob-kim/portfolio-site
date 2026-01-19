@@ -46,7 +46,7 @@ const projects = {
             'images/projects/project-2/Payment in Checkout 2.png',
             'images/projects/project-2/Payment in Checkout 3.png'
         ],
-        tags: ['UX Design', 'UI Design', 'AI Image Generation', 'AI Coding'],
+        tags: ['Product Architecture', 'Systems Thinking', 'Interaction Design', 'AI-Assisted Prototyping'],
         sections: [
             {
                 title: '1. Order Summary Optimization',
@@ -89,7 +89,7 @@ const projects = {
             'images/projects/project-4/Interactive States 2.png',
             'images/projects/project-5/Design System Stewardship & Documentation 2.png'
         ],
-        tags: ['UX Design', 'UI Design', 'Interaction Design', 'Content Writing'],
+        tags: ['Design Systems Lead', 'System Architecture', 'Cross-Fucntional Governance', 'Documentation & Specs'],
         sections: [
             {
                 title: '1. The OTP (One-Time Password) Component',
@@ -134,7 +134,7 @@ const projects = {
             'https://vimeo.com/642184965?autoplay=1&loop=1&muted=1',
             'https://vimeo.com/642207005?autoplay=1&loop=1&muted=1'
         ],
-        tags: ['Research', 'UX Design', 'UI Design', 'Interaction Design'],
+        tags: ['Interface Strategy', 'Experience Design', 'Motion & Prototyping'],
         sections: [
             {
                 title: '1. Navigation and Discovery',
