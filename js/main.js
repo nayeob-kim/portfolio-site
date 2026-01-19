@@ -38,7 +38,7 @@ const modal = document.getElementById('project-modal');
 const projects = {
     1: {
         title: 'Architecting Trust at Scale: The Shopify Checkout Engine',
-        description: 'In the Shopify Checkout, the Order Summary and Payment Flow are the most critical high-stakes conversion areas. The challenge was to balance extreme detail-orientation with the layout limitations of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
+        description: 'In the Shopify Checkout, the Order Summary and Payment Flow are the most critical high-stakes conversion areas. The challenge was to maintain rigorous precision within the layout constraints of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
             'images/projects/project-1/Order Summary 4.png',
@@ -63,8 +63,8 @@ const projects = {
                 content: 'The Payment flow was systematized to prioritize conversion, trust, and legal compliance across diverse merchant needs.',
                 bullets: [
                     'Standardized Content Models: Recognizing the criticality of payment selection, I established strict content models to streamline consistency. This required defining rules for the placement of method names, supplementary descriptions (like installment options), and logos to ensure a predictable pattern that minimizes cognitive load.',
-                    'Third-Party Redirects & Density: I redesigned the pattern for third-party payment methods which previously used inefficient vertical space. By removing outdated iconography and moving concise redirect messages below the \'Pay now\' button, I increased checkout density and accelerated the purchase funnel without losing necessary user guidance.',
-                    'Pay Now Disclaimers & Compliance: The area surrounding the \'Pay now\' button is often cluttered by mandatory legal disclosures. I developed a governing content model to audit and standardize all possible content in this space, ensuring compliance across Guest Checkout and Shop Pay without creating visual friction at the point of purchase.',
+                    'Third-Party Redirects & Density: I redesigned the pattern for third-party payment methods which previously used inefficient vertical space. By removing outdated iconography and moving concise redirect messages below the "Pay now" button, I increased checkout density and accelerated the purchase funnel without losing necessary user guidance.',
+                    'Pay Now Disclaimers & Compliance: The area surrounding the "Pay now" button is often cluttered by mandatory legal disclosures. I developed a governing content model to audit and standardize all possible content in this space, ensuring compliance across Guest Checkout and Shop Pay without creating visual friction at the point of purchase.',
                     'Technical Validation: These solutions were validated via functional code prototypes (built with Cursor and Figma MCP) to audit the current state against the ideal state and confirm technical feasibility across all platforms.'
                 ]
             }
@@ -80,7 +80,7 @@ const projects = {
         }
     },
     2: {
-        title: 'System Stewardship: The Checkout Design System',
+        title: 'Systems at Scale: The Global Checkout Library',
         description: 'As a designer on the Checkout Design System team, my work focused on the stewardship and governance of patterns specifically optimized for the checkout experience. I was responsible for ensuring that components such as security inputs and interactive states were visually consistent with the broader Checkout language. These patterns also had to meet the specialized and high-integrity requirements of a global checkout engine.',
         images: [
             'images/projects/project-3/OTP Component 2.png',
@@ -109,7 +109,7 @@ const projects = {
             },
             {
                 title: '3. Documentation & Governance',
-                content: 'A specialized design system is only as successful as its adoption by product teams. My work in Design System Stewardship centered on transforming these technical checkout patterns into a reliable source of truth.',
+                content: 'A specialized design system is only as successful as its adoption. I focused on bridging the gap between library architecture and product implementation, transforming complex checkout patterns into a reliable, shared source of truth.',
                 bullets: [
                     'Documentation as a Product: I authored and governed the documentation for these specialized patterns. I focused on providing clear guidelines that explained the functional requirements and the strategic logic behind each checkout-specific component.',
                     'Ensuring Systemic Integrity: By providing high-quality documentation and clear implementation rules, I helped maintain the integrity of the checkout system as it evolved. This ensured that the quality of the buyer experience remained high across all payment and shipping verticals.'
@@ -120,7 +120,7 @@ const projects = {
             title: 'Retrospective & Key Learnings',
             content: 'My work within the Checkout design system taught me that the true value of a specialized system lies in its ability to provide clarity within high-stakes environments.',
             bullets: [
-                'Stewardship over Design: I learned that being a steward of a checkout system is about more than just craft. It requires the ability to take complex design decisions and turn them into codifiable rules that can be shared across specialized engineering teams.',
+                'From Craft to Infrastructure: I learned that building a checkout system is about more than just craft; it\'s about codification. It requires the ability to translate complex design decisions into systematic rules that enable specialized engineering teams to move faster without losing quality.',
                 'The Importance of Clarity: High-quality documentation is the bridge between a design concept and a successful implementation. I realized that clear communication is what allows a checkout system to remain resilient even as technical and legal requirements change.',
                 'Anticipating Systemic Impact: Managing core atoms like OTPs and interactive states taught me to anticipate how a single systemic change would ripple across the entire purchase funnel. This experience reinforced the need for rigor and technical validation in every design decision.'
             ]
@@ -167,7 +167,7 @@ const projects = {
             content: 'The engagement with Calvin Klein through MetaLab emphasized the importance of balancing high-end brand requirements with rigorous e-commerce performance.',
             bullets: [
                 'Aesthetic Range: The work required adapting a design language to meet the specific heritage of the global brand. This involved a deep focus on typography, white space, and subtle motion to maintain brand standards.',
-                'Rapid Domain Switching: The partnership reinforced the ability to quickly understand a new industry and its specific user behaviours. Unique friction points in luxury e-commerce were identified and solved through elegant design solutions.',
+                'Rapid Domain Switching: The partnership reinforced the ability to quickly understand a new industry and its specific user behaviours. The process involved identifying the unique friction points of an iconic global brand and translating its heritage into a high-performance, modern e-commerce experience.',
                 'Impact of Interaction: In a minimalist interface, the quality of interaction serves as a primary brand signal. Every transition and state was treated as an opportunity to communicate the quality and modernization of the brand.'
             ]
         }
