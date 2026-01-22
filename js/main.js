@@ -89,7 +89,7 @@ const projects = {
             'images/projects/project-4/Interactive States 2.png',
             'images/projects/project-5/Design System Stewardship & Documentation 2.png'
         ],
-        tags: ['Design Systems Lead', 'System Architecture', 'Cross-Fucntional Governance', 'Documentation & Specs'],
+        tags: ['Component Standardization', 'System Architecture', 'Cross-Fucntional Governance', 'Documentation & Specs'],
         sections: [
             {
                 title: '1. The OTP (One-Time Password) Component',
