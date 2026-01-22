@@ -37,7 +37,7 @@ const modal = document.getElementById('project-modal');
 // Project data
 const projects = {
     1: {
-        title: 'Architecting Trust at Scale: The Shopify Checkout Engine',
+        title: 'Architecting Trust: The Shopify Checkout Engine',
         description: 'In the Shopify Checkout, the Order Summary and Payment Flow are the most critical high-stakes conversion areas. The challenge was to maintain rigorous precision within the layout constraints of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
@@ -81,7 +81,7 @@ const projects = {
     },
     2: {
         title: 'Systems at Scale: The Global Checkout Library',
-        description: 'As a designer on the Checkout Design System team, my work focused on the stewardship and governance of patterns specifically optimized for the checkout experience. I was responsible for ensuring that components such as security inputs and interactive states were visually consistent with the broader Checkout language. These patterns also had to meet the specialized and high-integrity requirements of a global checkout engine.',
+        description: 'As a designer on the Checkout Design System team, I focused on the enablement and scaling of patterns specifically optimized for the checkout experience. I was responsible for architecting components, such as security inputs and complex interactive states, that balanced visual consistency with the high-integrity requirements of a global checkout engine.',
         images: [
             'images/projects/project-3/OTP Component 2.png',
             'images/projects/project-3/OTP Component 3.png',
