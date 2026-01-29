@@ -38,7 +38,7 @@ const modal = document.getElementById('project-modal');
 const projects = {
     1: {
         title: 'Architecting Trust: The Shopify Checkout Engine',
-        description: 'In the Shopify Checkout, the Order Summary and Payment Flow are the most critical high-stakes conversion areas. The challenge was to maintain rigorous precision within the layout constraints of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
+        description: 'In the Shopify Checkout, the Order Summary and Payment section are the most critical high-stakes conversion areas. The challenge was to maintain rigorous precision within the layout constraints of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
             'images/projects/project-1/Order Summary 4.png',
@@ -59,12 +59,12 @@ const projects = {
                 ]
             },
             {
-                title: '2. Payment Flow & Legal Governance',
+                title: '2. Payment Section & Legal Governance',
                 content: 'The Payment flow was systematized to prioritize conversion, trust, and legal compliance across diverse merchant needs.',
                 bullets: [
-                    'Standardized Content Models: Recognizing the criticality of payment selection, I established strict content models to streamline consistency. This required defining rules for the placement of method names, supplementary descriptions (like installment options), and logos to ensure a predictable pattern that minimizes cognitive load.',
+                    'Standardized Framework: Recognizing the criticality of payment selection, I established strict framework to streamline consistency. This required defining rules for the placement of method names, supplementary descriptions (like installment options), and logos to ensure a predictable pattern that minimizes cognitive load.',
                     'Third-Party Redirects & Density: I redesigned the pattern for third-party payment methods which previously used inefficient vertical space. By removing outdated iconography and moving concise redirect messages below the "Pay now" button, I increased checkout density and accelerated the purchase funnel without losing necessary user guidance.',
-                    'Pay Now Disclaimers & Compliance: The area surrounding the "Pay now" button is often cluttered by mandatory legal disclosures. I developed a governing content model to audit and standardize all possible content in this space, ensuring compliance across Guest Checkout and Shop Pay without creating visual friction at the point of purchase.',
+                    'Pay Now Disclaimers & Compliance: The area surrounding the "Pay now" button is often cluttered by mandatory legal disclosures. I developed a governing framework to audit and standardize all possible content in this space, ensuring compliance across Guest Checkout and Shop Pay without creating visual friction at the point of purchase.',
                     'Technical Validation: These solutions were validated via functional code prototypes (built with Cursor and Figma MCP) to audit the current state against the ideal state and confirm technical feasibility across all platforms.'
                 ]
             }
@@ -74,7 +74,7 @@ const projects = {
             content: 'This work taught me the immense leverage of defining strict principles early in high-stakes conversion areas:',
             bullets: [
                 'Sweating the Details vs. Scalability: I learned to prioritize what matters most—focusing on precise spacing and strict alignment while accepting necessary layout limitations to preserve data integrity across global checkouts.',
-                'Systematic Constraint: Defining strict content models for payment methods and legal content proved that standardization is the best way to manage complexity at scale.',
+                'Systematic Constraint: Defining strict framework for payment methods and legal content proved that standardization is the best way to manage complexity at scale.',
                 'The Power of AI Prototyping: Utilizing code-based validation (Cursor/Figma MCP) was invaluable for bridging the gap between ideal UX and complex business/technical needs, ensuring that high-risk areas were built on a foundation of technical feasibility.'
             ]
         }
