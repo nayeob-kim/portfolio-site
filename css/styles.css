@@ -1445,9 +1445,9 @@ section {
 
 .modal-description {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 32px; /* 32px from Figma */
+    font-size: 24px; /* Reduced from 32px for better scannability */
     font-weight: 400; /* Regular from Figma */
-    line-height: 1.5; /* Increased for better readability */
+    line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9; /* #a9a9a9 from Figma */
     margin: 0 0 40px 0; /* 40px bottom margin from Figma */
     width: 100%;
@@ -1472,7 +1472,7 @@ section {
 
 .modal-section-title {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 36px;
+    font-size: 28px; /* Reduced from 36px for better scannability */
     font-weight: 400; /* Regular */
     line-height: normal;
     color: #ffffff;
@@ -1481,36 +1481,36 @@ section {
 
 .modal-section-content {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 32px;
+    font-size: 24px; /* Reduced from 32px for better scannability */
     font-weight: 400; /* Regular */
-    line-height: 1.5; /* Increased for better readability */
+    line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9;
     margin: 0 0 16px 0;
 }
 
 .modal-section-intro {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 32px;
+    font-size: 24px; /* Reduced from 32px for better scannability */
     font-weight: 400; /* Regular */
-    line-height: 1.5; /* Increased for better readability */
+    line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9;
     margin: 0 0 16px 0;
 }
 
 .modal-section-conclusion {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 32px;
+    font-size: 24px; /* Reduced from 32px for better scannability */
     font-weight: 400; /* Regular */
-    line-height: 1.5; /* Increased for better readability */
+    line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9;
     margin: 16px 0 0 0;
 }
 
 .modal-section-bullets {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 32px;
+    font-size: 24px; /* Reduced from 32px for better scannability */
     font-weight: 400; /* Regular */
-    line-height: 1.5; /* Increased for better readability */
+    line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9;
     margin: 0 0 16px 0;
     padding-left: 48px; /* Indentation for bullets */
