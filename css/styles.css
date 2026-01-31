@@ -2104,6 +2104,10 @@ section {
         max-width: 100%;
     }
     
+    .contact-label {
+        white-space: nowrap; /* Prevent "Send me a message:" from wrapping on mobile if there's enough space */
+    }
+    
     .contact-form {
         width: 100%;
         height: auto;
