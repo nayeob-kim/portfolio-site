@@ -127,7 +127,7 @@ const projects = {
         }
     },
     3: {
-        title: 'Modernizing the Global E-commerce Experience: Calvin Klein',
+        title: 'Modernizing the Global E-commerce Experience: Calvin\u00A0Klein',
         description: 'The engagement at MetaLab focused on overhauling the Calvin Klein digital experience. The objective was to bridge the gap between an iconic minimalist brand and a high-performance shopping journey. The scope involved modernizing the navigation, the homepage, and the product detail pages to meet global consumer expectations.',
         images: [
             'https://vimeo.com/642194431?autoplay=1&loop=1&muted=1',

@@ -1532,8 +1532,8 @@ section {
 
 .modal-retrospective-title {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 48px;
-    font-weight: 500; /* Medium */
+    font-size: 28px; /* Match modal-section-title size for consistency */
+    font-weight: 400; /* Regular to match section titles */
     line-height: normal;
     color: #ffffff;
     margin: 0 0 16px 0;
@@ -1884,7 +1884,7 @@ section {
     }
     
     .modal-retrospective-title {
-        font-size: 36px; /* Scale down from 48px for tablet */
+        font-size: 28px; /* Match modal-section-title size for consistency on tablet */
     }
     
     /* Password Protection - Tablet */
@@ -2290,7 +2290,7 @@ section {
     }
     
     .modal-retrospective-title {
-        font-size: 28px; /* Scale down from 48px for mobile */
+        font-size: 24px; /* Match modal-section-title size for consistency on mobile */
     }
     
     /* Password Protection - Mobile */
