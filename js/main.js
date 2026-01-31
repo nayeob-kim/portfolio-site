@@ -1762,28 +1762,23 @@ function toggleSpeech() {
         return;
     }
     
-    // If speech is paused but we don't have a current utterance, cancel and start fresh
-    // This can happen when switching projects - the paused state persists but utterance is gone
-    if (speechSynthesis.paused && !currentUtterance) {
-        speechSynthesis.cancel();
-        isPlaying = false;
-        startSpeech();
+    // Check paused state first - if paused, resume
+    if (speechSynthesis.paused && currentUtterance) {
+        resumeSpeech();
         return;
     }
     
+    // If currently playing or speaking, pause
     if (isPlaying || speechSynthesis.speaking) {
         pauseSpeech();
     } else {
-        if (speechSynthesis.paused && currentUtterance) {
-            resumeSpeech();
-        } else {
-            startSpeech();
-        }
+        // Otherwise, start fresh
+        startSpeech();
     }
 }
 
 function pauseSpeech() {
-    if (speechSynthesis && isPlaying) {
+    if (speechSynthesis && (isPlaying || speechSynthesis.speaking)) {
         speechSynthesis.pause();
         if (wordHighlightInterval) {
             clearInterval(wordHighlightInterval);
@@ -1792,26 +1787,48 @@ function pauseSpeech() {
         stopScrubberUpdate();
         isPlaying = false;
         updatePlayButton();
-        // Note: speechStartTime is kept so we can adjust it on resume
+        // Note: speechStartTime and currentUtterance are kept so we can resume
     }
 }
 
 function resumeSpeech() {
-    if (speechSynthesis && speechSynthesis.paused && currentUtterance) {
-        // Adjust start time to account for the pause
-        // Calculate how much time has elapsed before pause
-        if (speechStartTime) {
-            const elapsedBeforePause = Date.now() - speechStartTime;
-            // Reset start time to current time minus elapsed time to maintain sync
-            speechStartTime = Date.now() - elapsedBeforePause;
+    if (!speechSynthesis || !currentUtterance) {
+        startSpeech();
+        return;
+    }
+    
+    if (!speechSynthesis.paused) {
+        // Not actually paused, start fresh
+        startSpeech();
+        return;
+    }
+    
+    // Adjust start time to account for the pause
+    if (speechStartTime && totalSpeechDuration > 0) {
+        const elapsedBeforePause = Date.now() - speechStartTime;
+        const elapsedSeconds = elapsedBeforePause / 1000;
+        const progress = Math.min(elapsedSeconds / totalSpeechDuration, 1);
+        
+        // Recalculate word index based on progress
+        if (allWords.length > 0) {
+            currentWordIndex = Math.floor(progress * allWords.length);
+            currentWordIndex = Math.min(Math.max(0, currentWordIndex), allWords.length - 1);
+            highlightCurrentWord(currentWordIndex);
         }
         
+        // Reset start time to current time minus elapsed time to maintain sync
+        speechStartTime = Date.now() - elapsedBeforePause;
+    }
+    
+    // Resume speech
+    try {
         speechSynthesis.resume();
         isPlaying = true;
-        startWordHighlighting();
+        startScrubberUpdate();
         updatePlayButton();
-    } else {
-        // If paused but no utterance, start fresh
+    } catch (error) {
+        console.error('Error resuming speech:', error);
+        // If resume fails, start fresh
         startSpeech();
     }
 }
@@ -2028,10 +2045,14 @@ function startSpeechInternal() {
         speechStartTime = Date.now();
         currentWordIndex = 0;
         
-        // Calculate total duration based on word count
-        // Use calibrated rate if available, otherwise use conservative estimate
-        const estimatedWordsPerSecond = calibratedWordsPerSecond || 1.5;
-        totalSpeechDuration = Math.round(allWords.length / estimatedWordsPerSecond);
+        // Calculate total duration - use stored duration if available for accurate sync
+        if (window.currentProjectId && speechDurations[window.currentProjectId] && speechDurations[window.currentProjectId].seconds > 0) {
+            totalSpeechDuration = speechDurations[window.currentProjectId].seconds;
+        } else {
+            // Use calibrated rate if available, otherwise use estimate
+            const estimatedWordsPerSecond = calibratedWordsPerSecond || 1.5;
+            totalSpeechDuration = Math.round(allWords.length / estimatedWordsPerSecond);
+        }
         
         showScrubber();
         
@@ -2040,9 +2061,7 @@ function startSpeechInternal() {
             highlightCurrentWord(0);
         }
         
-        // Start highlighting using time-based approach for better sync
-        startWordHighlighting();
-        
+        // Start scrubber update which handles highlighting
         startScrubberUpdate();
     };
     
@@ -2121,46 +2140,13 @@ function startSpeechInternal() {
 }
 
 function startWordHighlighting() {
-    if (wordHighlightInterval) {
-        clearInterval(wordHighlightInterval);
-        wordHighlightInterval = null;
+    // Word highlighting is now handled by startScrubberUpdate()
+    // which updates highlighting based on actual speech progress
+    // This ensures perfect sync between speech and highlighting
+    // Just ensure first word is highlighted if needed
+    if (allWords.length > 0 && currentWordIndex === 0) {
+        highlightCurrentWord(0);
     }
-    
-    // Don't start if we're past the end
-    if (currentWordIndex >= allWords.length) {
-        return;
-    }
-    
-    // Calculate words per second rate
-    // Use calibrated rate if available, otherwise use conservative estimate
-    const speechRate = currentUtterance ? currentUtterance.rate : 1.0;
-    let wordsPerSecond;
-    
-    if (calibratedWordsPerSecond) {
-        // Use calibrated rate from previous speech
-        wordsPerSecond = calibratedWordsPerSecond * speechRate;
-    } else {
-        // Conservative estimate: 1.5 words per second (slower to avoid getting ahead)
-        wordsPerSecond = 1.5 * speechRate;
-    }
-    
-    const intervalMs = Math.max(500, 1000 / wordsPerSecond); // Minimum 500ms between highlights
-    
-    // Start highlighting from the current word index
-    // Note: The word at currentWordIndex should already be highlighted before this function is called
-    // So the interval will increment to the next word, then highlight it
-    wordHighlightInterval = setInterval(() => {
-        if ((isPlaying || speechSynthesis.speaking) && currentWordIndex < allWords.length) {
-            // Move to next word first (since current word was already highlighted)
-            currentWordIndex++;
-            if (currentWordIndex < allWords.length) {
-                highlightCurrentWord(currentWordIndex);
-            }
-        } else if (currentWordIndex >= allWords.length || (!isPlaying && !speechSynthesis.speaking)) {
-            clearInterval(wordHighlightInterval);
-            wordHighlightInterval = null;
-        }
-    }, intervalMs);
 }
 
 function stopSpeech(hideScrubberOnStop = true) {
@@ -2227,7 +2213,19 @@ function startScrubberUpdate() {
         const progress = Math.min(elapsed / totalSpeechDuration, 1); // clamp between 0 and 1
         
         updateScrubberProgress(progress);
-    }, 100); // Update every 100ms for smooth animation
+        
+        // Update word highlighting based on progress for perfect sync
+        if (allWords.length > 0 && (isPlaying || speechSynthesis.speaking)) {
+            // Calculate which word should be highlighted based on progress
+            const targetWordIndex = Math.floor(progress * allWords.length);
+            
+            // Update highlighting when word index changes
+            if (targetWordIndex !== currentWordIndex && targetWordIndex >= 0 && targetWordIndex < allWords.length) {
+                currentWordIndex = targetWordIndex;
+                highlightCurrentWord(currentWordIndex);
+            }
+        }
+    }, 50); // Update every 50ms for responsive highlighting
 }
 
 function stopScrubberUpdate() {
