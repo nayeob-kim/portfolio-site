@@ -42,7 +42,7 @@
     --font-size-contact-button: 24px;
     --font-size-email: 40px;
     --font-size-email-label: 20px;
-    --font-size-pill: 32px;
+    --font-size-pill: 24px;
     --font-size-home-text: 23px;
     
     --font-weight-regular: 400;
@@ -841,6 +841,20 @@ section {
     display: block;
 }
 
+/* Project 3: Adjust container aspect ratio to match image */
+.project-card[data-project="3"] .project-thumbnail {
+    width: 40%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+}
+.project-card[data-project="3"] .project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+}
+
 .project-content {
     display: flex;
     flex-direction: column;
@@ -872,7 +886,7 @@ section {
     gap: var(--project-tags-gap);
     width: 100%;
     margin-top: 0;
-    padding-top: var(--project-tags-top);
+    padding-top: 0;
     order: 3;
 }
 
