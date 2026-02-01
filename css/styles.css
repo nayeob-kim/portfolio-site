@@ -1153,7 +1153,12 @@ section {
     background: rgba(15, 16, 17, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                border 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: left top; /* Anchor entire header at top-left */
     transform: translateY(0) !important; /* No Y translation on base state */
 }
@@ -1196,9 +1201,7 @@ section {
 .modal-header.scrolled .modal-pills {
     opacity: 0;
     visibility: hidden;
-    max-height: 0;
-    margin: 0;
-    overflow: hidden;
+    transform: scaleY(0); /* GPU-accelerated smooth collapse */
 }
 
 
@@ -1349,10 +1352,10 @@ section {
     flex: 1;
     opacity: 1;
     visibility: visible;
-    max-height: 200px; /* Generous max for pills wrapping */
-    overflow: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
-    transform-origin: left top; /* Anchor animation at top-left */
+    transform-origin: top; /* Scale from top for smooth collapse */
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative; /* For proper positioning */
     top: 0; /* Keep anchored at top */
 }
@@ -1786,9 +1789,7 @@ section {
     .modal-header.scrolled .modal-pills {
         opacity: 0;
         visibility: hidden;
-        max-height: 0;
-        margin: 0;
-        overflow: hidden;
+        transform: scaleY(0); /* GPU-accelerated smooth collapse */
     }
     
     .modal-header.scrolled .modal-header-bottom {
@@ -2228,9 +2229,7 @@ section {
     .modal-header.scrolled .modal-pills {
         opacity: 0;
         visibility: hidden;
-        max-height: 0;
-        margin: 0;
-        overflow: hidden;
+        transform: scaleY(0); /* GPU-accelerated smooth collapse */
     }
     
     .modal-header.scrolled .modal-header-bottom {
