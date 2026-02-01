@@ -1925,6 +1925,10 @@ section {
     .settings-toggle-btn {
         min-width: 150px;
     }
+    
+    #modal-body {
+        max-width: 800px;
+    }
 }
 
 /* MOBILE: 480px and below */
