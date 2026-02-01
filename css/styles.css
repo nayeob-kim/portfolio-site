@@ -1162,7 +1162,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px; /* Reduced gap since audio controls are hidden */
+    gap: 10px; /* Proportionally reduced to match smaller title */
     flex: 1; /* Take up available space */
     min-width: 0; /* Allow shrinking */
     transform-origin: left top; /* Anchor at top-left */
@@ -1199,7 +1199,7 @@ section {
 
 .modal-title {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 48px; /* Reduced from 64px for more compact header */
+    font-size: 40px; /* Matches project card title for consistency */
     font-weight: 500; /* Medium from Figma */
     line-height: 1.1; /* Tighter line height */
     color: #ffffff; /* White from Figma */
@@ -1750,7 +1750,7 @@ section {
     }
     
     .modal-header-left {
-        gap: 16px; /* Increased gap between title and pills on tablet */
+        gap: 14px; /* Proportionally reduced to match smaller title */
     }
     
     .modal-header.scrolled {
@@ -1766,10 +1766,9 @@ section {
     }
     
     .modal-header.scrolled .modal-header-left {
-        /* Scale to match close button height (48px) - increased for better readability */
-        transform: scale3d(0.75, 0.75, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
+        /* Consistent 0.78 scale factor across all breakpoints */
+        transform: scale3d(0.78, 0.78, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
         transform-origin: left top; /* Anchor at top-left to prevent jumping */
-        gap: 12px !important; /* Increased gap between title and pills when scrolled on tablet */
     }
     
     .modal-header.scrolled .modal-header-bottom {
@@ -1808,7 +1807,7 @@ section {
     }
     
     .modal-title {
-        font-size: 36px; /* Scale down from 48px (desktop) */
+        font-size: 32px; /* Matches project card title for consistency */
     }
     
     
@@ -2170,7 +2169,7 @@ section {
     }
     
     .modal-title {
-        font-size: 28px; /* Scale down from 48px (desktop) */
+        font-size: 28px; /* Matches project card title for consistency */
     }
     
     
@@ -2193,7 +2192,7 @@ section {
         backdrop-filter: blur(10px) !important; /* Glass blur effect */
         -webkit-backdrop-filter: blur(10px) !important; /* Safari support */
         box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.35) !important; /* More prominent drop shadow for depth on mobile */
-        padding-top: 20px !important; /* Top padding for mobile when scrolled - increased from 16px */
+        padding-top: 16px !important; /* Fixed: should not increase when scrolled */
         padding-bottom: 0 !important; /* No bottom padding when scrolled */
         padding-left: 0 !important;
         padding-right: 0 !important;
@@ -2201,10 +2200,9 @@ section {
     }
     
     .modal-header.scrolled .modal-header-left {
-        /* Scale to match close button height (32px) - increased scale for better readability */
-        transform: scale3d(0.85, 0.85, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
+        /* Consistent 0.78 scale factor across all breakpoints */
+        transform: scale3d(0.78, 0.78, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
         transform-origin: left top; /* Anchor at top-left to prevent jumping */
-        gap: 10px !important; /* Increased gap between title and pills when scrolled on mobile */
     }
     
     .modal-header.scrolled .modal-header-bottom {
