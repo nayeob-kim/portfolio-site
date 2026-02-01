@@ -1194,11 +1194,7 @@ section {
 }
 
 .modal-header.scrolled .modal-pills {
-    opacity: 0;
-    visibility: hidden;
-    max-height: 0;
-    margin: 0;
-    overflow: hidden;
+    display: none; /* Instant hide - no animation jank */
 }
 
 
@@ -1347,12 +1343,6 @@ section {
     justify-content: flex-start;
     flex-wrap: wrap;
     flex: 1;
-    opacity: 1;
-    visibility: visible;
-    max-height: 200px; /* Generous max for pills wrapping */
-    overflow: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
-    transform-origin: left top; /* Anchor animation at top-left */
     position: relative; /* For proper positioning */
     top: 0; /* Keep anchored at top */
 }
@@ -1784,11 +1774,7 @@ section {
     }
     
     .modal-header.scrolled .modal-pills {
-        opacity: 0;
-        visibility: hidden;
-        max-height: 0;
-        margin: 0;
-        overflow: hidden;
+        display: none; /* Instant hide - no animation jank */
     }
     
     .modal-header.scrolled .modal-header-bottom {
@@ -2226,11 +2212,7 @@ section {
     }
     
     .modal-header.scrolled .modal-pills {
-        opacity: 0;
-        visibility: hidden;
-        max-height: 0;
-        margin: 0;
-        overflow: hidden;
+        display: none; /* Instant hide - no animation jank */
     }
     
     .modal-header.scrolled .modal-header-bottom {
