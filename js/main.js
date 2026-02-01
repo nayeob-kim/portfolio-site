@@ -459,7 +459,7 @@ function openProjectModal(projectId, clickedCard) {
     // Add scroll listener to show/hide scrollbar and shrink header
     const modalHeader = document.querySelector('.modal-header');
     if (modalContent && modalHeader) {
-        const SCROLL_THRESHOLD = 20; // Pixels scrolled before header resizes
+        const SCROLL_THRESHOLD = 0; // Instant response - header resizes immediately on scroll
         
         let lastScrollTop = modalContent.scrollTop;
         let scrollTimeout = null;
