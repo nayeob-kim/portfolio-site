@@ -83,6 +83,7 @@ const projects = {
     2: {
         title: 'Systems at Scale: The Global Checkout Library',
         description: 'As a designer on the Checkout Design System team, I focused on the enablement and scaling of patterns specifically optimized for the checkout experience. I was responsible for architecting components, such as security inputs and complex interactive states, that balanced visual consistency with the high-integrity requirements of a global checkout engine.',
+        impact: 'By standardizing complex security patterns and state logic, I established a unified source of truth that eliminated redundant design cycles and accelerated engineering velocity. This framework ensured accessible, high-integrity security checkpoints and a predictable, trust-based experience for millions of global buyers, maintaining system resilience during rapid scaling.',
         images: [
             'images/projects/project-3/OTP Component 2.png',
             'images/projects/project-3/OTP Component 3.png',
@@ -130,6 +131,7 @@ const projects = {
     3: {
         title: 'Modernizing the Global E-commerce Experience: Calvin\u00A0Klein',
         description: 'The engagement at MetaLab focused on overhauling the Calvin Klein digital experience. The objective was to bridge the gap between an iconic minimalist brand and a high-performance shopping journey. The scope involved modernizing the navigation, the homepage, and the product detail pages to meet global consumer expectations.',
+        impact: 'By contributing to the restructuring of the global navigation and selection logic, I helped reduce cognitive load and streamline the path-to-purchase across a massive product catalog. I developed motion-driven design patterns that balanced minimalist aesthetics with functional performance, ensuring a premium brand feel. This collaborative effort resulted in a more intuitive, scalable framework that modernized the brand\'s digital presence for a global consumer base.',
         images: [
             'https://vimeo.com/642194431?autoplay=1&loop=1&muted=1',
             'https://vimeo.com/642184965?autoplay=1&loop=1&muted=1',
