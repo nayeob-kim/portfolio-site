@@ -1439,7 +1439,7 @@ section {
 
 .modal-eyebrow {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500; /* Medium */
     line-height: normal;
     color: #ffffff; /* White */
@@ -1886,7 +1886,7 @@ section {
     }
     
     .modal-eyebrow {
-        font-size: 11px; /* Slightly smaller for tablet */
+        font-size: 15px; /* Slightly smaller for tablet */
     }
     
     .modal-description {
@@ -2302,7 +2302,7 @@ section {
     }
     
     .modal-eyebrow {
-        font-size: 10px; /* Smaller for mobile */
+        font-size: 14px; /* Smaller for mobile */
     }
     
     .modal-description {
