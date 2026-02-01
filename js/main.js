@@ -279,7 +279,15 @@ function openProjectModal(projectId, clickedCard) {
             if (section.bullets && section.bullets.length > 0) {
                 bulletsHTML = '<ul class="modal-section-bullets">';
                 section.bullets.forEach(bullet => {
-                    bulletsHTML += `<li>${bullet}</li>`;
+                    // Wrap text before colon in a span for white styling
+                    const colonIndex = bullet.indexOf(':');
+                    if (colonIndex !== -1) {
+                        const prefix = bullet.substring(0, colonIndex);
+                        const rest = bullet.substring(colonIndex);
+                        bulletsHTML += `<li><span class="modal-bullet-prefix">${prefix}</span>${rest}</li>`;
+                    } else {
+                        bulletsHTML += `<li>${bullet}</li>`;
+                    }
                 });
                 bulletsHTML += '</ul>';
             }
@@ -366,7 +374,15 @@ function openProjectModal(projectId, clickedCard) {
         if (project.retrospective.bullets && project.retrospective.bullets.length > 0) {
             retrospectiveBulletsHTML = '<ul class="modal-section-bullets">';
             project.retrospective.bullets.forEach(bullet => {
-                retrospectiveBulletsHTML += `<li>${bullet}</li>`;
+                // Wrap text before colon in a span for white styling
+                const colonIndex = bullet.indexOf(':');
+                if (colonIndex !== -1) {
+                    const prefix = bullet.substring(0, colonIndex);
+                    const rest = bullet.substring(colonIndex);
+                    retrospectiveBulletsHTML += `<li><span class="modal-bullet-prefix">${prefix}</span>${rest}</li>`;
+                } else {
+                    retrospectiveBulletsHTML += `<li>${bullet}</li>`;
+                }
             });
             retrospectiveBulletsHTML += '</ul>';
         }

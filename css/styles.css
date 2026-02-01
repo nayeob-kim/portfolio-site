@@ -1534,6 +1534,10 @@ section {
     margin-bottom: 0;
 }
 
+.modal-bullet-prefix {
+    color: #ffffff; /* White color for text before colon in bullet points */
+}
+
 .modal-section-image {
     width: 100%;
     border-radius: 20px;
