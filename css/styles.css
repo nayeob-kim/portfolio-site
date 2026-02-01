@@ -1437,13 +1437,27 @@ section {
 }
 
 
+.modal-eyebrow {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 12px;
+    font-weight: 500; /* Medium */
+    line-height: normal;
+    color: #ffffff; /* White */
+    margin: 24px 0 8px 0; /* 24px top spacing, 8px bottom to content */
+    display: block;
+}
+
+.modal-eyebrow:first-of-type {
+    margin-top: 24px; /* First eyebrow after header */
+}
+
 .modal-description {
     font-family: 'Libre Franklin', sans-serif;
     font-size: 24px; /* Reduced from 32px for better scannability */
     font-weight: 400; /* Regular from Figma */
     line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9; /* #a9a9a9 from Figma */
-    margin: 24px 0 40px 0; /* Added 24px top margin for spacing from pills, 40px bottom margin from Figma */
+    margin: 0 0 40px 0; /* No top margin (eyebrow handles spacing), 40px bottom margin */
     width: 100%;
 }
 
@@ -1871,9 +1885,12 @@ section {
         padding: 4px 14px;
     }
     
+    .modal-eyebrow {
+        font-size: 11px; /* Slightly smaller for tablet */
+    }
+    
     .modal-description {
         font-size: 24px; /* Scale down from 32px */
-        margin-top: 20px; /* Spacing from pills on tablet */
     }
     
     .modal-section-title {
@@ -2284,9 +2301,12 @@ section {
         padding: 4px 10px;
     }
     
+    .modal-eyebrow {
+        font-size: 10px; /* Smaller for mobile */
+    }
+    
     .modal-description {
         font-size: 16px; /* Scale down from 32px */
-        margin-top: 16px; /* Spacing from pills on mobile */
     }
     
     .modal-section-title {

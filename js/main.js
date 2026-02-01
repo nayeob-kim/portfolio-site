@@ -39,6 +39,7 @@ const projects = {
     1: {
         title: 'Architecting Trust: The Shopify Checkout Engine',
         description: 'The Shopify Checkout is a globally scalable interface where localized tax disclosures, variable content, and complex legal requirements must coexist within rigorous layout constraints. My work focused on the Order Summary and Payment section, which is the highest-stakes conversion areas in the funnel. My goal was to architect a system where technical precision and "design-to-code" logic ensured that scannability and user trust were never compromised by the complexity of global commerce.',
+        impact: 'This systematic approach enabled the checkout to scale across 50+ global localizations without manual layout adjustments, ensuring consistent compliance with complex regional tax and legal requirements. By standardizing the "money line" logic and payment frameworks, I reduced design-to-engineering friction and accelerated the implementation of new regional features. This work fundamentally de-risked the purchase journey for millions of users by maintaining high-integrity visual hierarchy across diverse currency formats and content densities.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
             'images/projects/project-1/Order Summary 4.png',
@@ -415,7 +416,9 @@ function openProjectModal(projectId, clickedCard) {
                 <img src="images/icons/x.svg" alt="Close">
             </button>
         </div>
+        <span class="modal-eyebrow">Summary</span>
         <p class="modal-description">${project.description}</p>
+        ${project.impact ? `<span class="modal-eyebrow">Impact</span><p class="modal-description">${project.impact}</p>` : ''}
         ${sectionsHTML}
         ${retrospectiveHTML}
     `;
