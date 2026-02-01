@@ -1193,6 +1193,14 @@ section {
     transform-origin: left top; /* Anchor at top-left to prevent jumping */
 }
 
+.modal-header.scrolled .modal-pills {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
 
 
 
@@ -1339,7 +1347,11 @@ section {
     justify-content: flex-start;
     flex-wrap: wrap;
     flex: 1;
-    transition: gap 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    max-height: 200px; /* Generous max for pills wrapping */
+    overflow: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
     transform-origin: left top; /* Anchor animation at top-left */
     position: relative; /* For proper positioning */
     top: 0; /* Keep anchored at top */
@@ -1769,6 +1781,14 @@ section {
         /* Consistent 0.78 scale factor across all breakpoints */
         transform: scale3d(0.78, 0.78, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
         transform-origin: left top; /* Anchor at top-left to prevent jumping */
+    }
+    
+    .modal-header.scrolled .modal-pills {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        margin: 0;
+        overflow: hidden;
     }
     
     .modal-header.scrolled .modal-header-bottom {
@@ -2203,6 +2223,14 @@ section {
         /* Consistent 0.78 scale factor across all breakpoints */
         transform: scale3d(0.78, 0.78, 1) translate3d(0, 0, 0) !important; /* Hardware accelerated scaling */
         transform-origin: left top; /* Anchor at top-left to prevent jumping */
+    }
+    
+    .modal-header.scrolled .modal-pills {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        margin: 0;
+        overflow: hidden;
     }
     
     .modal-header.scrolled .modal-header-bottom {
