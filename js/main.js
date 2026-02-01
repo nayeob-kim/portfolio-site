@@ -38,7 +38,7 @@ const modal = document.getElementById('project-modal');
 const projects = {
     1: {
         title: 'Architecting Trust: The Shopify Checkout Engine',
-        description: 'In the Shopify Checkout, the Order Summary and Payment section are the most critical high-stakes conversion areas. The challenge was to maintain rigorous precision within the layout constraints of a globally scalable interface. My goal was to ensure that localized tax disclosures, variable content, and complex legal requirements never compromised user trust or scannability.',
+        description: 'The Shopify Checkout is a globally scalable interface where localized tax disclosures, variable content, and complex legal requirements must coexist within rigorous layout constraints. My work focused on the Order Summary and Payment section, which is the highest-stakes conversion areas in the funnel. My goal was to architect a system where technical precision and "design-to-code" logic ensured that scannability and user trust were never compromised by the complexity of global commerce.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
             'images/projects/project-1/Order Summary 4.png',
