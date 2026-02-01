@@ -2360,3 +2360,11 @@ section {
         font-size: 12px;
     }
 }
+
+/* DESKTOP: 1025px and above */
+@media (min-width: 1025px) {
+    .modal-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
