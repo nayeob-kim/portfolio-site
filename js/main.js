@@ -52,8 +52,8 @@ const projects = {
                 title: '1. Order Summary Optimization',
                 content: 'The optimization of the Order Summary focused on enhancing clarity and scalability across content and localizations.',
                 bullets: [
-                    'Precision Spacing via Tokens: I implemented a systematic vertical optimization of the "money line" section. By leveraging existing spacing tokens to precisely govern the space between line items, I established a clear visual hierarchy. This ensured a consistent vertical rhythm that separates related monetary entries (discounts, gift cards) from totals.',
-                    'Resource List & Price Priority: I revised the layout to optimize the visual structure of product line items. I implemented a text-bottom-align rule for prices, ensuring they stack cleanly regardless of long product names or wrapping descriptions.',
+                    'Precision Spacing via Tokens: I  standardized a systematic vertical optimization of the "money line" section. By leveraging existing spacing tokens to precisely govern the space between line items, I established a clear visual hierarchy. This ensured a consistent vertical rhythm that separates related monetary entries (discounts, gift cards) from totals.',
+                    'Resource List & Price Priority: I defined a layout logic that uses a text-bottom-align rule for product line items. This maintains visual alignment and a clean text hierarchy, regardless of variable description lengths or currency formats.',
                     'Visual Alignment & Scannability: By ensuring the product thumbnail aligns vertically with the product name and details, I created a strong visual link that improves user processing speed.',
                     'High-Fidelity Sourcing: To demonstrate these alignment rules to stakeholders without distraction, I utilized Midjourney to generate clean, consistent internal product thumbnails, ensuring the focus remained solely on how the layout handled the vertical relationships.'
                 ]
