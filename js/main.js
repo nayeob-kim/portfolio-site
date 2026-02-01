@@ -434,9 +434,9 @@ function openProjectModal(projectId, clickedCard) {
                 <img src="images/icons/x.svg" alt="Close">
             </button>
         </div>
-        <span class="modal-eyebrow">Summary</span>
+        <span class="modal-eyebrow">The Challenge</span>
         <p class="modal-description">${project.description}</p>
-        ${project.impact ? `<span class="modal-eyebrow">Impact</span><p class="modal-description">${project.impact}</p>` : ''}
+        ${project.impact ? `<span class="modal-eyebrow">The Impact</span><p class="modal-description">${project.impact}</p>` : ''}
         ${sectionsHTML}
         ${retrospectiveHTML}
     `;
