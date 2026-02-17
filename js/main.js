@@ -85,7 +85,7 @@ const projects = {
         description: 'As a designer on the Checkout Design System team, I focused on the enablement and scaling of patterns specifically optimized for the checkout experience. I was responsible for architecting components, such as security inputs and complex interactive states, that balanced visual consistency with the high-integrity requirements of a global checkout engine.',
         impact: 'By standardizing complex security patterns and state logic, I established a unified source of truth that eliminated redundant design cycles and accelerated engineering velocity. This framework ensured accessible, high-integrity security checkpoints and a predictable, trust-based experience for millions of global buyers, maintaining system resilience during rapid scaling.',
         images: [
-            'images/projects/project-3/OTP Component 2.png',
+            'images/projects/project-3/OTP 2-1-Updated.png',
             'images/projects/project-3/OTP Component 3.png',
             'images/projects/project-4/Interactive states-Updated.png',
             'images/projects/project-4/Interactive States 2.png',
@@ -97,7 +97,7 @@ const projects = {
                 title: '1. The OTP (One-Time Password) Component',
                 content: 'I led the design and systematization of the OTP component within the Checkout design system. This is a critical security pattern used for buyer verification and high-stakes transitions.',
                 bullets: [
-                    'Functional Constraints: My focus was on the deep logic required for a checkout security pattern. I defined how the component handled auto-fill behaviours, error states, and the specific functional requirements of a multi-input code field.',
+                    'Functional Constraints: My focus was on the logic required for a checkout security pattern. I defined how the component handled auto-fill behaviours, error states, and the specific functional requirements of a multi-input code field.',
                     'Security UX: I ensured the pattern balanced rigorous security requirements with a low-friction buyer experience. This involved ensuring that the component met strict accessibility standards so that every buyer could complete security checkpoints without failure.'
                 ]
             },
