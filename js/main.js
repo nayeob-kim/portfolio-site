@@ -86,7 +86,7 @@ const projects = {
         impact: 'By standardizing complex security patterns and state logic, I established a unified source of truth that eliminated redundant design cycles and accelerated engineering velocity. This framework ensured accessible, high-integrity security checkpoints and a predictable, trust-based experience for millions of global buyers, maintaining system resilience during rapid scaling.',
         images: [
             'images/projects/project-3/OTP 2-1-Updated.png',
-            'images/projects/project-3/OTP Component 3.png',
+            'images/projects/project-3/OTP Updated.png',
             'images/projects/project-4/Interactive states-Updated.png',
             'images/projects/project-4/Interactive States 2.png',
             'images/projects/project-5/Design System Stewardship & Documentation 2.png'
