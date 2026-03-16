@@ -423,8 +423,8 @@ section {
 .section-header::after {
     content: '';
     flex: 1;
-    height: 1px;
-    background: var(--text-primary);
+    height: 0.5px;
+    background: rgba(255, 255, 255, 0.6);
     align-self: baseline;
     margin-left: 0;
     max-width: var(--work-header-underline-width);
