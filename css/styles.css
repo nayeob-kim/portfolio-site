@@ -430,6 +430,10 @@ section {
     max-width: var(--work-header-underline-width);
 }
 
+#projects .section-header::after {
+    max-width: none; /* Let the line align with the project cards width */
+}
+
 #contact .section-header::after {
     margin-left: 0;
     max-width: var(--contact-header-underline-width);
