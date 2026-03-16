@@ -375,7 +375,7 @@ section {
 
 .home-text p {
     font-size: var(--font-size-project-desc); /* 24px - match project description */
-    font-weight: var(--font-weight-regular); /* 400 - match project description */
+    font-weight: 300;
     line-height: 1.5;
     color: var(--text-secondary); /* Darker gray - match project description */
     margin: 0 0 16px 0; /* Add bottom margin for spacing between paragraphs */
@@ -387,7 +387,7 @@ section {
 
 .home-text-content p {
     font-size: var(--font-size-project-desc); /* 24px - match project description */
-    font-weight: var(--font-weight-regular); /* 400 - match project description */
+    font-weight: 300;
     line-height: 1.5;
     color: var(--text-secondary); /* Darker gray - match project description */
     margin: 0 0 16px 0; /* Add bottom margin for spacing between paragraphs */
