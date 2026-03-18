@@ -1,3 +1,34 @@
+// Theme toggle (light/dark mode) — respects OS preference, manual override persists
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+    } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    }
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            toggle.setAttribute('aria-label', next === 'dark' ? 'Toggle light mode' : 'Toggle dark mode');
+        });
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            const theme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    });
+});
+
 // Add scrolled class to nav when page is scrolled
 // Portfolio site - 2026
 const nav = document.querySelector('nav');
@@ -175,7 +206,7 @@ const projects = {
     },
     3: {
         title: 'Modernizing the Global E-commerce Experience: Calvin\u00A0Klein',
-        description: 'The engagement at MetaLab focused on overhauling the Calvin Klein digital experience. The objective was to bridge the gap between an iconic minimalist brand and a high-performance shopping journey. The scope involved modernizing the navigation, the homepage, and the product detail pages to meet global consumer expectations.',
+        description: 'The engagement at Metalab focused on overhauling the Calvin Klein digital experience. The objective was to bridge the gap between an iconic minimalist brand and a high-performance shopping journey. The scope involved modernizing the navigation, the homepage, and the product detail pages to meet global consumer expectations.',
         impact: 'By contributing to the restructuring of the global navigation and selection logic, I helped reduce cognitive load and streamline the path-to-purchase across a massive product catalog. I developed motion-driven design patterns that balanced minimalist aesthetics with functional performance, ensuring a premium brand feel. This collaborative effort resulted in a more intuitive, scalable framework that modernized the brand\'s digital presence for a global consumer base.',
         images: [
             'https://vimeo.com/642194431?autoplay=1&loop=1&muted=1',
@@ -212,11 +243,48 @@ const projects = {
         ],
         retrospective: {
             title: 'Retrospective & Key Learnings',
-            content: 'The engagement with Calvin Klein through MetaLab emphasized the importance of balancing high-end brand requirements with rigorous e-commerce performance.',
+            content: 'The engagement with Calvin Klein through Metalab emphasized the importance of balancing high-end brand requirements with rigorous e-commerce performance.',
             bullets: [
                 'Aesthetic Range: The work required adapting a design language to meet the specific heritage of the global brand. This involved a deep focus on typography, white space, and subtle motion to maintain brand standards.',
                 'Rapid Domain Switching: The partnership reinforced the ability to quickly understand a new industry and its specific user behaviours. The process involved identifying the unique friction points of an iconic global brand and translating its heritage into a high-performance, modern e-commerce experience.',
                 'Impact of Interaction: In a minimalist interface, the quality of interaction serves as a primary brand signal. Every transition and state was treated as an opportunity to communicate the quality and modernization of the brand.'
+            ]
+        }
+    },
+    4: {
+        title: 'Burn to Give: Scaling Altruistic Incentives through Mobile Design',
+        description: 'Burn to Give is a social purpose platform that converts healthy habits like exercise into life insurance coverage and food donations. As a core member of the Metalab design team, I contributed to the end to end transformation of the Burn to Give experience. My role involved translating the brand\'s mission into a high fidelity mobile ecosystem with a focus on product redesign, identity refresh, and strategic content mapping. I worked closely with the team to solve the challenge of long term user retention by ensuring the act of giving felt as rewarding and seamless as the exercise itself.',
+        impact: 'Impact statement placeholder. Describe the measurable outcomes and broader significance of this work.',
+        images: [
+            'images/projects/project-4/placeholder-1.png',
+            'images/projects/project-4/placeholder-2.png'
+        ],
+        tags: ['0-1 Product Design', 'Mobile Systems Architecture', 'Behavioral Design', 'Engagement Strategy'],
+        sections: [
+            {
+                title: '1. Section Title Placeholder',
+                content: 'Section content placeholder. Describe the focus area and approach.',
+                bullets: [
+                    'Bullet Point 1: Describe the first key initiative or decision.',
+                    'Bullet Point 2: Describe the second key initiative or decision.'
+                ]
+            },
+            {
+                title: '2. Section Title Placeholder',
+                content: 'Section content placeholder. Describe another focus area.',
+                bullets: [
+                    'Bullet Point 1: Describe the first key initiative or decision.',
+                    'Bullet Point 2: Describe the second key initiative or decision.'
+                ]
+            }
+        ],
+        retrospective: {
+            title: 'Retrospective & Key Learnings',
+            content: 'Retrospective intro placeholder. Summarize the overarching takeaway from this project:',
+            bullets: [
+                'Learning 1: Describe the first key learning.',
+                'Learning 2: Describe the second key learning.',
+                'Learning 3: Describe the third key learning.'
             ]
         }
     }
