@@ -1557,6 +1557,17 @@ img.modal-section-image {
     cursor: zoom-in;
 }
 
+/* Full-width media row inside the modal so imagery can align
+   with the underlying project cards independently of text width. */
+.modal-media-row {
+    width: 100%;
+}
+
+.modal-media-inner {
+    width: 100%;
+    margin: 0 auto;
+}
+
 /* Click-to-zoom lightbox */
 .image-lightbox {
     position: fixed;
@@ -2443,18 +2454,27 @@ img.modal-section-image {
 /* DESKTOP: 1025px and above */
 @media (min-width: 1025px) {
     #modal-body {
+        /* Restore original modal text column width */
         max-width: 900px;
     }
 }
 
-/* LARGE DESKTOP: 1440px and above
-   Make modal images extend 220px beyond the text column on both sides. */
+/* LARGE DESKTOP: 1440px and above — card-aligned mode.
+   Break .modal-media-row out of the 900px text column to match the
+   project cards behind (1360px at 1440 = 900 + 230px each side). */
 @media (min-width: 1440px) {
-    #modal-body .modal-section-image {
-        width: calc(100% + 440px); /* 220px beyond text column on each side */
+    .modal--aligned-experiment .modal-media-row {
+        width: calc(100% + 460px);
         max-width: none;
-        margin-left: -220px;
-        margin-right: -220px;
+        margin-left: -230px;
+        margin-right: -230px;
+    }
+
+    .modal--aligned-experiment .modal-media-row .modal-section-image {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 

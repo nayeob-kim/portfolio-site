@@ -33,6 +33,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Modal functionality
 const modal = document.getElementById('project-modal');
+modal.classList.add('modal--aligned-experiment');
 
 // Click-to-zoom lightbox for modal images (no extra controls)
 let imageLightboxEl = null;
@@ -289,6 +290,8 @@ function openProjectModal(projectId, clickedCard) {
 
     // Helper function to render image or video
     function renderImageOrVideo(imageUrl, altText) {
+        let mediaHTML = '';
+
         if (imageUrl.includes('vimeo.com')) {
             // Extract video ID from Vimeo URL
             const vimeoMatch = imageUrl.match(/vimeo\.com\/(\d+)/);
@@ -298,12 +301,25 @@ function openProjectModal(projectId, clickedCard) {
                 const autoplay = vimeoParams.get('autoplay') || '1';
                 const loop = vimeoParams.get('loop') || '1';
                 const muted = vimeoParams.get('muted') || '1';
-                return `<div class="modal-section-image" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px;"><iframe src="https://player.vimeo.com/video/${videoId}?autoplay=${autoplay}&loop=${loop}&muted=${muted}&background=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+                mediaHTML = `<div class="modal-section-image" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px;"><iframe src="https://player.vimeo.com/video/${videoId}?autoplay=${autoplay}&loop=${loop}&muted=${muted}&background=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
             }
         }
-        // Regular image
-        const imageSrc = `${imageUrl}?v=${Date.now()}`;
-        return `<img src="${imageSrc}" alt="${altText}" class="modal-section-image">`;
+
+        if (!mediaHTML) {
+            // Regular image
+            const imageSrc = `${imageUrl}?v=${Date.now()}`;
+            mediaHTML = `<img src="${imageSrc}" alt="${altText}" class="modal-section-image">`;
+        }
+
+        // Wrap in a full-width media row so we can align imagery
+        // with the underlying project cards independently of text width.
+        return `
+            <div class="modal-media-row">
+                <div class="modal-media-inner">
+                    ${mediaHTML}
+                </div>
+            </div>
+        `;
     }
 
     // Build sections HTML if they exist
@@ -486,7 +502,9 @@ function openProjectModal(projectId, clickedCard) {
 
     // Show modal
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    document.body.style.overflow = 'hidden';
     
     // Reset modal content scroll position to top (page position stays the same)
     if (modalContent) {
@@ -975,6 +993,7 @@ function closeModal() {
         setTimeout(() => {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '';
             // Reset transform for next open
             modalContent.style.transform = '';
             modalContent.style.opacity = '';
@@ -984,6 +1003,7 @@ function closeModal() {
         setTimeout(() => {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '';
         }, 350);
     }
 }
