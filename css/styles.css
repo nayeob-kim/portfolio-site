@@ -1153,10 +1153,10 @@ section {
     margin-right: 0;
     padding-left: 0;
     padding-right: 0;
-    /* Set base background to match scrolled state to prevent white flash during fast scrolling */
-    background: rgba(15, 16, 17, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* Base (unscrolled) header: transparent background; scrolled state adds the visible band */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: left top; /* Anchor entire header at top-left */
     transform: translateY(0) !important; /* No Y translation on base state */
@@ -2445,4 +2445,32 @@ img.modal-section-image {
     #modal-body {
         max-width: 900px;
     }
+}
+
+/* LARGE DESKTOP: 1440px and above
+   Make modal images extend 220px beyond the text column on both sides. */
+@media (min-width: 1440px) {
+    #modal-body .modal-section-image {
+        width: calc(100% + 440px); /* 220px beyond text column on each side */
+        max-width: none;
+        margin-left: -220px;
+        margin-right: -220px;
+    }
+}
+
+/* Scrolled modal header: full-width background on all screens
+   while title/controls stay centered in the original text column. */
+.modal-header.scrolled::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw; /* span full viewport width behind header */
+    height: 100%;
+    background: inherit;
+    backdrop-filter: inherit;
+    -webkit-backdrop-filter: inherit;
+    box-shadow: inherit;
+    z-index: -1; /* place background behind header content */
 }
