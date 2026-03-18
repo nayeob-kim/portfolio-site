@@ -1475,6 +1475,7 @@ section {
     width: 100%;
     border-radius: 20px; /* 20px from Figma */
     display: block;
+    cursor: zoom-in;
 }
 
 /* Modal Sections */
@@ -1542,12 +1543,50 @@ section {
     color: #ffffff; /* White color for text before colon in bullet points */
 }
 
+/* Note: `.modal-section-image` is used for both images and Vimeo wrappers */
 .modal-section-image {
     width: 100%;
     border-radius: 20px;
     display: block;
     margin-bottom: 40px; /* 40px gap after image */
     position: relative; /* Allow overlay positioning */
+    cursor: default;
+}
+
+img.modal-section-image {
+    cursor: zoom-in;
+}
+
+/* Click-to-zoom lightbox */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    cursor: zoom-out;
+}
+
+.image-lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-lightbox img {
+    max-width: 96vw;
+    max-height: 96vh;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    display: block;
 }
 
 .modal-divider {

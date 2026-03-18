@@ -34,6 +34,50 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Modal functionality
 const modal = document.getElementById('project-modal');
 
+// Click-to-zoom lightbox for modal images (no extra controls)
+let imageLightboxEl = null;
+let imageLightboxImgEl = null;
+
+function ensureImageLightbox() {
+    if (imageLightboxEl) return;
+
+    imageLightboxEl = document.createElement('div');
+    imageLightboxEl.className = 'image-lightbox';
+    imageLightboxEl.setAttribute('role', 'dialog');
+    imageLightboxEl.setAttribute('aria-label', 'Enlarged image');
+
+    imageLightboxImgEl = document.createElement('img');
+    imageLightboxImgEl.alt = '';
+
+    imageLightboxEl.appendChild(imageLightboxImgEl);
+    document.body.appendChild(imageLightboxEl);
+
+    function closeLightbox() {
+        if (!imageLightboxEl.classList.contains('open')) return;
+        imageLightboxEl.classList.remove('open');
+        imageLightboxImgEl.src = '';
+    }
+
+    imageLightboxEl.addEventListener('click', closeLightbox);
+    imageLightboxImgEl.addEventListener('click', (e) => {
+        // Prevent the image click from selecting/dragging; close still happens via parent
+        e.preventDefault();
+        e.stopPropagation();
+        closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+}
+
+function openImageLightbox(src, alt = '') {
+    ensureImageLightbox();
+    imageLightboxImgEl.src = src;
+    imageLightboxImgEl.alt = alt || '';
+    imageLightboxEl.classList.add('open');
+}
+
 // Project data
 const projects = {
     1: {
@@ -388,7 +432,6 @@ function openProjectModal(projectId, clickedCard) {
         }
         
         retrospectiveHTML = `
-            <div class="modal-divider"></div>
             <div class="modal-section">
                 <h3 class="modal-retrospective-title">${project.retrospective.title}</h3>
                 <p class="modal-section-content">${project.retrospective.content}</p>
@@ -950,6 +993,27 @@ document.addEventListener('click', function(event) {
     if (event.target.closest('.close')) {
         closeModal();
     }
+});
+
+// Click-to-zoom for images inside the project modal
+document.addEventListener('click', function(event) {
+    const modalContent = document.querySelector('#project-modal .modal-content');
+    if (!modalContent || modal.style.display !== 'block') return;
+
+    const img = event.target.closest('img');
+    if (!img) return;
+
+    // Exclude UI/icon images inside buttons
+    if (img.closest('.close') || img.closest('.modal-play-button') || img.closest('.settings-modal-close')) return;
+
+    // Only images that are part of the project content
+    const isZoomable =
+        img.classList.contains('modal-section-image') ||
+        img.closest('.modal-images') ||
+        img.closest('.modal-section-image-wrapper');
+    if (!isZoomable) return;
+
+    openImageLightbox(img.currentSrc || img.src, img.alt || '');
 });
 
 window.addEventListener('click', function(event) {
