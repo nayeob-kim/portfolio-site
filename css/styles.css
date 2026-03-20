@@ -1098,7 +1098,6 @@ section {
     border: 1px solid var(--border-dark);
     border-radius: var(--radius-sm);
     padding: var(--project-card-padding);
-    backdrop-filter: blur(var(--blur));
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
