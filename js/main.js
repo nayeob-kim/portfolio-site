@@ -114,8 +114,8 @@ function openImageLightbox(src, alt = '') {
 const projects = {
     1: {
         title: 'Architecting Trust: The Shopify Checkout Engine',
-        description: 'The Shopify Checkout is a globally scalable interface where localized tax disclosures, variable content, and complex legal requirements must coexist within rigorous layout constraints. My work focused on the Order Summary and Payment section, which is the highest-stakes conversion areas in the funnel. My goal was to architect a system where technical precision and "design-to-code" logic ensured that scannability and user trust were never compromised by the complexity of global commerce.',
-        impact: 'This systematic approach enabled the checkout to scale across 50+ global localizations without manual layout adjustments, ensuring consistent compliance with complex regional tax and legal requirements. By standardizing the "money line" logic and payment frameworks, I reduced design-to-engineering friction and accelerated the implementation of new regional features. This work fundamentally de-risked the purchase journey for millions of users by maintaining high-integrity visual hierarchy across diverse currency formats and content densities.',
+        description: 'Shopify Checkout is a high-stakes interface where localized tax disclosures, variable content, and complex legal requirements must coexist within rigorous layout constraints. Focusing on the Order Summary and Payment sections, I designed a system where technical precision and logic ensured that scannability and user trust remained uncompromised. The primary objective was to architect a framework capable of handling the immense complexity of global commerce at scale.',
+        impact: 'This systematic approach enabled the checkout to scale across 50+ localizations without manual layout adjustments, ensuring consistent compliance with regional tax and legal requirements. By standardizing the "money line" logic and payment frameworks, I reduced design-to-engineering friction and accelerated the deployment of new regional features. This work fundamentally de-risked the purchase journey for millions of users by maintaining a high-integrity visual hierarchy across diverse currency formats.',
         images: [
             'images/projects/project-1/Order Summary 1.png',
             'images/projects/project-1/Order Summary 4.png',
@@ -253,8 +253,8 @@ const projects = {
     },
     4: {
         title: 'Burn to Give: Scaling Altruistic Incentives through Mobile Design',
-        description: 'Burn to Give is a social purpose platform that converts healthy habits like exercise into life insurance coverage and food donations. As a core member of the Metalab design team, I contributed to the end to end transformation of the Burn to Give experience. My role involved translating the brand\'s mission into a high fidelity mobile ecosystem with a focus on product redesign, identity refresh, and strategic content mapping. I worked closely with the team to solve the challenge of long term user retention by ensuring the act of giving felt as rewarding and seamless as the exercise itself.',
-        impact: 'Impact statement placeholder. Describe the measurable outcomes and broader significance of this work.',
+        description: 'Burn to Give is a social purpose platform that converts healthy habits like exercise into life insurance coverage and food donations. The primary objective was to solve for long-term user retention by ensuring the digital act of giving felt as rewarding and seamless as the exercise itself.',
+        impact: 'As a 0 to 1 project, the objective was to move from a conceptual mission to a high-performance mobile product. By establishing the initial design language and core interaction patterns, we created a scalable platform that successfully merged personal wellness with global social impact.',
         images: [
             'images/projects/project-4/placeholder-1.png',
             'images/projects/project-4/placeholder-2.png'
