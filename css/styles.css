@@ -1750,7 +1750,7 @@ section {
 
 .modal-description {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 24px; /* Reduced from 32px for better scannability */
+    font-size: 20px;
     font-weight: 400; /* Regular from Figma */
     line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9; /* #a9a9a9 from Figma */
@@ -1787,7 +1787,7 @@ section {
 
 .modal-section-content {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 24px; /* Reduced from 32px for better scannability */
+    font-size: 20px;
     font-weight: 400; /* Regular */
     line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9;
@@ -1814,7 +1814,7 @@ section {
 
 .modal-section-bullets {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 24px; /* Reduced from 32px for better scannability */
+    font-size: 20px;
     font-weight: 400; /* Regular */
     line-height: 1.6; /* Increased from 1.5 for better readability */
     color: #a9a9a9;
@@ -2241,9 +2241,9 @@ img.modal-section-image {
     }
     
     .modal-description {
-        font-size: 24px; /* Scale down from 32px */
+        font-size: 18px;
     }
-    
+
     .modal-section-title {
         font-size: 28px; /* Scale down from 36px for tablet */
     }
@@ -2252,7 +2252,7 @@ img.modal-section-image {
     .modal-section-intro,
     .modal-section-conclusion,
     .modal-section-bullets {
-        font-size: 24px; /* Scale down from 32px for tablet */
+        font-size: 18px;
     }
     
     .modal-section-bullets {
@@ -2657,9 +2657,9 @@ img.modal-section-image {
     }
     
     .modal-description {
-        font-size: 16px; /* Scale down from 32px */
+        font-size: 14px;
     }
-    
+
     .modal-section-title {
         font-size: 24px; /* Scale down from 36px for mobile */
     }
@@ -2668,7 +2668,7 @@ img.modal-section-image {
     .modal-section-intro,
     .modal-section-conclusion,
     .modal-section-bullets {
-        font-size: 16px; /* Scale down from 32px for mobile */
+        font-size: 14px;
     }
     
     .modal-section-bullets {
