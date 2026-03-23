@@ -256,35 +256,44 @@ const projects = {
         description: 'Burn to Give is a social purpose platform that converts healthy habits like exercise into life insurance coverage and food donations. The primary objective was to solve for long-term user retention by ensuring the digital act of giving felt as rewarding and seamless as the exercise itself.',
         impact: 'As a 0 to 1 project, the objective was to move from a conceptual mission to a high-performance mobile product. By establishing the initial design language and core interaction patterns, we created a scalable platform that successfully merged personal wellness with global social impact.',
         images: [
-            'images/projects/project-4/placeholder-1.png',
-            'images/projects/project-4/placeholder-2.png'
+            'images/projects/project-5/Burn to Give 1.png',
+            'images/projects/project-5/Burn to Give 2.png',
+            'images/projects/project-5/Burn to Give 3.png'
         ],
         tags: ['0-1 Product Design', 'Mobile Systems Architecture', 'Behavioral Design', 'Engagement Strategy'],
         sections: [
             {
-                title: '1. Section Title Placeholder',
-                content: 'Section content placeholder. Describe the focus area and approach.',
+                title: '1. Strategy and Archetype Discovery',
+                content: 'The 0\u20131 phase began with a robust discovery process to align a complex social mission with the needs of diverse user groups.',
                 bullets: [
-                    'Bullet Point 1: Describe the first key initiative or decision.',
-                    'Bullet Point 2: Describe the second key initiative or decision.'
+                    'Archetype Logic: We analyzed distinct behaviors for corporate partners, HR admins, and individual users to identify shared friction points across the fitness and charity landscapes.',
+                    'Competitive Analysis: Research into similar platforms allowed us to identify comparable problems and set a baseline for transparency and trust in social-purpose products.'
                 ]
             },
             {
-                title: '2. Section Title Placeholder',
-                content: 'Section content placeholder. Describe another focus area.',
+                title: '2. System Clarity and Product Voice',
+                content: 'Rethinking the product system required a unified visual language that could scale alongside new features without increasing cognitive load.',
                 bullets: [
-                    'Bullet Point 1: Describe the first key initiative or decision.',
-                    'Bullet Point 2: Describe the second key initiative or decision.'
+                    'Empathetic Tone: I collaborated with a content strategist to craft a product voice that balanced the sensitivity of hunger issues with a motivating wellness experience.',
+                    'High-Fidelity Execution: Wireframes were transformed into a high-fidelity ecosystem where seamless tracking flows ensured that the act of giving felt as rewarding as the exercise itself.'
+                ]
+            },
+            {
+                title: '3. Scalable Systems and Product Impact',
+                content: 'To ensure the product could evolve alongside new feature sets, I established a modular design system that prioritized native performance and visual consistency.',
+                bullets: [
+                    'Component Logic: A comprehensive library of reusable UI elements was developed to streamline the transition from wireframes to high-fidelity, reducing future design-to-engineering friction.',
+                    'Measurable Growth: The focus on a seamless, low-friction tracking flow contributed to a significant increase in user engagement, resulting in improved ratings across both iOS and Android platforms.'
                 ]
             }
         ],
         retrospective: {
             title: 'Retrospective & Key Learnings',
-            content: 'Retrospective intro placeholder. Summarize the overarching takeaway from this project:',
+            content: '',
             bullets: [
-                'Learning 1: Describe the first key learning.',
-                'Learning 2: Describe the second key learning.',
-                'Learning 3: Describe the third key learning.'
+                'Systems Over Screens: Building 0 to 1 taught me that the most beautiful UI fails without a logical component system. Designing for scalability from day one allowed us to introduce complex features later without breaking the core user mental model.',
+                'Content is UX: Working with a writer on sensitive topics like global hunger proved that "Voice and Tone" are functional design tools. The right language reduced user guilt and increased the "Reward" feeling of the app.',
+                'Archetype Balancing: Learning to design for both the "HR Admin" (Data/Reporting) and the "Daily User" (Motivation/Simplicity) taught me how to manage competing priorities within a single, unified ecosystem.'
             ]
         }
     }
