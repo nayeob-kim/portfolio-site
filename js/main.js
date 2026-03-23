@@ -272,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- View Switching ---
     let currentView = 'home';
     let currentProjectId = null;
+    let reinitAscii = null;
 
     let heroResizeHandler = null;
 
@@ -288,6 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo(0, 0);
         updateNavActive();
         closeSidebar();
+        if (reinitAscii) {
+            requestAnimationFrame(reinitAscii);
+        }
     }
 
     function showProject(projectId) {
@@ -631,7 +635,14 @@ document.addEventListener('DOMContentLoaded', function() {
             animId = requestAnimationFrame(tick);
         }
 
-        // Wait for font to load before measuring
+        reinitAscii = function() {
+            cancelAnimationFrame(animId);
+            animId = null;
+            revealed = true;
+            initAscii();
+            chars.forEach(c => c.opacity = 1);
+        };
+
         document.fonts.ready.then(() => {
             initAscii();
         });
