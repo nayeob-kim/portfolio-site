@@ -224,6 +224,7 @@ img, iframe, canvas, video {
 
 .nav-item.active {
     font-weight: 700;
+    opacity: 1;
 }
 
 .nav-projects {
@@ -255,6 +256,10 @@ img, iframe, canvas, video {
 .nav-project-label {
     flex: 1;
     min-width: 0;
+}
+
+.nav-project-item.active {
+    opacity: 1;
 }
 
 .nav-project-item.active .nav-project-label {
