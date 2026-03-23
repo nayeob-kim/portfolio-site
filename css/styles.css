@@ -276,8 +276,10 @@ img, iframe, canvas, video {
 }
 
 .home-bio {
-    width: 306px;
-    flex-shrink: 0;
+    width: 30%;
+    max-width: 306px;
+    min-width: 200px;
+    flex-shrink: 1;
     font-size: 12px;
     line-height: 1.6;
     overflow-wrap: break-word;
@@ -355,8 +357,10 @@ img, iframe, canvas, video {
 }
 
 .work-info {
-    width: 306px;
-    flex-shrink: 0;
+    width: 30%;
+    max-width: 306px;
+    min-width: 200px;
+    flex-shrink: 1;
 }
 
 .work-title {
@@ -599,6 +603,7 @@ img, iframe, canvas, video {
     .home-bio {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
         flex-shrink: 1;
     }
 
@@ -619,6 +624,7 @@ img, iframe, canvas, video {
 
     .work-info {
         width: 100%;
+        min-width: 0;
     }
 
     .work-hero {
@@ -712,6 +718,7 @@ img, iframe, canvas, video {
     .home-bio {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
         flex-shrink: 1;
     }
 
