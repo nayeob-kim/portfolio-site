@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (lockForm) {
         lockForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (lockInput.value.trim() === LOCK_PASSWORD) {
+            if (lockInput.value.trim().toLowerCase() === LOCK_PASSWORD) {
                 unlock();
             } else {
                 if (lockError) lockError.classList.add('visible');
