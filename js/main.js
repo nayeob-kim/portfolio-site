@@ -63,7 +63,7 @@ const projects = {
         images: [
             'images/projects/project-3/OTP 2-1-Updated.png',
             'images/projects/project-3/OTP 1.png',
-            'images/projects/project-4/Interactive states 1.png',
+            'images/projects/project-4/Interactive States 1.png',
             'images/projects/project-4/Interactive States 2.png',
             'images/projects/project-5/Design System Stewardship & Documentation 2.png'
         ],
