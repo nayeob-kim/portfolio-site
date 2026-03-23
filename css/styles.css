@@ -366,18 +366,22 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
     transition: opacity 0.3s ease;
 }
 
 .theme-toggle:hover {
     opacity: 0.7;
+}
+
+nav.scrolled .theme-toggle {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .theme-toggle-icon {
@@ -1932,6 +1936,10 @@ img.modal-section-image {
         left: var(--grid-margin);
         top: 24px; /* 24px for tablet breakpoint */
     }
+
+    .theme-toggle {
+        top: 24px;
+    }
     
     #home {
         margin-top: 24px; /* 24px spacing on tablet */
@@ -2325,6 +2333,10 @@ img.modal-section-image {
         top: 16px; /* 16px for mobile breakpoint */
         left: var(--grid-margin);
         z-index: 100;
+    }
+
+    .theme-toggle {
+        top: 16px;
     }
     
     nav ul {
