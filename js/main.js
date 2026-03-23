@@ -32,12 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add scrolled class to nav when page is scrolled
 // Portfolio site - 2026
 const nav = document.querySelector('nav');
+const themeToggle = document.querySelector('.theme-toggle');
 function updateNavScroll() {
     if (nav) {
         if (window.scrollY > 0) {
             nav.classList.add('scrolled');
+            if (themeToggle) themeToggle.classList.add('hidden');
         } else {
             nav.classList.remove('scrolled');
+            if (themeToggle) themeToggle.classList.remove('hidden');
         }
     }
 }
