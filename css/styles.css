@@ -56,6 +56,88 @@
     color: #82aaff;
 }
 
+/* ---------- Lock View ---------- */
+.lock-content {
+    max-width: 360px;
+    width: 100%;
+    padding-top: clamp(60px, 10vw, 160px);
+    padding-bottom: clamp(60px, 10vw, 160px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.lock-title {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-text);
+}
+
+.lock-description {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-bottom: 20px !important;
+    line-height: 1.6;
+}
+
+.lock-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.lock-input {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 12px;
+    background: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    color: var(--color-text);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.lock-input:focus {
+    border-color: var(--color-text-secondary);
+}
+
+.lock-input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.lock-error {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #ff6b6b;
+    margin: 0;
+}
+
+.lock-error.visible {
+    display: block;
+}
+
+.lock-submit {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 12px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    margin-top: 4px;
+}
+
+.lock-submit:hover {
+    opacity: 0.8;
+}
+
 /* ---------- Reset ---------- */
 *, *::before, *::after {
     margin: 0;
@@ -177,6 +259,44 @@ img, iframe, canvas, video {
     font-weight: 700;
 }
 
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-divider {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text);
+    line-height: 1.4;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 8px 0;
+}
+
+.sidebar-email {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text);
+    line-height: 1.4;
+}
+
+.sidebar-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.sidebar-link a {
+    color: var(--color-text);
+}
+
+.sidebar-link a:hover {
+    opacity: 0.6;
+}
+
 .back-to-top {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -186,7 +306,6 @@ img, iframe, canvas, video {
     line-height: 1.4;
     transition: opacity 0.2s ease;
     text-decoration: none;
-    margin-top: auto;
 }
 
 .back-to-top:hover {
@@ -314,18 +433,6 @@ img, iframe, canvas, video {
     margin: 0;
 }
 
-.home-divider {
-    color: var(--color-text);
-    margin: 21px 0 0;
-    letter-spacing: -0.5px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.home-email {
-    margin-top: 21px;
-}
-
 .copy-btn {
     cursor: pointer;
     opacity: 0.6;
@@ -334,18 +441,6 @@ img, iframe, canvas, video {
 
 .copy-btn:hover {
     opacity: 1;
-}
-
-.home-link {
-    margin-top: 0;
-}
-
-.home-link a {
-    color: var(--color-text);
-}
-
-.home-link a:hover {
-    opacity: 0.6;
 }
 
 /* ---------- Work View ---------- */

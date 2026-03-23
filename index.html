@@ -27,11 +27,16 @@
         <!-- Left: Pinned sidebar nav -->
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-content">
-                <a class="nav-item active" data-view="home" href="#">About/Contact</a>
+                <a class="nav-item active" data-view="home" href="#">About</a>
                 <a class="nav-item" data-view="work" href="#">Work</a>
                 <div class="nav-projects" id="nav-projects"></div>
                 <a class="nav-item theme-switch" id="theme-toggle" href="#">Theme ↔</a>
-                <a class="back-to-top" id="back-to-top" href="#">↑ Back to top</a>
+                <div class="sidebar-bottom">
+                    <a class="back-to-top" id="back-to-top" href="#">↑ Back to top</a>
+                    <p class="sidebar-divider">-----------------------------</p>
+                    <p class="sidebar-email">nayeob.kim@gmail.com <span class="copy-btn" id="copy-email">[Copy]</span></p>
+                    <p class="sidebar-link"><a href="https://www.linkedin.com/in/nayeobkim/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></p>
+                </div>
             </div>
         </nav>
 
@@ -42,16 +47,22 @@
             <div class="view view-home active" id="view-home">
                 <div class="home-layout">
                     <div class="home-bio">
+                        <div class="lock-content" id="lock-content" style="display:none;">
+                            <p class="lock-title">Enter Password</p>
+                            <p class="lock-description">Please enter the password to view work.</p>
+                            <form id="lock-form" class="lock-form">
+                                <input type="text" id="lock-input" class="lock-input" placeholder="Password" autocomplete="off">
+                                <p id="lock-error" class="lock-error">Incorrect password. Please try again.</p>
+                                <button type="submit" class="lock-submit">Unlock</button>
+                            </form>
+                        </div>
+                        <div class="bio-text" id="bio-text">
                         <p>My name is <strong>Nayeob (나엽 / pronounced Nah-yub) Kim</strong>. I am a Product Designer based in Vancouver, Canada.</p>
                         <p>&nbsp;</p>
                         <p>I specialize in building scalable design systems that solve complex interface challenges. My experience ranges from driving rapid 0 to 1 product cycles at Metalab to navigating the high integrity technical requirements of Shopify Checkout.</p>
                         <p>&nbsp;</p>
                         <p>I thrive in environments where trust and accuracy are the priority. I focus on translating ambiguous business needs into reliable products that maintain a high bar for craft and technical rigor. My goal is to bridge the gap between architectural logic and a seamless user experience.</p>
-                        <p>&nbsp;</p>
-                        <p class="home-divider">--------------------------------------------------------------------------------------------------------------</p>
-                        <p>&nbsp;</p>
-                        <p class="home-email">nayeob.kim@gmail.com <span class="copy-btn" id="copy-email">[Copy]</span></p>
-                        <p class="home-link"><a href="https://www.linkedin.com/in/nayeobkim/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></p>
+                        </div>
                     </div>
                     <div class="home-image">
                         <canvas id="ascii-canvas"></canvas>
@@ -105,6 +116,6 @@
         </main>
     </div>
 
-    <script src="js/main.js?v=8"></script>
+    <script src="js/main.js?v=9"></script>
 </body>
 </html>

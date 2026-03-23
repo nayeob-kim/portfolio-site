@@ -226,6 +226,60 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // --- Password Lock ---
+    const LOCK_PASSWORD = 'portfolio2026';
+    const lockContent = document.getElementById('lock-content');
+    const bioText = document.getElementById('bio-text');
+    const lockForm = document.getElementById('lock-form');
+    const lockInput = document.getElementById('lock-input');
+    const lockError = document.getElementById('lock-error');
+    let pendingProjectId = null;
+
+    function isUnlocked() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('unlock') === 'true') return true;
+        return localStorage.getItem('portfolio_unlocked') === 'true';
+    }
+
+    function showLock(projectId) {
+        pendingProjectId = projectId;
+        viewHome.classList.add('active');
+        viewWork.classList.remove('active');
+        bioText.style.display = 'none';
+        lockContent.style.display = 'block';
+        if (lockError) lockError.classList.remove('visible');
+        if (lockInput) { lockInput.value = ''; lockInput.focus(); }
+        window.scrollTo(0, 0);
+        if (reinitAscii) requestAnimationFrame(reinitAscii);
+    }
+
+    function hideLock() {
+        lockContent.style.display = 'none';
+        bioText.style.display = 'block';
+    }
+
+    function unlock() {
+        localStorage.setItem('portfolio_unlocked', 'true');
+        hideLock();
+        if (pendingProjectId !== null) {
+            showProject(pendingProjectId);
+            pendingProjectId = null;
+        }
+    }
+
+    if (lockForm) {
+        lockForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (lockInput.value.trim() === LOCK_PASSWORD) {
+                unlock();
+            } else {
+                if (lockError) lockError.classList.add('visible');
+                lockInput.value = '';
+                lockInput.focus();
+            }
+        });
+    }
+
     // --- Sidebar Navigation ---
     const sidebar = document.getElementById('sidebar');
     const burgerMenu = document.getElementById('burger-menu');
@@ -291,6 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         viewHome.classList.add('active');
         viewWork.classList.remove('active');
+        hideLock();
         contentArea.scrollTop = 0;
         window.scrollTo(0, 0);
         updateNavActive();
@@ -304,10 +359,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const project = projects[projectId];
         if (!project) return;
 
+        if (!isUnlocked()) {
+            showLock(projectId);
+            closeSidebar();
+            return;
+        }
+
         currentView = 'work';
         currentProjectId = projectId;
         viewHome.classList.remove('active');
         viewWork.classList.add('active');
+        hideLock();
 
         renderProject(project, projectId);
         contentArea.scrollTop = 0;
