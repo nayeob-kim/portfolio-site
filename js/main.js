@@ -15,6 +15,8 @@ const projects = {
         title: 'Architecting Trust: The Shopify Checkout Engine',
         description: 'Shopify Checkout is a high-stakes interface where localized tax disclosures, variable content, and complex legal requirements must coexist within rigorous layout constraints. Focusing on the Order Summary and Payment sections, I designed a system where technical precision and logic ensured that scannability and user trust remained uncompromised. The primary objective was to architect a framework capable of handling the immense complexity of global commerce at scale.',
         impact: 'This systematic approach enabled the checkout to scale across 50+ localizations without manual layout adjustments, ensuring consistent compliance with regional tax and legal requirements. By standardizing the "money line" logic and payment frameworks, I reduced design-to-engineering friction and accelerated the deployment of new regional features. This work fundamentally de-risked the purchase journey for millions of users by maintaining a high-integrity visual hierarchy across diverse currency formats.',
+        heroFit: 'contain',
+        heroBg: '#D9D9D9',
         images: [
             'images/projects/project-2/Payment 4-2.png',
             'images/projects/project-1/Order Summary 1.png',
@@ -108,6 +110,8 @@ const projects = {
         title: 'Modernizing the Global E-commerce Experience: Calvin\u00A0Klein',
         description: 'The engagement at Metalab focused on overhauling the Calvin Klein digital experience. The objective was to bridge the gap between an iconic minimalist brand and a high-performance shopping journey. The scope involved modernizing the navigation, the homepage, and the product detail pages to meet global consumer expectations.',
         impact: 'By contributing to the restructuring of the global navigation and selection logic, I helped reduce cognitive load and streamline the path-to-purchase across a massive product catalog. I developed motion-driven design patterns that balanced minimalist aesthetics with functional performance, ensuring a premium brand feel. This collaborative effort resulted in a more intuitive, scalable framework that modernized the brand\'s digital presence for a global consumer base.',
+        heroFit: 'contain',
+        heroBg: '#000000',
         images: [
             'https://vimeo.com/642194431?autoplay=1&loop=1&muted=1',
             null,
@@ -157,8 +161,9 @@ const projects = {
         description: 'Burn to Give is a social purpose platform that converts healthy habits like exercise into life insurance coverage and food donations. The primary objective was to solve for long-term user retention by ensuring the digital act of giving felt as rewarding and seamless as the exercise itself.',
         impact: 'As a 0 to 1 project, the objective was to move from a conceptual mission to a high-performance mobile product. By establishing the initial design language and core interaction patterns, we created a scalable platform that successfully merged personal wellness with global social impact.',
         heroFit: 'contain',
+        heroBg: '#ffffff',
         images: [
-            'images/projects/project-5/Burn to Give 1-1.png',
+            'images/projects/project-5/Burn to Give 1-2.png',
             'images/projects/project-5/Burn to Give 2.png',
             'images/projects/project-5/Burn to Give 3.png'
         ],
@@ -428,6 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hero image
         workHero.classList.remove('work-hero--gif');
         workHero.classList.remove('work-hero--contain');
+        workHero.style.backgroundColor = '';
         if (project.heroGif) {
             workHero.classList.add('work-hero--gif');
             workHero.innerHTML = `<img src="${project.heroGif}" alt="${project.title}">`;
@@ -435,6 +441,9 @@ document.addEventListener('DOMContentLoaded', function() {
             workHero.innerHTML = renderMediaElement(project.images[0], project.title);
             if (project.heroFit === 'contain') {
                 workHero.classList.add('work-hero--contain');
+                if (project.heroBg) {
+                    workHero.style.backgroundColor = project.heroBg;
+                }
             }
         } else {
             workHero.innerHTML = '<div class="work-hero-placeholder"></div>';
@@ -464,7 +473,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show corresponding image if available (offset by 1 since first is hero)
                 const imageIndex = index + 1;
                 if (project.images && project.images[imageIndex]) {
-                    sectionsHtml += `<div class="work-content-image">${renderMediaElement(project.images[imageIndex], section.title)}</div>`;
+                    const src = project.images[imageIndex];
+                    sectionsHtml += `<div class="work-content-image">${renderMediaElement(src, section.title)}</div>`;
                 }
 
                 sectionsHtml += '<div class="work-content-text">';

@@ -94,6 +94,7 @@ img, iframe, canvas, video {
     height: auto;
     display: block;
     border-radius: 0 !important;
+    border: none;
 }
 
 /* ---------- Site Layout ---------- */
@@ -409,9 +410,33 @@ img, iframe, canvas, video {
     height: var(--hero-height);
 }
 
+.work-hero--contain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .work-hero--contain img {
+    width: auto;
+    height: 92%;
+    max-width: 95%;
     object-fit: contain;
-    object-position: top;
+}
+
+.work-hero--contain .vimeo-wrapper {
+    max-width: 95%;
+    height: 92%;
+    padding-bottom: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.work-hero--contain .vimeo-wrapper iframe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
 }
 
 .work-hero--gif {
@@ -556,6 +581,26 @@ img, iframe, canvas, video {
     margin-bottom: 8px;
 }
 
+/* ---------- Responsive: Wide Desktop (min-width: 1401px) ---------- */
+
+/* ---------- Responsive: Desktop (1401px - 1823px) ---------- */
+@media (min-width: 1401px) and (max-width: 1823px) {
+    .work-hero--contain img {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* ---------- Responsive: Ultra Wide (min-width: 1824px) ---------- */
+@media (min-width: 1824px) {
+    .work-hero--contain.work-hero--matched {
+        height: auto !important;
+    }
+}
+
 /* ---------- Responsive: Narrow Desktop (max-width: 1400px) ---------- */
 @media (max-width: 1400px) {
     .home-layout {
@@ -593,6 +638,17 @@ img, iframe, canvas, video {
     .work-hero img {
         height: auto;
         object-fit: cover;
+    }
+
+    .work-hero--contain {
+        aspect-ratio: 1306 / 650;
+    }
+
+    .work-hero--contain img {
+        height: 92%;
+        width: auto;
+        max-width: 95%;
+        object-fit: contain;
     }
 
     .work-hero.work-hero--gif {
