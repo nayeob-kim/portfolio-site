@@ -276,10 +276,8 @@ img, iframe, canvas, video {
 }
 
 .home-bio {
-    width: 30%;
-    max-width: 306px;
-    min-width: 200px;
-    flex-shrink: 1;
+    width: 306px;
+    flex-shrink: 0;
     font-size: 12px;
     line-height: 1.6;
     overflow-wrap: break-word;
@@ -357,10 +355,8 @@ img, iframe, canvas, video {
 }
 
 .work-info {
-    width: 30%;
-    max-width: 306px;
-    min-width: 200px;
-    flex-shrink: 1;
+    width: 306px;
+    flex-shrink: 0;
 }
 
 .work-title {
@@ -398,7 +394,7 @@ img, iframe, canvas, video {
     flex: 1;
     min-width: 0;
     overflow: hidden;
-    border-radius: 1.5%;
+    border-radius: clamp(4px, 0.7vw, 10px);
 }
 
 .work-hero img {
@@ -406,7 +402,7 @@ img, iframe, canvas, video {
     height: 100%;
     display: block;
     object-fit: cover;
-    border-radius: 1.5% !important;
+    border-radius: clamp(4px, 0.7vw, 10px) !important;
 }
 
 .work-hero.work-hero--matched {
@@ -415,12 +411,12 @@ img, iframe, canvas, video {
 
 .work-hero--contain img {
     object-fit: contain;
-    object-position: center;
+    object-position: top;
 }
 
 .work-hero--gif {
     background: #D9D9D9;
-    border-radius: 1.5%;
+    border-radius: clamp(4px, 0.7vw, 10px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -431,7 +427,7 @@ img, iframe, canvas, video {
     height: 92%;
     max-width: 95%;
     object-fit: contain;
-    border-radius: 3% !important;
+    border-radius: clamp(4px, 0.9vw, 12px) !important;
 }
 
 .work-hero-placeholder {
@@ -560,6 +556,58 @@ img, iframe, canvas, video {
     margin-bottom: 8px;
 }
 
+/* ---------- Responsive: Narrow Desktop (max-width: 1400px) ---------- */
+@media (max-width: 1400px) {
+    .home-layout {
+        flex-direction: column;
+        gap: var(--page-gutter);
+    }
+
+    .home-bio {
+        width: 100%;
+    }
+
+    .home-image {
+        width: 100%;
+        flex: none;
+    }
+
+    .work-header {
+        flex-direction: column;
+        gap: var(--page-gutter);
+    }
+
+    .work-info {
+        width: 100%;
+    }
+
+    .work-hero {
+        flex: none;
+        width: 100%;
+    }
+
+    .work-hero.work-hero--matched {
+        height: auto !important;
+    }
+
+    .work-hero img {
+        height: auto;
+        object-fit: cover;
+    }
+
+    .work-hero.work-hero--gif {
+        height: auto !important;
+        aspect-ratio: 1306 / 650;
+    }
+
+    .work-hero.work-hero--gif img {
+        height: 92%;
+        width: auto;
+        max-width: 95%;
+        object-fit: contain;
+    }
+}
+
 /* ---------- Responsive: Tablet (max-width: 1024px) ---------- */
 @media (max-width: 1024px) {
     :root {
@@ -595,63 +643,8 @@ img, iframe, canvas, video {
         overflow-x: hidden;
     }
 
-    .home-layout {
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .home-bio {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        flex-shrink: 1;
-    }
-
-    .home-image {
-        width: 100%;
-        max-width: 100%;
-        flex: none;
-    }
-
     .ascii-portrait {
         font-size: 8px;
-    }
-
-    .work-header {
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .work-info {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .work-hero {
-        flex: none;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .work-hero.work-hero--matched {
-        height: auto !important;
-    }
-
-    .work-hero img {
-        height: auto;
-        object-fit: cover;
-    }
-
-    .work-hero.work-hero--gif {
-        height: auto !important;
-        aspect-ratio: 1306 / 460;
-    }
-
-    .work-hero.work-hero--gif img {
-        height: 92%;
-        width: auto;
-        max-width: 95%;
-        object-fit: contain;
     }
 
     .work-title {
@@ -715,50 +708,12 @@ img, iframe, canvas, video {
         gap: 20px;
     }
 
-    .home-bio {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        flex-shrink: 1;
-    }
-
-    .home-image {
-        width: 100%;
-        max-width: 100%;
-        flex: none;
-    }
-
     .ascii-portrait {
         font-size: 5px;
     }
 
     .work-header {
         gap: 20px;
-    }
-
-    .work-hero {
-        width: 100%;
-    }
-
-    .work-hero.work-hero--matched {
-        height: auto !important;
-    }
-
-    .work-hero img {
-        height: auto;
-        object-fit: cover;
-    }
-
-    .work-hero.work-hero--gif {
-        height: auto !important;
-        aspect-ratio: 1306 / 460;
-    }
-
-    .work-hero.work-hero--gif img {
-        height: 92%;
-        width: auto;
-        max-width: 95%;
-        object-fit: contain;
     }
 
     .work-title {
