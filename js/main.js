@@ -110,6 +110,7 @@ const projects = {
         impact: 'By contributing to the restructuring of the global navigation and selection logic, I helped reduce cognitive load and streamline the path-to-purchase across a massive product catalog. I developed motion-driven design patterns that balanced minimalist aesthetics with functional performance, ensuring a premium brand feel. This collaborative effort resulted in a more intuitive, scalable framework that modernized the brand\'s digital presence for a global consumer base.',
         images: [
             'https://vimeo.com/642194431?autoplay=1&loop=1&muted=1',
+            null,
             'https://vimeo.com/642184965?autoplay=1&loop=1&muted=1',
             'https://vimeo.com/642207005?autoplay=1&loop=1&muted=1'
         ],
