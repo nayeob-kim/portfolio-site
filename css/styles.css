@@ -811,9 +811,10 @@ img, iframe, canvas, video {
         top: 0;
         left: -280px;
         width: 260px;
-        height: 100vh;
+        height: 100dvh;
         background: var(--color-bg);
         padding: var(--page-margin);
+        padding-bottom: calc(var(--page-margin) + env(safe-area-inset-bottom, 0px));
         z-index: 55;
         transition: left 0.3s ease;
         border-right: 1px solid var(--color-border);
