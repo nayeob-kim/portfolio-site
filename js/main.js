@@ -164,6 +164,7 @@ const projects = {
         heroBg: '#ffffff',
         images: [
             'images/projects/project-5/Burn to Give 1-2.png',
+            null,
             'images/projects/project-5/Burn to Give 2.png',
             'images/projects/project-5/Burn to Give 3.png'
         ],
