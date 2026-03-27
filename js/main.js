@@ -616,6 +616,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const WAVE_FREQ = 0.06;
         const REVEAL_DURATION = 1200;
 
+        const GLITCH_CHARS = '@#%&*+=!?~^$.:;';
+        const GLITCH_DURATION = 900;
+        const GLITCH_SCATTER = 10;
+        let glitching = false;
+        let glitchStart = 0;
+
         function initAscii() {
             const containerW = asciiCanvas.parentElement.getBoundingClientRect().width;
 
@@ -650,7 +656,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         x: c * charW,
                         y: (r + 1) * charH,
                         opacity: 0,
-                        revealDelay: Math.random()
+                        revealDelay: Math.random(),
+                        glitchOffX: (Math.random() - 0.5) * 2 * GLITCH_SCATTER,
+                        glitchOffY: (Math.random() - 0.5) * 2 * GLITCH_SCATTER,
+                        glitchChar: GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)],
+                        glitchDelay: Math.random()
                     });
                 }
             }
@@ -695,9 +705,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 const waveY = Math.sin(p.col * WAVE_FREQ + now * WAVE_SPEED) * WAVE_AMP;
                 const waveX = Math.cos(p.row * WAVE_FREQ * 0.7 + now * WAVE_SPEED * 0.6) * WAVE_AMP * 0.4;
 
-                ctx.globalAlpha = p.opacity;
+                let drawX = p.x + waveX;
+                let drawY = p.y + waveY;
+                let drawCh = p.ch;
+                let drawAlpha = p.opacity;
+
+                if (glitching) {
+                    const gt = (now - glitchStart) / GLITCH_DURATION;
+                    const scatter = gt < 0.4
+                        ? Math.min(1, gt / 0.25)
+                        : Math.max(0, 1 - (gt - 0.4) / 0.6);
+
+                    drawX += p.glitchOffX * scatter;
+                    drawY += p.glitchOffY * scatter;
+
+                    if (scatter > 0.5 && p.glitchDelay > 0.65) {
+                        drawCh = p.glitchChar;
+                    }
+
+                    drawAlpha *= (0.7 + 0.3 * (1 - scatter));
+                }
+
+                ctx.globalAlpha = drawAlpha;
                 ctx.fillStyle = color;
-                ctx.fillText(p.ch, p.x + waveX, p.y + waveY);
+                ctx.fillText(drawCh, drawX, drawY);
             }
 
             ctx.globalAlpha = 1;
@@ -706,8 +737,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 revealed = true;
             }
 
+            if (glitching && (now - glitchStart) >= GLITCH_DURATION) {
+                glitching = false;
+            }
+
             animId = requestAnimationFrame(tick);
         }
+
+        asciiCanvas.style.cursor = 'pointer';
+        asciiCanvas.addEventListener('click', function() {
+            if (!glitching && revealed) {
+                glitching = true;
+                glitchStart = performance.now();
+                chars.forEach(p => {
+                    p.glitchOffX = (Math.random() - 0.5) * 2 * GLITCH_SCATTER;
+                    p.glitchOffY = (Math.random() - 0.5) * 2 * GLITCH_SCATTER;
+                    p.glitchChar = GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+                    p.glitchDelay = Math.random();
+                });
+            }
+        });
 
         reinitAscii = function() {
             cancelAnimationFrame(animId);
