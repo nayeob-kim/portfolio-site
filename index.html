@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="images/playground/bg-expanded.png" as="image">
     <link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body>
@@ -32,6 +33,7 @@
                     <a class="nav-item" data-view="work" href="#">Work</a>
                     <div class="nav-projects" id="nav-projects"></div>
                     <a class="nav-item theme-switch" id="theme-toggle" href="#">Theme ↔</a>
+                    <a class="nav-item" id="playground-toggle" href="#">Hangout room</a>
                 </div>
                 <div class="sidebar-bottom">
                     <a class="back-to-top" id="back-to-top" href="#">↑ Back to top</a>
@@ -116,6 +118,50 @@
             </div>
 
         </main>
+    </div>
+
+    <!-- Playground Modal -->
+    <div class="playground-overlay" id="playground-overlay">
+        <div class="playground-window">
+            <div class="playground-titlebar">
+                <span class="playground-titlebar-text">Hangout room</span>
+                <div class="playground-titlebar-buttons">
+                    <button class="playground-btn playground-btn-min" id="playground-min" aria-label="Minimize">_</button>
+                    <button class="playground-btn playground-btn-max" id="playground-max" aria-label="Maximize">&#9723;</button>
+                    <button class="playground-btn playground-btn-close" id="playground-close" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="playground-body" id="playground-body">
+                <img class="playground-item" id="couch-item" src="images/playground/Couch.png" alt="Couch" draggable="false" style="width:384px; display:none;">
+                <img class="playground-item" id="plant-item" src="images/playground/plant.png" alt="Plant" draggable="false" style="width:94px; display:none;">
+                <img class="playground-item" id="bilbo-item" src="images/playground/bilbo.png" alt="Bilbo" draggable="false" style="width:67px; display:none;">
+                <img class="playground-item" id="tv-item" src="images/playground/tv.png?v=3" alt="TV" draggable="false" style="width:133px; display:none;">
+                <img class="playground-item" id="bag-item" src="images/playground/bag.png" alt="Bag" draggable="false" style="width:56px; display:none;">
+                <img class="playground-item" id="broom-item" src="images/playground/broom.png" alt="Broom" draggable="false" style="width:100px; display:none;">
+
+                <div class="playground-tray">
+                    <button class="playground-sticker" id="couch-sticker" title="Place couch">
+                        <img src="images/playground/Couch.png" alt="Couch" draggable="false">
+                    </button>
+                    <button class="playground-sticker" id="tv-sticker" title="Place TV">
+                        <img src="images/playground/tv.png?v=3" alt="TV" draggable="false">
+                    </button>
+                    <button class="playground-sticker" id="plant-sticker" title="Place plant">
+                        <img src="images/playground/plant.png" alt="Plant" draggable="false">
+                    </button>
+                    <button class="playground-sticker" id="bilbo-sticker" title="Place Bilbo">
+                        <img src="images/playground/bilbo.png" alt="Bilbo" draggable="false">
+                    </button>
+                    <button class="playground-sticker" id="bag-sticker" title="Place bag" style="display:none;">
+                        <img src="images/playground/bag.png" alt="Bag" draggable="false">
+                    </button>
+
+                    <button class="playground-sticker" id="broom-sticker" title="Place broom" style="display:none;">
+                        <img src="images/playground/broom.png" alt="Broom" draggable="false" style="height:42px">
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js?v=10"></script>

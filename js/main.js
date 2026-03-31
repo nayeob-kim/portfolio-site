@@ -452,6 +452,411 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebarOverlay.addEventListener('click', closeSidebar);
     }
 
+    // --- Playground Modal ---
+    const playgroundToggle = document.getElementById('playground-toggle');
+    const playgroundOverlay = document.getElementById('playground-overlay');
+    const playgroundClose = document.getElementById('playground-close');
+    const playgroundMin = document.getElementById('playground-min');
+    const playgroundMax = document.getElementById('playground-max');
+    const playgroundWindow = document.querySelector('.playground-window');
+
+    function openPlayground() {
+        playgroundOverlay.classList.add('open');
+        playgroundOverlay.classList.remove('minimized');
+        playgroundWindow.classList.remove('maximized');
+        document.body.style.overflow = 'hidden';
+        closeSidebar();
+    }
+
+    function closePlayground() {
+        playgroundOverlay.classList.remove('open', 'minimized');
+        playgroundWindow.classList.remove('maximized');
+        document.body.style.overflow = '';
+    }
+
+    if (playgroundToggle) {
+        playgroundToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            openPlayground();
+        });
+    }
+
+    if (playgroundClose) {
+        playgroundClose.addEventListener('click', closePlayground);
+    }
+
+    if (playgroundMin) {
+        playgroundMin.addEventListener('click', function() {
+            const isMinimized = playgroundOverlay.classList.toggle('minimized');
+            playgroundWindow.classList.remove('maximized');
+            document.body.style.overflow = isMinimized ? '' : 'hidden';
+        });
+    }
+
+    if (playgroundMax) {
+        playgroundMax.addEventListener('click', function() {
+            playgroundWindow.classList.toggle('maximized');
+            playgroundOverlay.classList.remove('minimized');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (playgroundOverlay) {
+        playgroundOverlay.addEventListener('click', function(e) {
+            if (e.target === playgroundOverlay && !playgroundOverlay.classList.contains('minimized')) {
+                playgroundOverlay.classList.add('minimized');
+                playgroundWindow.classList.remove('maximized');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && playgroundOverlay.classList.contains('open')) {
+                closePlayground();
+            }
+        });
+    }
+
+
+    // --- Playground Sticker Buttons ---
+    const playgroundBody = document.getElementById('playground-body');
+    const couchSticker = document.getElementById('couch-sticker');
+    const couchItem = document.getElementById('couch-item');
+
+    const bagSticker = document.getElementById('bag-sticker');
+    const bagItem = document.getElementById('bag-item');
+
+    const plantSticker = document.getElementById('plant-sticker');
+    const plantItem = document.getElementById('plant-item');
+
+    if (plantSticker && plantItem) {
+        plantSticker.addEventListener('click', function() {
+            if (plantItem.style.display === 'none' || !plantItem.style.display) {
+                plantItem.style.display = 'block';
+                plantItem.dataset.cx = '0';
+                plantItem.dataset.cy = '0';
+                plantItem.style.left = '50%';
+                plantItem.style.top = '50%';
+            } else {
+                plantItem.style.display = 'none';
+            }
+        });
+    }
+
+    const bilboSticker = document.getElementById('bilbo-sticker');
+    const bilboItem = document.getElementById('bilbo-item');
+
+    if (bilboSticker && bilboItem) {
+        bilboSticker.addEventListener('click', function() {
+            if (bilboItem.style.display === 'none' || !bilboItem.style.display) {
+                bilboItem.style.display = 'block';
+                bilboItem.dataset.cx = '0';
+                bilboItem.dataset.cy = '0';
+                bilboItem.style.left = '50%';
+                bilboItem.style.top = '50%';
+            } else {
+                bilboItem.style.display = 'none';
+            }
+            if (typeof checkChipBubble === 'function') checkChipBubble();
+        });
+    }
+
+    const tvSticker = document.getElementById('tv-sticker');
+    const tvItem = document.getElementById('tv-item');
+
+    function checkShowBagSticker() {
+        if (bagSticker &&
+            couchItem && couchItem.style.display === 'block' &&
+            tvItem && tvItem.style.display === 'block') {
+            bagSticker.style.display = '';
+        }
+    }
+
+    if (tvSticker && tvItem) {
+        tvSticker.addEventListener('click', function() {
+            if (tvItem.style.display === 'none' || !tvItem.style.display) {
+                tvItem.style.display = 'block';
+                tvItem.dataset.cx = '0';
+                tvItem.dataset.cy = '0';
+                tvItem.style.left = '50%';
+                tvItem.style.top = '50%';
+                checkShowBagSticker();
+            } else {
+                tvItem.style.display = 'none';
+            }
+        });
+    }
+
+    if (couchSticker && couchItem) {
+        couchSticker.addEventListener('click', function() {
+            if (couchItem.style.display === 'none' || !couchItem.style.display) {
+                couchItem.style.display = 'block';
+                couchItem.dataset.cx = '0';
+                couchItem.dataset.cy = '0';
+                couchItem.style.left = '50%';
+                couchItem.style.top = '50%';
+                checkShowBagSticker();
+            } else {
+                couchItem.style.display = 'none';
+            }
+        });
+    }
+
+    let chipsExist = false;
+    let chipBubble = null;
+    let chipBubbleTimer = null;
+
+    function createChipBubble() {
+        if (chipBubble) return;
+        chipBubble = document.createElement('div');
+        chipBubble.className = 'speech-bubble';
+        chipBubble.innerHTML = '<span class="speech-text">Clean up!</span><img src="images/playground/speech.png?v=3" alt="Warning" draggable="false">';
+        playgroundBody.appendChild(chipBubble);
+    }
+
+    function positionChipBubble() {
+        if (!chipBubble || !playgroundBody) return;
+        const chips = Array.from(playgroundBody.querySelectorAll('.playground-chip'));
+        if (chips.length === 0) return;
+        chips.sort(function(a, b) {
+            return parseFloat(a.dataset.cx || 0) - parseFloat(b.dataset.cx || 0);
+        });
+        const mid = chips[Math.floor(chips.length / 2)];
+        const cx = parseFloat(mid.dataset.cx || 0);
+        const cy = parseFloat(mid.dataset.cy || 0);
+        chipBubble.style.left = `calc(50% + ${cx + 20}px)`;
+        chipBubble.style.top = `calc(50% + ${cy - mid.offsetHeight / 2 - 30}px)`;
+    }
+
+    function showChipBubble() {
+        if (!chipBubble) createChipBubble();
+        positionChipBubble();
+        chipBubble.classList.add('visible');
+        setTimeout(function() {
+            hideChipBubble();
+        }, 5000);
+    }
+
+    function hideChipBubble() {
+        if (chipBubble) {
+            chipBubble.classList.remove('visible');
+            chipBubble.remove();
+            chipBubble = null;
+        }
+        clearTimeout(chipBubbleTimer);
+    }
+
+    function checkChipBubble() {
+        clearTimeout(chipBubbleTimer);
+        const bilboVisible = bilboItem && bilboItem.style.display === 'block';
+        const hasChips = playgroundBody && playgroundBody.querySelectorAll('.playground-chip').length > 0;
+        if (bilboVisible && hasChips) {
+            chipBubbleTimer = setTimeout(showChipBubble, 3000);
+        } else {
+            hideChipBubble();
+        }
+    }
+
+    if (bagSticker && bagItem) {
+        bagSticker.addEventListener('click', function() {
+            if (bagItem.style.display === 'none' || !bagItem.style.display) {
+                bagItem.style.display = 'block';
+                bagItem.src = 'images/playground/bag.png';
+                bagItem.dataset.cx = '0';
+                bagItem.dataset.cy = '0';
+                bagItem.style.left = '50%';
+                bagItem.style.top = '50%';
+            } else {
+                bagItem.style.display = 'none';
+            }
+        });
+
+        const chipSrcs = [
+            'images/playground/chip1.png',
+            'images/playground/chip2.png',
+            'images/playground/chip3.png'
+        ];
+
+        function spawnChips() {
+            const bodyRect = playgroundBody.getBoundingClientRect();
+            const bagCX = parseFloat(bagItem.dataset.cx || 0);
+            const bagCY = parseFloat(bagItem.dataset.cy || 0);
+            const couchBottom = parseFloat(couchItem.dataset.cy || 0) + couchItem.offsetHeight / 2;
+            const floorCY = couchBottom + 10;
+
+            const count = 5;
+            for (let i = 0; i < count; i++) {
+                const chip = document.createElement('img');
+                chip.src = chipSrcs[i % chipSrcs.length];
+                chip.className = 'playground-item playground-chip';
+                chip.draggable = false;
+                chip.style.width = '24px';
+                chip.style.imageRendering = 'pixelated';
+                chip.style.pointerEvents = 'none';
+
+                const startCX = bagCX;
+                const startCY = bagCY - 20;
+                chip.dataset.cx = startCX;
+                chip.dataset.cy = startCY;
+                chip.style.left = `calc(50% + ${startCX}px)`;
+                chip.style.top = `calc(50% + ${startCY}px)`;
+
+                playgroundBody.appendChild(chip);
+
+                const vx = (Math.random() - 0.5) * 350;
+                const vy = -(100 + Math.random() * 250);
+                const rot = (Math.random() - 0.5) * 800;
+                const gravity = 400 + Math.random() * 200;
+                const startTime = performance.now();
+
+                (function animateChip() {
+                    requestAnimationFrame(function step(now) {
+                        const t = (now - startTime) / 1000;
+                        const cx = startCX + vx * t;
+                        let cy = startCY + vy * t + 0.5 * gravity * t * t;
+                        const angle = rot * t;
+
+                        if (cy >= floorCY) {
+                            cy = floorCY;
+                            chip.dataset.cx = cx;
+                            chip.dataset.cy = cy;
+                            chip.style.left = `calc(50% + ${cx}px)`;
+                            chip.style.top = `calc(50% + ${cy}px)`;
+                            chip.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+                            chip.style.pointerEvents = '';
+                            return;
+                        }
+
+                        chip.dataset.cx = cx;
+                        chip.dataset.cy = cy;
+                        chip.style.left = `calc(50% + ${cx}px)`;
+                        chip.style.top = `calc(50% + ${cy}px)`;
+                        chip.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+                        requestAnimationFrame(step);
+                    });
+                })();
+            }
+        }
+
+        const broomSticker = document.getElementById('broom-sticker');
+        const broomItem = document.getElementById('broom-item');
+
+        bagItem.addEventListener('click', function(e) {
+            e.preventDefault();
+            bagItem.src = 'images/playground/bag-cumpled.png';
+            chipsExist = true;
+            spawnChips();
+            if (broomSticker) broomSticker.style.display = '';
+            checkChipBubble();
+            setTimeout(function() {
+                bagItem.src = 'images/playground/bag.png';
+            }, 250);
+        });
+
+        if (broomSticker && broomItem) {
+            broomSticker.addEventListener('click', function() {
+                if (broomItem.style.display === 'none' || !broomItem.style.display) {
+                    broomItem.style.display = 'block';
+                    broomItem.dataset.cx = '0';
+                    broomItem.dataset.cy = '0';
+                    broomItem.style.left = '50%';
+                    broomItem.style.top = '50%';
+                } else {
+                    broomItem.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    // --- Playground Draggable Items ---
+    if (playgroundBody) {
+        let dragItem = null;
+        let dragStartX = 0, dragStartY = 0;
+        let itemStartCX = 0, itemStartCY = 0;
+
+        function applyItemPos(item, cx, cy) {
+            item.dataset.cx = cx;
+            item.dataset.cy = cy;
+            item.style.left = `calc(50% + ${cx}px)`;
+            item.style.top = `calc(50% + ${cy}px)`;
+        }
+
+        playgroundBody.addEventListener('mousedown', function(e) {
+            const item = e.target.closest('.playground-item');
+            if (!item) return;
+            dragItem = item;
+            dragStartX = e.clientX;
+            dragStartY = e.clientY;
+            itemStartCX = parseFloat(item.dataset.cx) || 0;
+            itemStartCY = parseFloat(item.dataset.cy) || 0;
+            item.classList.add('dragging');
+            e.preventDefault();
+        });
+
+        function checkBroomSweep() {
+            const broom = document.getElementById('broom-item');
+            if (!dragItem || dragItem !== broom || broom.style.display === 'none') return;
+            const broomRect = broom.getBoundingClientRect();
+            const chips = playgroundBody.querySelectorAll('.playground-chip');
+            chips.forEach(function(chip) {
+                const chipRect = chip.getBoundingClientRect();
+                if (broomRect.left < chipRect.right &&
+                    broomRect.right > chipRect.left &&
+                    broomRect.top < chipRect.bottom &&
+                    broomRect.bottom > chipRect.top) {
+                    chip.remove();
+                }
+            });
+            var remaining = playgroundBody.querySelectorAll('.playground-chip');
+            if (chipsExist && remaining.length === 0) {
+                chipsExist = false;
+                hideChipBubble();
+            }
+        }
+
+        window.addEventListener('mousemove', function(e) {
+            if (!dragItem) return;
+            const cx = itemStartCX + (e.clientX - dragStartX);
+            const cy = itemStartCY + (e.clientY - dragStartY);
+            applyItemPos(dragItem, cx, cy);
+            checkBroomSweep();
+        });
+
+        window.addEventListener('mouseup', function() {
+            if (dragItem) {
+                dragItem.classList.remove('dragging');
+                dragItem = null;
+            }
+        });
+
+        playgroundBody.addEventListener('touchstart', function(e) {
+            const item = e.target.closest('.playground-item');
+            if (!item || e.touches.length !== 1) return;
+            dragItem = item;
+            dragStartX = e.touches[0].clientX;
+            dragStartY = e.touches[0].clientY;
+            itemStartCX = parseFloat(item.dataset.cx) || 0;
+            itemStartCY = parseFloat(item.dataset.cy) || 0;
+            item.classList.add('dragging');
+        }, { passive: true });
+
+        playgroundBody.addEventListener('touchmove', function(e) {
+            if (!dragItem || e.touches.length !== 1) return;
+            const cx = itemStartCX + (e.touches[0].clientX - dragStartX);
+            const cy = itemStartCY + (e.touches[0].clientY - dragStartY);
+            applyItemPos(dragItem, cx, cy);
+            checkBroomSweep();
+            e.preventDefault();
+        }, { passive: false });
+
+        playgroundBody.addEventListener('touchend', function() {
+            if (dragItem) {
+                dragItem.classList.remove('dragging');
+                dragItem = null;
+            }
+        });
+    }
+
     // --- Render Project Content ---
     function isVimeoUrl(url) {
         return url.includes('vimeo.com');
