@@ -736,7 +736,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function showChipBubble() {
         if (!chipBubble) createChipBubble();
         positionChipBubble();
-        chipBubble.classList.add('visible');
+        var bubbleImg = chipBubble.querySelector('img');
+        if (bubbleImg && !bubbleImg.complete) {
+            bubbleImg.onload = function() {
+                if (chipBubble) chipBubble.classList.add('visible');
+            };
+        } else {
+            chipBubble.classList.add('visible');
+        }
         setTimeout(function() {
             hideChipBubble();
         }, 5000);
