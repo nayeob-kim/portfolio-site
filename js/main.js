@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cx = parseFloat(mid.dataset.cx || 0);
         const cy = parseFloat(mid.dataset.cy || 0);
         chipBubble.style.left = `calc(50% + ${cx + bgOffsetX + 20}px)`;
-        chipBubble.style.top = `calc(50% + ${cy + bgOffsetY - mid.offsetHeight / 2 - 30}px)`;
+        chipBubble.style.top = `calc(50% + ${cy + bgOffsetY - mid.offsetHeight / 2 - 60}px)`;
     }
 
     function showChipBubble() {
