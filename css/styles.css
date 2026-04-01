@@ -466,6 +466,35 @@ img, iframe, canvas, video {
     line-height: 1;
 }
 
+.restore-icon {
+    position: relative;
+    display: block;
+    width: 8px;
+    height: 8px;
+}
+
+.restore-icon::before,
+.restore-icon::after {
+    content: '';
+    position: absolute;
+    border: 1px solid #000000;
+    background: #c0c0c0;
+}
+
+.restore-icon::after {
+    width: 6px;
+    height: 6px;
+    bottom: 0;
+    left: 0;
+}
+
+.restore-icon::before {
+    width: 6px;
+    height: 6px;
+    top: 0;
+    right: 0;
+}
+
 .playground-titlebar-buttons {
     display: flex;
     gap: 2px;
@@ -554,6 +583,7 @@ img, iframe, canvas, video {
     image-rendering: pixelated;
     position: relative;
     touch-action: none;
+    cursor: grab;
 }
 
 .playground-item {
@@ -609,17 +639,22 @@ img, iframe, canvas, video {
 
 .playground-tray {
     position: absolute;
-    bottom: 32px;
+    top: 16px;
     left: 0;
     right: 0;
     display: flex;
-    justify-content: center;
     gap: 24px;
     z-index: 20;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 8px 16px;
     scrollbar-width: none;
+}
+
+.playground-tray::before,
+.playground-tray::after {
+    content: '';
+    margin: auto;
 }
 
 .playground-tray::-webkit-scrollbar {
@@ -668,7 +703,7 @@ img, iframe, canvas, video {
     }
 
     .playground-tray {
-        bottom: 20px;
+        top: 12px;
     }
 }
 
@@ -683,7 +718,7 @@ img, iframe, canvas, video {
     }
 
     .playground-tray {
-        bottom: 12px;
+        top: 8px;
         gap: 20px;
     }
 }

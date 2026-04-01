@@ -459,6 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const playgroundMin = document.getElementById('playground-min');
     const playgroundMax = document.getElementById('playground-max');
     const playgroundWindow = document.querySelector('.playground-window');
+    let reclampBg = null;
 
     function openPlayground() {
         playgroundOverlay.classList.add('open');
@@ -466,6 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playgroundWindow.classList.remove('maximized');
         document.body.style.overflow = 'hidden';
         closeSidebar();
+        if (reclampBg) reclampBg();
     }
 
     function closePlayground() {
@@ -490,6 +492,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isMinimized = playgroundOverlay.classList.toggle('minimized');
             playgroundWindow.classList.remove('maximized');
             document.body.style.overflow = isMinimized ? '' : 'hidden';
+            if (!isMinimized && reclampBg) reclampBg();
         });
     }
 
@@ -498,16 +501,34 @@ document.addEventListener('DOMContentLoaded', function() {
             playgroundWindow.classList.toggle('maximized');
             playgroundOverlay.classList.remove('minimized');
             document.body.style.overflow = 'hidden';
+            playgroundMax.innerHTML = playgroundWindow.classList.contains('maximized')
+                    ? '<span class="restore-icon"></span>'
+                    : '&#9723;';
+            if (reclampBg) reclampBg();
         });
     }
 
     if (playgroundOverlay) {
-        playgroundOverlay.addEventListener('click', function(e) {
-            if (e.target === playgroundOverlay && !playgroundOverlay.classList.contains('minimized')) {
+        let overlayDownTarget = null;
+        let overlayDownX = 0, overlayDownY = 0;
+
+        playgroundOverlay.addEventListener('mousedown', function(e) {
+            overlayDownTarget = e.target;
+            overlayDownX = e.clientX;
+            overlayDownY = e.clientY;
+        });
+
+        playgroundOverlay.addEventListener('mouseup', function(e) {
+            if (overlayDownTarget !== playgroundOverlay || e.target !== playgroundOverlay) return;
+            var dx = e.clientX - overlayDownX;
+            var dy = e.clientY - overlayDownY;
+            if (Math.abs(dx) > 5 || Math.abs(dy) > 5) return;
+            if (!playgroundOverlay.classList.contains('minimized')) {
                 playgroundOverlay.classList.add('minimized');
                 playgroundWindow.classList.remove('maximized');
                 document.body.style.overflow = '';
             }
+            overlayDownTarget = null;
         });
 
         document.addEventListener('keydown', function(e) {
@@ -517,9 +538,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     // --- Playground Sticker Buttons ---
     const playgroundBody = document.getElementById('playground-body');
+    var bgOffsetX = 0, bgOffsetY = 0;
     const couchSticker = document.getElementById('couch-sticker');
     const couchItem = document.getElementById('couch-item');
 
@@ -529,38 +550,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const plantSticker = document.getElementById('plant-sticker');
     const plantItem = document.getElementById('plant-item');
 
-    if (plantSticker && plantItem) {
-        plantSticker.addEventListener('click', function() {
-            if (plantItem.style.display === 'none' || !plantItem.style.display) {
-                plantItem.style.display = 'block';
-                plantItem.dataset.cx = '0';
-                plantItem.dataset.cy = '0';
-                plantItem.style.left = '50%';
-                plantItem.style.top = '50%';
-            } else {
-                plantItem.style.display = 'none';
-            }
-        });
-    }
-
     const bilboSticker = document.getElementById('bilbo-sticker');
     const bilboItem = document.getElementById('bilbo-item');
-
-    if (bilboSticker && bilboItem) {
-        bilboSticker.addEventListener('click', function() {
-            if (bilboItem.style.display === 'none' || !bilboItem.style.display) {
-                bilboItem.style.display = 'block';
-                bilboItem.dataset.cx = '0';
-                bilboItem.dataset.cy = '0';
-                bilboItem.style.left = '50%';
-                bilboItem.style.top = '50%';
-            } else {
-                bilboItem.style.display = 'none';
-            }
-            if (typeof checkChipBubble === 'function') checkChipBubble();
-        });
-    }
-
     const tvSticker = document.getElementById('tv-sticker');
     const tvItem = document.getElementById('tv-item');
 
@@ -572,35 +563,137 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (tvSticker && tvItem) {
-        tvSticker.addEventListener('click', function() {
-            if (tvItem.style.display === 'none' || !tvItem.style.display) {
-                tvItem.style.display = 'block';
-                tvItem.dataset.cx = '0';
-                tvItem.dataset.cy = '0';
-                tvItem.style.left = '50%';
-                tvItem.style.top = '50%';
-                checkShowBagSticker();
-            } else {
-                tvItem.style.display = 'none';
-            }
-        });
+    var stickerMap = [
+        { sticker: plantSticker, item: plantItem },
+        { sticker: bilboSticker, item: bilboItem },
+        { sticker: tvSticker, item: tvItem },
+        { sticker: couchSticker, item: couchItem }
+    ];
+
+    var stickerDrag = null;
+    var stickerStartX = 0, stickerStartY = 0;
+    var stickerMoved = false;
+
+    function clientToCX(clientX, clientY) {
+        var rect = playgroundBody.getBoundingClientRect();
+        var centerX = rect.left + rect.width / 2;
+        var centerY = rect.top + rect.height / 2;
+        return {
+            cx: clientX - centerX - bgOffsetX,
+            cy: clientY - centerY - bgOffsetY
+        };
     }
 
-    if (couchSticker && couchItem) {
-        couchSticker.addEventListener('click', function() {
-            if (couchItem.style.display === 'none' || !couchItem.style.display) {
-                couchItem.style.display = 'block';
-                couchItem.dataset.cx = '0';
-                couchItem.dataset.cy = '0';
-                couchItem.style.left = '50%';
-                couchItem.style.top = '50%';
-                checkShowBagSticker();
+    function onStickerPlace(entry) {
+        if (entry.sticker === couchSticker || entry.sticker === tvSticker) checkShowBagSticker();
+        if (entry.sticker === bilboSticker && typeof checkChipBubble === 'function') checkChipBubble();
+    }
+
+    function bindStickerEvents(entry) {
+        if (!entry.sticker || !entry.item) return;
+
+        entry.sticker.addEventListener('mousedown', function(e) {
+            if (entry.item.style.display === 'block') return;
+            stickerDrag = entry;
+            stickerStartX = e.clientX;
+            stickerStartY = e.clientY;
+            stickerMoved = false;
+            e.preventDefault();
+        });
+
+        entry.sticker.addEventListener('click', function() {
+            if (stickerMoved) { stickerMoved = false; return; }
+            if (entry.item.style.display === 'block') {
+                entry.item.style.display = 'none';
+                entry.item.style.opacity = '';
             } else {
-                couchItem.style.display = 'none';
+                entry.item.style.display = 'block';
+                entry.item.style.opacity = '';
+                if (entry.isBag) entry.item.src = 'images/playground/bag.png';
+                entry.item.dataset.cx = '0';
+                entry.item.dataset.cy = '0';
+                entry.item.style.left = `calc(50% + ${bgOffsetX}px)`;
+                entry.item.style.top = `calc(50% + ${bgOffsetY}px)`;
+                onStickerPlace(entry);
             }
         });
+
+        entry.sticker.addEventListener('touchstart', function(e) {
+            if (entry.item.style.display === 'block' || e.touches.length !== 1) return;
+            stickerDrag = entry;
+            stickerStartX = e.touches[0].clientX;
+            stickerStartY = e.touches[0].clientY;
+            stickerMoved = false;
+        }, { passive: true });
     }
+
+    stickerMap.forEach(bindStickerEvents);
+
+    function showStickerGhost(entry, clientX, clientY) {
+        entry.item.style.display = 'block';
+        entry.item.style.opacity = '0.6';
+        entry.item.classList.add('dragging');
+        if (entry.isBag) entry.item.src = 'images/playground/bag.png';
+        var pos = clientToCX(clientX, clientY);
+        entry.item.dataset.cx = pos.cx;
+        entry.item.dataset.cy = pos.cy;
+        entry.item.style.left = `calc(50% + ${pos.cx + bgOffsetX}px)`;
+        entry.item.style.top = `calc(50% + ${pos.cy + bgOffsetY}px)`;
+    }
+
+    window.addEventListener('mousemove', function(e) {
+        if (!stickerDrag) return;
+        var dx = e.clientX - stickerStartX;
+        var dy = e.clientY - stickerStartY;
+        if (!stickerMoved && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+            stickerMoved = true;
+            showStickerGhost(stickerDrag, e.clientX, e.clientY);
+        }
+        if (stickerMoved) {
+            var pos = clientToCX(e.clientX, e.clientY);
+            stickerDrag.item.dataset.cx = pos.cx;
+            stickerDrag.item.dataset.cy = pos.cy;
+            stickerDrag.item.style.left = `calc(50% + ${pos.cx + bgOffsetX}px)`;
+            stickerDrag.item.style.top = `calc(50% + ${pos.cy + bgOffsetY}px)`;
+        }
+    });
+
+    window.addEventListener('mouseup', function() {
+        if (!stickerDrag) return;
+        if (stickerMoved) {
+            stickerDrag.item.style.opacity = '';
+            stickerDrag.item.classList.remove('dragging');
+            onStickerPlace(stickerDrag);
+        }
+        stickerDrag = null;
+    });
+
+    window.addEventListener('touchmove', function(e) {
+        if (!stickerDrag || e.touches.length !== 1) return;
+        var dx = e.touches[0].clientX - stickerStartX;
+        var dy = e.touches[0].clientY - stickerStartY;
+        if (!stickerMoved && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+            stickerMoved = true;
+            showStickerGhost(stickerDrag, e.touches[0].clientX, e.touches[0].clientY);
+        }
+        if (stickerMoved) {
+            var pos = clientToCX(e.touches[0].clientX, e.touches[0].clientY);
+            stickerDrag.item.dataset.cx = pos.cx;
+            stickerDrag.item.dataset.cy = pos.cy;
+            stickerDrag.item.style.left = `calc(50% + ${pos.cx + bgOffsetX}px)`;
+            stickerDrag.item.style.top = `calc(50% + ${pos.cy + bgOffsetY}px)`;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', function() {
+        if (!stickerDrag) return;
+        if (stickerMoved) {
+            stickerDrag.item.style.opacity = '';
+            stickerDrag.item.classList.remove('dragging');
+            onStickerPlace(stickerDrag);
+        }
+        stickerDrag = null;
+    });
 
     let chipsExist = false;
     let chipBubble = null;
@@ -624,8 +717,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const mid = chips[Math.floor(chips.length / 2)];
         const cx = parseFloat(mid.dataset.cx || 0);
         const cy = parseFloat(mid.dataset.cy || 0);
-        chipBubble.style.left = `calc(50% + ${cx + 20}px)`;
-        chipBubble.style.top = `calc(50% + ${cy - mid.offsetHeight / 2 - 30}px)`;
+        chipBubble.style.left = `calc(50% + ${cx + bgOffsetX + 20}px)`;
+        chipBubble.style.top = `calc(50% + ${cy + bgOffsetY - mid.offsetHeight / 2 - 30}px)`;
     }
 
     function showChipBubble() {
@@ -658,18 +751,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (bagSticker && bagItem) {
-        bagSticker.addEventListener('click', function() {
-            if (bagItem.style.display === 'none' || !bagItem.style.display) {
-                bagItem.style.display = 'block';
-                bagItem.src = 'images/playground/bag.png';
-                bagItem.dataset.cx = '0';
-                bagItem.dataset.cy = '0';
-                bagItem.style.left = '50%';
-                bagItem.style.top = '50%';
-            } else {
-                bagItem.style.display = 'none';
-            }
-        });
+        var bagEntry = { sticker: bagSticker, item: bagItem, isBag: true };
+        stickerMap.push(bagEntry);
+        bindStickerEvents(bagEntry);
 
         const chipSrcs = [
             'images/playground/chip1.png',
@@ -678,7 +762,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
 
         function spawnChips() {
-            const bodyRect = playgroundBody.getBoundingClientRect();
             const bagCX = parseFloat(bagItem.dataset.cx || 0);
             const bagCY = parseFloat(bagItem.dataset.cy || 0);
             const couchBottom = parseFloat(couchItem.dataset.cy || 0) + couchItem.offsetHeight / 2;
@@ -698,8 +781,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const startCY = bagCY - 20;
                 chip.dataset.cx = startCX;
                 chip.dataset.cy = startCY;
-                chip.style.left = `calc(50% + ${startCX}px)`;
-                chip.style.top = `calc(50% + ${startCY}px)`;
+                chip.style.left = `calc(50% + ${startCX + bgOffsetX}px)`;
+                chip.style.top = `calc(50% + ${startCY + bgOffsetY}px)`;
 
                 playgroundBody.appendChild(chip);
 
@@ -711,27 +794,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 (function animateChip() {
                     requestAnimationFrame(function step(now) {
-                        const t = (now - startTime) / 1000;
-                        const cx = startCX + vx * t;
-                        let cy = startCY + vy * t + 0.5 * gravity * t * t;
-                        const angle = rot * t;
-
-                        if (cy >= floorCY) {
-                            cy = floorCY;
-                            chip.dataset.cx = cx;
-                            chip.dataset.cy = cy;
-                            chip.style.left = `calc(50% + ${cx}px)`;
-                            chip.style.top = `calc(50% + ${cy}px)`;
-                            chip.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-                            chip.style.pointerEvents = '';
-                            return;
-                        }
+                        var t = (now - startTime) / 1000;
+                        var cx = startCX + vx * t;
+                        var cy = startCY + vy * t + 0.5 * gravity * t * t;
+                        var landed = cy >= floorCY;
+                        if (landed) cy = floorCY;
 
                         chip.dataset.cx = cx;
                         chip.dataset.cy = cy;
-                        chip.style.left = `calc(50% + ${cx}px)`;
-                        chip.style.top = `calc(50% + ${cy}px)`;
-                        chip.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+                        chip.style.left = `calc(50% + ${cx + bgOffsetX}px)`;
+                        chip.style.top = `calc(50% + ${cy + bgOffsetY}px)`;
+                        chip.style.transform = `translate(-50%, -50%) rotate(${rot * t}deg)`;
+
+                        if (landed) { chip.style.pointerEvents = ''; return; }
                         requestAnimationFrame(step);
                     });
                 })();
@@ -754,49 +829,94 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (broomSticker && broomItem) {
-            broomSticker.addEventListener('click', function() {
-                if (broomItem.style.display === 'none' || !broomItem.style.display) {
-                    broomItem.style.display = 'block';
-                    broomItem.dataset.cx = '0';
-                    broomItem.dataset.cy = '0';
-                    broomItem.style.left = '50%';
-                    broomItem.style.top = '50%';
-                } else {
-                    broomItem.style.display = 'none';
-                }
-            });
+            var broomEntry = { sticker: broomSticker, item: broomItem };
+            stickerMap.push(broomEntry);
+            bindStickerEvents(broomEntry);
         }
     }
 
-    // --- Playground Draggable Items ---
+    // --- Playground Draggable Items & Background Pan ---
     if (playgroundBody) {
         let dragItem = null;
         let dragStartX = 0, dragStartY = 0;
         let itemStartCX = 0, itemStartCY = 0;
 
+        let panningBg = false;
+        let bgStartOffsetX = 0, bgStartOffsetY = 0;
+
+        var bgImg = new Image();
+        bgImg.src = 'images/playground/bg-expanded.png';
+        var bgNaturalW = 0, bgNaturalH = 0;
+        bgImg.onload = function() {
+            bgNaturalW = bgImg.naturalWidth;
+            bgNaturalH = bgImg.naturalHeight;
+        };
+
+        function clampBgOffset() {
+            if (!bgNaturalW || !bgNaturalH) return;
+            var containerW = playgroundBody.clientWidth;
+            var containerH = playgroundBody.clientHeight;
+            var renderedW = 1800;
+            var renderedH = (bgNaturalH / bgNaturalW) * renderedW;
+            var maxX = Math.max(0, (renderedW - containerW) / 2);
+            var maxY = Math.max(0, (renderedH - containerH) / 2);
+            bgOffsetX = Math.max(-maxX, Math.min(maxX, bgOffsetX));
+            bgOffsetY = Math.max(-maxY, Math.min(maxY, bgOffsetY));
+        }
+
+        function applyBgPos() {
+            clampBgOffset();
+            playgroundBody.style.backgroundPosition = `calc(50% + ${bgOffsetX}px) calc(50% + ${bgOffsetY}px)`;
+            updateAllItemPositions();
+        }
+
+        reclampBg = function() {
+            requestAnimationFrame(applyBgPos);
+        };
+
         function applyItemPos(item, cx, cy) {
             item.dataset.cx = cx;
             item.dataset.cy = cy;
-            item.style.left = `calc(50% + ${cx}px)`;
-            item.style.top = `calc(50% + ${cy}px)`;
+            item.style.left = `calc(50% + ${cx + bgOffsetX}px)`;
+            item.style.top = `calc(50% + ${cy + bgOffsetY}px)`;
+        }
+
+        function updateAllItemPositions() {
+            var items = playgroundBody.querySelectorAll('.playground-item');
+            for (var i = 0; i < items.length; i++) {
+                var it = items[i];
+                var cx = parseFloat(it.dataset.cx) || 0;
+                var cy = parseFloat(it.dataset.cy) || 0;
+                it.style.left = `calc(50% + ${cx + bgOffsetX}px)`;
+                it.style.top = `calc(50% + ${cy + bgOffsetY}px)`;
+            }
         }
 
         playgroundBody.addEventListener('mousedown', function(e) {
             const item = e.target.closest('.playground-item');
-            if (!item) return;
-            dragItem = item;
-            dragStartX = e.clientX;
-            dragStartY = e.clientY;
-            itemStartCX = parseFloat(item.dataset.cx) || 0;
-            itemStartCY = parseFloat(item.dataset.cy) || 0;
-            item.classList.add('dragging');
+            if (e.target.closest('.playground-tray')) return;
+            if (item) {
+                dragItem = item;
+                dragStartX = e.clientX;
+                dragStartY = e.clientY;
+                itemStartCX = parseFloat(item.dataset.cx) || 0;
+                itemStartCY = parseFloat(item.dataset.cy) || 0;
+                item.classList.add('dragging');
+            } else {
+                panningBg = true;
+                dragStartX = e.clientX;
+                dragStartY = e.clientY;
+                bgStartOffsetX = bgOffsetX;
+                bgStartOffsetY = bgOffsetY;
+                playgroundBody.style.cursor = 'grabbing';
+            }
             e.preventDefault();
         });
 
         function checkBroomSweep() {
-            const broom = document.getElementById('broom-item');
-            if (!dragItem || dragItem !== broom || broom.style.display === 'none') return;
-            const broomRect = broom.getBoundingClientRect();
+            var broom = document.getElementById('broom-item');
+            if (!broom || !dragItem || dragItem !== broom || broom.style.display === 'none') return;
+            var broomRect = broom.getBoundingClientRect();
             const chips = playgroundBody.querySelectorAll('.playground-chip');
             chips.forEach(function(chip) {
                 const chipRect = chip.getBoundingClientRect();
@@ -815,11 +935,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         window.addEventListener('mousemove', function(e) {
-            if (!dragItem) return;
-            const cx = itemStartCX + (e.clientX - dragStartX);
-            const cy = itemStartCY + (e.clientY - dragStartY);
-            applyItemPos(dragItem, cx, cy);
-            checkBroomSweep();
+            if (dragItem) {
+                const cx = itemStartCX + (e.clientX - dragStartX);
+                const cy = itemStartCY + (e.clientY - dragStartY);
+                applyItemPos(dragItem, cx, cy);
+                checkBroomSweep();
+            } else if (panningBg) {
+                bgOffsetX = bgStartOffsetX + (e.clientX - dragStartX);
+                bgOffsetY = bgStartOffsetY + (e.clientY - dragStartY);
+                applyBgPos();
+            }
         });
 
         window.addEventListener('mouseup', function() {
@@ -827,25 +952,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 dragItem.classList.remove('dragging');
                 dragItem = null;
             }
+            if (panningBg) {
+                panningBg = false;
+                playgroundBody.style.cursor = '';
+            }
         });
 
         playgroundBody.addEventListener('touchstart', function(e) {
+            if (e.target.closest('.playground-tray') || e.touches.length !== 1) return;
             const item = e.target.closest('.playground-item');
-            if (!item || e.touches.length !== 1) return;
-            dragItem = item;
-            dragStartX = e.touches[0].clientX;
-            dragStartY = e.touches[0].clientY;
-            itemStartCX = parseFloat(item.dataset.cx) || 0;
-            itemStartCY = parseFloat(item.dataset.cy) || 0;
-            item.classList.add('dragging');
+            if (item) {
+                dragItem = item;
+                dragStartX = e.touches[0].clientX;
+                dragStartY = e.touches[0].clientY;
+                itemStartCX = parseFloat(item.dataset.cx) || 0;
+                itemStartCY = parseFloat(item.dataset.cy) || 0;
+                item.classList.add('dragging');
+            } else {
+                panningBg = true;
+                dragStartX = e.touches[0].clientX;
+                dragStartY = e.touches[0].clientY;
+                bgStartOffsetX = bgOffsetX;
+                bgStartOffsetY = bgOffsetY;
+            }
         }, { passive: true });
 
         playgroundBody.addEventListener('touchmove', function(e) {
-            if (!dragItem || e.touches.length !== 1) return;
-            const cx = itemStartCX + (e.touches[0].clientX - dragStartX);
-            const cy = itemStartCY + (e.touches[0].clientY - dragStartY);
-            applyItemPos(dragItem, cx, cy);
-            checkBroomSweep();
+            if (e.touches.length !== 1) return;
+            if (dragItem) {
+                const cx = itemStartCX + (e.touches[0].clientX - dragStartX);
+                const cy = itemStartCY + (e.touches[0].clientY - dragStartY);
+                applyItemPos(dragItem, cx, cy);
+                checkBroomSweep();
+            } else if (panningBg) {
+                bgOffsetX = bgStartOffsetX + (e.touches[0].clientX - dragStartX);
+                bgOffsetY = bgStartOffsetY + (e.touches[0].clientY - dragStartY);
+                applyBgPos();
+            }
             e.preventDefault();
         }, { passive: false });
 
@@ -853,6 +996,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (dragItem) {
                 dragItem.classList.remove('dragging');
                 dragItem = null;
+            }
+            if (panningBg) {
+                panningBg = false;
             }
         });
     }
