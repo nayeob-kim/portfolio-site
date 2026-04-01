@@ -461,11 +461,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const playgroundWindow = document.querySelector('.playground-window');
     let reclampBg = null;
 
+    function resetPlaygroundIcons() {
+        if (playgroundMin) playgroundMin.innerHTML = '_';
+        if (playgroundMax) playgroundMax.innerHTML = '&#9723;';
+    }
+
     function openPlayground() {
         playgroundOverlay.classList.add('open');
         playgroundOverlay.classList.remove('minimized');
         playgroundWindow.classList.remove('maximized');
         document.body.style.overflow = 'hidden';
+        resetPlaygroundIcons();
         closeSidebar();
         if (reclampBg) reclampBg();
     }
@@ -474,6 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playgroundOverlay.classList.remove('open', 'minimized');
         playgroundWindow.classList.remove('maximized');
         document.body.style.overflow = '';
+        resetPlaygroundIcons();
     }
 
     if (playgroundToggle) {
@@ -489,9 +496,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (playgroundMin) {
         playgroundMin.addEventListener('click', function() {
-            const isMinimized = playgroundOverlay.classList.toggle('minimized');
+            var isMinimized = playgroundOverlay.classList.toggle('minimized');
             playgroundWindow.classList.remove('maximized');
             document.body.style.overflow = isMinimized ? '' : 'hidden';
+            playgroundMin.innerHTML = isMinimized ? '<span class="restore-icon"></span>' : '_';
+            if (playgroundMax) playgroundMax.innerHTML = '&#9723;';
             if (!isMinimized && reclampBg) reclampBg();
         });
     }
@@ -501,6 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
             playgroundWindow.classList.toggle('maximized');
             playgroundOverlay.classList.remove('minimized');
             document.body.style.overflow = 'hidden';
+            playgroundMin.innerHTML = '_';
             playgroundMax.innerHTML = playgroundWindow.classList.contains('maximized')
                     ? '<span class="restore-icon"></span>'
                     : '&#9723;';
@@ -527,6 +537,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 playgroundOverlay.classList.add('minimized');
                 playgroundWindow.classList.remove('maximized');
                 document.body.style.overflow = '';
+                if (playgroundMin) playgroundMin.innerHTML = '<span class="restore-icon"></span>';
+                if (playgroundMax) playgroundMax.innerHTML = '&#9723;';
             }
             overlayDownTarget = null;
         });
@@ -586,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function onStickerPlace(entry) {
         if (entry.sticker === couchSticker || entry.sticker === tvSticker) checkShowBagSticker();
-        if (entry.sticker === bilboSticker && typeof checkChipBubble === 'function') checkChipBubble();
+        if (entry.sticker === bilboSticker) checkChipBubble();
     }
 
     function bindStickerEvents(entry) {
@@ -1045,8 +1057,7 @@ document.addEventListener('DOMContentLoaded', function() {
         workInfo.innerHTML = infoHtml;
 
         // Hero image
-        workHero.classList.remove('work-hero--gif');
-        workHero.classList.remove('work-hero--contain');
+        workHero.classList.remove('work-hero--gif', 'work-hero--contain');
         workHero.style.backgroundColor = '';
         if (project.heroGif) {
             workHero.classList.add('work-hero--gif');
@@ -1324,13 +1335,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let asciiResizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(asciiResizeTimeout);
-            asciiResizeTimeout = setTimeout(() => {
-                cancelAnimationFrame(animId);
-                animId = null;
-                revealed = true;
-                initAscii();
-                chars.forEach(c => c.opacity = 1);
-            }, 150);
+            asciiResizeTimeout = setTimeout(reinitAscii, 150);
         });
     }
 });

@@ -68,7 +68,6 @@
 }
 
 .lock-title {
-    font-family: var(--font-mono);
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -76,11 +75,8 @@
 }
 
 .lock-description {
-    font-family: var(--font-mono);
-    font-size: 12px;
     color: var(--color-text-secondary);
     margin-bottom: 20px !important;
-    line-height: 1.6;
 }
 
 .lock-form {
@@ -91,8 +87,8 @@
 }
 
 .lock-input {
-    font-family: var(--font-mono);
-    font-size: 12px;
+    font-family: inherit;
+    font-size: inherit;
     padding: 12px;
     background: var(--color-input-bg);
     border: 1px solid var(--color-input-border);
@@ -111,7 +107,6 @@
 
 .lock-error {
     display: none;
-    font-family: var(--font-mono);
     font-size: 11px;
     color: #ff6b6b;
     margin: 0;
@@ -122,8 +117,8 @@
 }
 
 .lock-submit {
-    font-family: var(--font-mono);
-    font-size: 12px;
+    font-family: inherit;
+    font-size: inherit;
     font-weight: 700;
     padding: 12px;
     background: var(--color-text);
@@ -143,6 +138,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ---------- Base ---------- */
@@ -153,6 +149,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -240,9 +237,6 @@ img, iframe, canvas, video {
 }
 
 .nav-item {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 400;
     color: var(--color-text);
     cursor: pointer;
     display: block;
@@ -272,7 +266,6 @@ img, iframe, canvas, video {
     gap: 10px;
     align-items: flex-start;
     cursor: pointer;
-    font-size: 12px;
     line-height: 1.4;
     transition: opacity 0.2s ease;
 }
@@ -307,8 +300,6 @@ img, iframe, canvas, video {
 }
 
 .sidebar-divider {
-    font-family: var(--font-mono);
-    font-size: 12px;
     color: var(--color-text);
     line-height: 1.4;
     overflow: hidden;
@@ -317,15 +308,11 @@ img, iframe, canvas, video {
 }
 
 .sidebar-email {
-    font-family: var(--font-mono);
-    font-size: 12px;
     color: var(--color-text);
     line-height: 1.4;
 }
 
 .sidebar-link {
-    font-family: var(--font-mono);
-    font-size: 12px;
     line-height: 1.4;
 }
 
@@ -338,8 +325,6 @@ img, iframe, canvas, video {
 }
 
 .back-to-top {
-    font-family: var(--font-mono);
-    font-size: 12px;
     color: var(--color-text);
     cursor: pointer;
     display: none;
@@ -752,7 +737,6 @@ img, iframe, canvas, video {
 .home-bio {
     width: 306px;
     flex-shrink: 0;
-    font-size: 12px;
     line-height: 1.6;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -766,8 +750,6 @@ img, iframe, canvas, video {
 }
 
 .ascii-portrait {
-    font-family: var(--font-mono);
-    font-size: 12px;
     line-height: 1.2;
     color: var(--color-text);
     white-space: pre;
@@ -810,7 +792,6 @@ img, iframe, canvas, video {
 }
 
 .work-title {
-    font-family: var(--font-mono);
     font-size: 16px;
     font-weight: 700;
     line-height: 1.4;
@@ -818,7 +799,6 @@ img, iframe, canvas, video {
 }
 
 .work-tags {
-    font-size: 12px;
     line-height: 1.6;
     margin-bottom: 21px;
     color: var(--color-text);
@@ -835,7 +815,6 @@ img, iframe, canvas, video {
 }
 
 .work-section-text {
-    font-size: 12px;
     line-height: 1.6;
     color: var(--color-text);
 }
