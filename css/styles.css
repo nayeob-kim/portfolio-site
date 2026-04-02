@@ -656,6 +656,7 @@ img, iframe, canvas, video {
     appearance: none;
     cursor: pointer;
     flex-shrink: 0;
+    user-select: none;
     transition: transform 0.15s ease;
     filter:
         drop-shadow(1px 0 0 #ffffff)

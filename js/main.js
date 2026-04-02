@@ -558,6 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const bagSticker = document.getElementById('bag-sticker');
     const bagItem = document.getElementById('bag-item');
+    var triggerBagChips = null;
 
     const plantSticker = document.getElementById('plant-sticker');
     const plantItem = document.getElementById('plant-item');
@@ -636,7 +637,8 @@ document.addEventListener('DOMContentLoaded', function() {
             stickerStartX = e.touches[0].clientX;
             stickerStartY = e.touches[0].clientY;
             stickerMoved = false;
-        }, { passive: true });
+            e.preventDefault();
+        }, { passive: false });
     }
 
     stickerMap.forEach(bindStickerEvents);
@@ -689,13 +691,14 @@ document.addEventListener('DOMContentLoaded', function() {
             showStickerGhost(stickerDrag, e.touches[0].clientX, e.touches[0].clientY);
         }
         if (stickerMoved) {
+            e.preventDefault();
             var pos = clientToCX(e.touches[0].clientX, e.touches[0].clientY);
             stickerDrag.item.dataset.cx = pos.cx;
             stickerDrag.item.dataset.cy = pos.cy;
             stickerDrag.item.style.left = `calc(50% + ${pos.cx + bgOffsetX}px)`;
             stickerDrag.item.style.top = `calc(50% + ${pos.cy + bgOffsetY}px)`;
         }
-    }, { passive: true });
+    }, { passive: false });
 
     window.addEventListener('touchend', function() {
         if (!stickerDrag) return;
@@ -835,8 +838,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const broomSticker = document.getElementById('broom-sticker');
         const broomItem = document.getElementById('broom-item');
 
-        bagItem.addEventListener('click', function(e) {
-            e.preventDefault();
+        triggerBagChips = function() {
             bagItem.src = 'images/playground/bag-cumpled.png';
             chipsExist = true;
             spawnChips();
@@ -845,6 +847,11 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 bagItem.src = 'images/playground/bag.png';
             }, 250);
+        };
+
+        bagItem.addEventListener('click', function(e) {
+            e.preventDefault();
+            triggerBagChips();
         });
 
         if (broomSticker && broomItem) {
@@ -859,6 +866,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let dragItem = null;
         let dragStartX = 0, dragStartY = 0;
         let itemStartCX = 0, itemStartCY = 0;
+        let dragMoved = false;
 
         let panningBg = false;
         let bgStartOffsetX = 0, bgStartOffsetY = 0;
@@ -914,6 +922,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playgroundBody.addEventListener('mousedown', function(e) {
             const item = e.target.closest('.playground-item');
             if (e.target.closest('.playground-tray')) return;
+            dragMoved = false;
             if (item) {
                 dragItem = item;
                 dragStartX = e.clientX;
@@ -955,6 +964,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('mousemove', function(e) {
             if (dragItem) {
+                dragMoved = true;
                 const cx = itemStartCX + (e.clientX - dragStartX);
                 const cy = itemStartCY + (e.clientY - dragStartY);
                 applyItemPos(dragItem, cx, cy);
@@ -968,6 +978,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('mouseup', function() {
             if (dragItem) {
+                if (dragMoved && dragItem === bagItem && triggerBagChips) triggerBagChips();
                 dragItem.classList.remove('dragging');
                 dragItem = null;
             }
@@ -980,6 +991,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playgroundBody.addEventListener('touchstart', function(e) {
             if (e.target.closest('.playground-tray') || e.touches.length !== 1) return;
             const item = e.target.closest('.playground-item');
+            dragMoved = false;
             if (item) {
                 dragItem = item;
                 dragStartX = e.touches[0].clientX;
@@ -999,6 +1011,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playgroundBody.addEventListener('touchmove', function(e) {
             if (e.touches.length !== 1) return;
             if (dragItem) {
+                dragMoved = true;
                 const cx = itemStartCX + (e.touches[0].clientX - dragStartX);
                 const cy = itemStartCY + (e.touches[0].clientY - dragStartY);
                 applyItemPos(dragItem, cx, cy);
@@ -1013,6 +1026,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         playgroundBody.addEventListener('touchend', function() {
             if (dragItem) {
+                if (dragMoved && dragItem === bagItem && triggerBagChips) triggerBagChips();
                 dragItem.classList.remove('dragging');
                 dragItem = null;
             }
