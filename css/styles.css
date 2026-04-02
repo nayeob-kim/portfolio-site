@@ -634,6 +634,8 @@ img, iframe, canvas, video {
     overflow-y: hidden;
     padding: 8px 16px;
     scrollbar-width: none;
+    background: transparent;
+    -webkit-overflow-scrolling: touch;
 }
 
 .playground-tray::before,
@@ -647,9 +649,11 @@ img, iframe, canvas, video {
 }
 
 .playground-sticker {
-    background: none;
+    background: transparent;
     border: none;
     padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
     cursor: pointer;
     flex-shrink: 0;
     transition: transform 0.15s ease;
