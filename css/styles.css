@@ -631,8 +631,7 @@ img, iframe, canvas, video {
     gap: 24px;
     z-index: 20;
     overflow-x: auto;
-    overflow-y: hidden;
-    padding: 8px 16px;
+    padding: 10px 16px 14px;
     scrollbar-width: none;
     background: transparent;
     -webkit-overflow-scrolling: touch;
@@ -694,6 +693,12 @@ img, iframe, canvas, video {
 
     .playground-tray {
         top: 12px;
+        justify-content: flex-start;
+    }
+
+    .playground-tray::before,
+    .playground-tray::after {
+        display: none;
     }
 }
 
@@ -709,7 +714,8 @@ img, iframe, canvas, video {
 
     .playground-tray {
         top: 8px;
-        gap: 20px;
+        gap: 16px;
+        padding: 10px 12px 14px;
     }
 }
 

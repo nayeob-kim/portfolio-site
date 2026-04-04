@@ -163,7 +163,7 @@ const projects = {
         heroFit: 'contain',
         heroBg: '#ffffff',
         images: [
-            'images/projects/project-5/Burn to Give 1-2.png',
+            'images/projects/project-5/Burn to Give 1-1-Updated.png',
             null,
             'images/projects/project-5/Burn to Give 2.png',
             'images/projects/project-5/Burn to Give 3.png'
@@ -550,6 +550,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // --- Playground Tray Touch Scroll (mobile) ---
+    (function() {
+        var tray = document.querySelector('.playground-tray');
+        if (!tray) return;
+        var startX, scrollStart, isScrolling;
+
+        tray.addEventListener('touchstart', function(e) {
+            if (e.touches.length !== 1) return;
+            startX = e.touches[0].clientX;
+            scrollStart = tray.scrollLeft;
+            isScrolling = false;
+        });
+
+        tray.addEventListener('touchmove', function(e) {
+            if (e.touches.length !== 1) return;
+            var dx = startX - e.touches[0].clientX;
+            if (!isScrolling && Math.abs(dx) > 8) isScrolling = true;
+            if (isScrolling) {
+                tray.scrollLeft = scrollStart + dx;
+                e.stopPropagation();
+            }
+        });
+    })();
+
     // --- Playground Sticker Buttons ---
     const playgroundBody = document.getElementById('playground-body');
     var bgOffsetX = 0, bgOffsetY = 0;
@@ -637,8 +661,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stickerStartX = e.touches[0].clientX;
             stickerStartY = e.touches[0].clientY;
             stickerMoved = false;
-            e.preventDefault();
-        }, { passive: false });
+        }, { passive: true });
     }
 
     stickerMap.forEach(bindStickerEvents);
@@ -814,7 +837,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const gravity = 400 + Math.random() * 200;
                 const startTime = performance.now();
 
-                (function animateChip() {
+                (function() {
                     requestAnimationFrame(function step(now) {
                         var t = (now - startTime) / 1000;
                         var cx = startCX + vx * t;
@@ -1194,10 +1217,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let revealStart = 0;
         let animId = null;
 
-        const WAVE_AMP = 1.8;
-        const WAVE_SPEED = 0.0012;
-        const WAVE_FREQ = 0.06;
         const REVEAL_DURATION = 1200;
+        const DRIFT_AMP = 1;
+        const DRIFT_SPEED = 0.0008;
 
         const GLITCH_CHARS = '@#%&*+=!?~^$.:;';
         const GLITCH_DURATION = 900;
@@ -1260,7 +1282,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function tick(now) {
-            const dpr = window.devicePixelRatio || 1;
             ctx.clearRect(0, 0, canvasW, canvasH);
             ctx.font = `${fontSize}px 'IBM Plex Mono', monospace`;
             ctx.textBaseline = 'bottom';
@@ -1284,14 +1305,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (p.opacity <= 0) continue;
 
-                // Wave displacement
-                const waveY = Math.sin(p.col * WAVE_FREQ + now * WAVE_SPEED) * WAVE_AMP;
-                const waveX = Math.cos(p.row * WAVE_FREQ * 0.7 + now * WAVE_SPEED * 0.6) * WAVE_AMP * 0.4;
-
-                let drawX = p.x + waveX;
-                let drawY = p.y + waveY;
+                let drawX = p.x;
+                let drawY = p.y;
                 let drawCh = p.ch;
                 let drawAlpha = p.opacity;
+
+                if (revealed && !glitching) {
+                    var t = now * DRIFT_SPEED;
+                    var seedX = p.col * 0.13 + p.row * 0.07;
+                    var seedY = p.col * 0.09 + p.row * 0.15;
+                    drawX += Math.sin(t + seedX * 6.28) * Math.cos(t * 0.7 + seedY * 3.14) * DRIFT_AMP;
+                    drawY += Math.cos(t * 0.8 + seedY * 6.28) * Math.sin(t * 0.6 + seedX * 3.14) * DRIFT_AMP;
+                }
 
                 if (glitching) {
                     const gt = (now - glitchStart) / GLITCH_DURATION;
