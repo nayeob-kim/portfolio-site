@@ -693,12 +693,6 @@ img, iframe, canvas, video {
 
     .playground-tray {
         top: 12px;
-        justify-content: flex-start;
-    }
-
-    .playground-tray::before,
-    .playground-tray::after {
-        display: none;
     }
 }
 

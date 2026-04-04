@@ -610,6 +610,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var stickerDrag = null;
     var stickerStartX = 0, stickerStartY = 0;
     var stickerMoved = false;
+    var itemZIndex = 10;
 
     function clientToCX(clientX, clientY) {
         var rect = playgroundBody.getBoundingClientRect();
@@ -646,6 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 entry.item.style.display = 'block';
                 entry.item.style.opacity = '';
+                entry.item.style.zIndex = ++itemZIndex;
                 if (entry.isBag) entry.item.src = 'images/playground/bag.png';
                 entry.item.dataset.cx = '0';
                 entry.item.dataset.cy = '0';
@@ -669,6 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showStickerGhost(entry, clientX, clientY) {
         entry.item.style.display = 'block';
         entry.item.style.opacity = '0.6';
+        entry.item.style.zIndex = ++itemZIndex;
         entry.item.classList.add('dragging');
         if (entry.isBag) entry.item.src = 'images/playground/bag.png';
         var pos = clientToCX(clientX, clientY);
@@ -952,6 +955,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 dragStartY = e.clientY;
                 itemStartCX = parseFloat(item.dataset.cx) || 0;
                 itemStartCY = parseFloat(item.dataset.cy) || 0;
+                item.style.zIndex = ++itemZIndex;
                 item.classList.add('dragging');
             } else {
                 panningBg = true;
@@ -1021,6 +1025,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 dragStartY = e.touches[0].clientY;
                 itemStartCX = parseFloat(item.dataset.cx) || 0;
                 itemStartCY = parseFloat(item.dataset.cy) || 0;
+                item.style.zIndex = ++itemZIndex;
                 item.classList.add('dragging');
             } else {
                 panningBg = true;
