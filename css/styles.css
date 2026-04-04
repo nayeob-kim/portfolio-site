@@ -628,6 +628,7 @@ img, iframe, canvas, video {
     left: 0;
     right: 0;
     display: flex;
+    justify-content: center;
     gap: 24px;
     z-index: 20;
     overflow-x: auto;
@@ -635,12 +636,6 @@ img, iframe, canvas, video {
     scrollbar-width: none;
     background: transparent;
     -webkit-overflow-scrolling: touch;
-}
-
-.playground-tray::before,
-.playground-tray::after {
-    content: '';
-    margin: auto;
 }
 
 .playground-tray::-webkit-scrollbar {

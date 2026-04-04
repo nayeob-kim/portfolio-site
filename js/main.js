@@ -474,6 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
         resetPlaygroundIcons();
         closeSidebar();
         if (reclampBg) reclampBg();
+        requestAnimationFrame(updateTrayAlign);
     }
 
     function closePlayground() {
@@ -550,28 +551,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Playground Tray Touch Scroll (mobile) ---
+    // --- Playground Tray Touch Scroll & Centering ---
+    var playgroundTray = document.querySelector('.playground-tray');
+
+    function updateTrayAlign() {
+        if (!playgroundTray) return;
+        playgroundTray.style.justifyContent =
+            playgroundTray.scrollWidth > playgroundTray.clientWidth ? 'flex-start' : 'center';
+    }
+
     (function() {
-        var tray = document.querySelector('.playground-tray');
-        if (!tray) return;
+        if (!playgroundTray) return;
         var startX, scrollStart, isScrolling;
 
-        tray.addEventListener('touchstart', function(e) {
+        playgroundTray.addEventListener('touchstart', function(e) {
             if (e.touches.length !== 1) return;
             startX = e.touches[0].clientX;
-            scrollStart = tray.scrollLeft;
+            scrollStart = playgroundTray.scrollLeft;
             isScrolling = false;
         });
 
-        tray.addEventListener('touchmove', function(e) {
+        playgroundTray.addEventListener('touchmove', function(e) {
             if (e.touches.length !== 1) return;
             var dx = startX - e.touches[0].clientX;
             if (!isScrolling && Math.abs(dx) > 8) isScrolling = true;
             if (isScrolling) {
-                tray.scrollLeft = scrollStart + dx;
+                playgroundTray.scrollLeft = scrollStart + dx;
                 e.stopPropagation();
             }
         });
+
+        window.addEventListener('resize', updateTrayAlign);
     })();
 
     // --- Playground Sticker Buttons ---
@@ -597,6 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
             couchItem && couchItem.style.display === 'block' &&
             tvItem && tvItem.style.display === 'block') {
             bagSticker.style.display = '';
+            updateTrayAlign();
         }
     }
 
@@ -868,7 +879,7 @@ document.addEventListener('DOMContentLoaded', function() {
             bagItem.src = 'images/playground/bag-cumpled.png';
             chipsExist = true;
             spawnChips();
-            if (broomSticker) broomSticker.style.display = '';
+            if (broomSticker) { broomSticker.style.display = ''; updateTrayAlign(); }
             checkChipBubble();
             setTimeout(function() {
                 bagItem.src = 'images/playground/bag.png';
