@@ -166,7 +166,7 @@ const projects = {
         images: [
             'images/projects/project-5/Burn to Give 1-1-Updated.png',
             null,
-            'images/projects/project-5/Burn to Give 2.png?v=2',
+            'images/projects/project-5/Burn to Give 2-Updated.png',
             'images/projects/project-5/Burn to Give 3.png'
         ],
         tags: ['0-1 Product Design', 'Mobile Systems Architecture', 'Behavioral Design', 'Engagement Strategy'],
