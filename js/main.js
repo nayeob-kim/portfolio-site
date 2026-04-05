@@ -160,6 +160,7 @@ const projects = {
         title: 'Burn to Give: Scaling Altruistic Incentives through Mobile Design',
         description: 'Burn to Give is a social purpose platform that converts healthy habits like exercise into life insurance coverage and food donations. The primary objective was to solve for long-term user retention by ensuring the digital act of giving felt as rewarding and seamless as the exercise itself.',
         impact: 'As a 0 to 1 project, the objective was to move from a conceptual mission to a high-performance mobile product. By establishing the initial design language and core interaction patterns, we created a scalable platform that successfully merged personal wellness with global social impact.',
+        prototypeUrl: 'prototype/burn-to-give/index.html',
         heroFit: 'contain',
         heroBg: '#ffffff',
         images: [
@@ -1113,6 +1114,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         infoHtml += `<div class="work-section-block"><p class="work-section-label">Impact</p><p class="work-section-text">${project.impact}</p></div>`;
         infoHtml += `<div class="work-section-block"><p class="work-section-label">Challenge</p><p class="work-section-text">${project.description}</p></div>`;
+
+        if (project.prototypeUrl) {
+            infoHtml += `<p class="work-prototype-link"><a href="${project.prototypeUrl}" target="_blank" rel="noopener noreferrer">View Prototype ↗</a></p>`;
+        }
 
         workInfo.innerHTML = infoHtml;
 

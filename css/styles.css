@@ -819,6 +819,19 @@ img, iframe, canvas, video {
     color: var(--color-text);
 }
 
+.work-prototype-link {
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.work-prototype-link a {
+    color: var(--color-text);
+}
+
+.work-prototype-link a:hover {
+    opacity: 0.6;
+}
+
 .work-hero {
     flex: 1;
     min-width: 0;
